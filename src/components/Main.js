@@ -14,7 +14,7 @@ function Main() {
     baths : 2,
     square : 5280,
     agent : 'Seyhan Akifov',
-    yearsAgo : 4
+    yearsAgo : 4  
   }
 
   const items = [1, 1, 1, 1];
