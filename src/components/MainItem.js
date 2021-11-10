@@ -1,8 +1,11 @@
 function MainItem (params) {
-    return (
+  console.log(params.data)
+  return (
+     
         <div className="item">
                     <div className="feat_property">
                       <div className="thumb">
+                       
                         <img
                           className="img-whp"
                           src="images/property/fp2.jpg"
@@ -11,7 +14,7 @@ function MainItem (params) {
                         <div className="thmb_cntnt">
                           <ul className="tag mb0">
                             <li className="list-inline-item">
-                              <a href="#">{params.data.about}</a>
+                              <a href="#">rent</a>
                             </li>
                           </ul>
                           <ul className="icon mb0">
@@ -27,16 +30,16 @@ function MainItem (params) {
                             </li>
                           </ul>
                           <a className="fp_price" href="#">
-                            ${params.data.price}<small>/{params.data.interval}</small>
+                            ${params.data.price}<small>/</small>{params.data.cashInterval}
                           </a>
                         </div>
                       </div>
                       <div className="details">
                         <div className="tc_content">
-                          <p className="text-thm">{params.data.type}</p>
-                          <h4>{params.data.typeDetail}</h4>
+                          <p className="text-thm"></p>
+                          <h4></h4>
                           <p>
-                            <span className="flaticon-placeholder"></span> {params.data.address}
+                            <span className="flaticon-placeholder">{params.data.address.postCode} {params.data.address.streetName} {params.data.address.streetNumber} {params.data.address.city}</span>
                           </p>
                           <ul className="prop_details mb0">
                             <li className="list-inline-item">
@@ -46,7 +49,7 @@ function MainItem (params) {
                               <a href="#">Baths: {params.data.baths}</a>
                             </li>
                             <li className="list-inline-item">
-                              <a href="#">Sq Ft: {params.data.square}</a>
+                              <a href="#">Sq Ft:{params.data.squareArea} </a>
                             </li>
                           </ul>
                         </div>
@@ -61,11 +64,11 @@ function MainItem (params) {
                               </a>
                             </li>
                             <li className="list-inline-item">
-                              <a href="#">{params.data.agent}</a>
+                              <a href="#"></a>
                             </li>
                           </ul>
                           <div className="fp_pdate float-right">
-                            {params.data.yearsAgo} years ago
+                             {params.data.addeddOn} years ago
                           </div>
                         </div>
                       </div>

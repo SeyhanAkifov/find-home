@@ -1,6 +1,9 @@
 {
   "short_name": "React App",
   "name": "Create React App Sample",
+  "permissions": [
+    "https://localhost:44353/api/Home/Get"
+  ],
   "icons": [
     {
       "src": "favicon.ico",
@@ -23,3 +26,4 @@
   "theme_color": "#000000",
   "background_color": "#ffffff"
 }
+

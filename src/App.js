@@ -8,6 +8,7 @@ import WhyChooseUs from "./components/WhyChooseUs";
 import Testimonials from "./components/Testimonials";
 import OurBlog from "./components/OurBlog";
 import SignUpModal from "./components/SignUpModal";
+import MyComponent from "./components/Test";
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
 
       <Main />
 
+     <MyComponent />
+     
       <CitySearch />
 
       <WhyChooseUs />
