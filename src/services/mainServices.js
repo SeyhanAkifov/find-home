@@ -1,7 +1,6 @@
 
 
-const getAll = fetch('https://localhost:44353/api/Home/Get')
-  .then(response => response.json())
-  
-
-  export default getAll
+export default function getAll() {
+  fetch("https://localhost:5001/api/Home/Get")
+      .then((res) => res.json())
+}
