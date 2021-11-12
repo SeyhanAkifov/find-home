@@ -14,7 +14,7 @@ function MainItem (params) {
                         <div className="thmb_cntnt">
                           <ul className="tag mb0">
                             <li className="list-inline-item">
-                              <a href="#">rent</a>
+                              <a href="#">{params.data.propertyType}</a>
                             </li>
                           </ul>
                           <ul className="icon mb0">
@@ -30,7 +30,7 @@ function MainItem (params) {
                             </li>
                           </ul>
                           <a className="fp_price" href="#">
-                            ${params.data.price}<small>/</small>{params.data.cashInterval}
+                            ${params.data.price}<small>/</small>
                           </a>
                         </div>
                       </div>
@@ -39,7 +39,7 @@ function MainItem (params) {
                           <p className="text-thm"></p>
                           <h4></h4>
                           <p>
-                            <span className="flaticon-placeholder">{params.data.address.postCode} {params.data.address.streetName} {params.data.address.streetNumber} {params.data.address.city}</span>
+                            <span className="flaticon-placeholder">{params.data.postCode} {params.data.streetName} {params.data.streetNumber} {params.data.cityName}</span>
                           </p>
                           <ul className="prop_details mb0">
                             <li className="list-inline-item">
@@ -49,7 +49,7 @@ function MainItem (params) {
                               <a href="#">Baths: {params.data.baths}</a>
                             </li>
                             <li className="list-inline-item">
-                              <a href="#">Sq Ft:{params.data.squareArea} </a>
+                              <a href="#">Sq Ft:{params.data.area} </a>
                             </li>
                           </ul>
                         </div>
@@ -68,7 +68,7 @@ function MainItem (params) {
                             </li>
                           </ul>
                           <div className="fp_pdate float-right">
-                             {params.data.addeddOn} years ago
+                             {params.data.YearsAgo} years ago
                           </div>
                         </div>
                       </div>

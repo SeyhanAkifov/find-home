@@ -76,26 +76,7 @@ function SignUpModal () {
                           <div className="heading">
                             <h4>Login</h4>
                           </div>
-                          <div className="row mt25">
-                            <div className="col-lg-12">
-                              <button
-                                type="submit"
-                                className="btn btn-fb btn-block"
-                              >
-                                <i className="fa fa-facebook float-left mt5"></i>{" "}
-                                Login with Facebook
-                              </button>
-                            </div>
-                            <div className="col-lg-12">
-                              <button
-                                type="submit"
-                                className="btn btn-googl btn-block"
-                              >
-                                <i className="fa fa-google float-left mt5"></i>{" "}
-                                Login with Google
-                              </button>
-                            </div>
-                          </div>
+                          
 
                           <div className="input-group mb-2 mr-sm-2">
                             <input
@@ -176,26 +157,7 @@ function SignUpModal () {
                           <h4>Register</h4>
                         </div>
                         <form action="#">
-                          <div className="row">
-                            <div className="col-lg-12">
-                              <button
-                                type="submit"
-                                className="btn btn-block btn-fb"
-                              >
-                                <i className="fa fa-facebook float-left mt5"></i>{" "}
-                                Login with Facebook
-                              </button>
-                            </div>
-                            <div className="col-lg-12">
-                              <button
-                                type="submit"
-                                className="btn btn-block btn-googl"
-                              >
-                                <i className="fa fa-google float-left mt5"></i>{" "}
-                                Login with Google
-                              </button>
-                            </div>
-                          </div>
+                          
 
                           <div className="form-group input-group">
                             <input

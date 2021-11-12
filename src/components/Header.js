@@ -1,6 +1,22 @@
-function Header() {
+import { useState , useEffect} from 'react'
+
+function Header({
+  navChange}) {
+
+  
+
+  const onHeaderClick = (e) => {
+     e.preventDefault()
+
+     if (e.target.tagName == 'A') {
+       let url = new URL(e.target.href)
+      navChange(url.pathname)
+     }
+     
+  };
+  
     return (
-        <header className="header-nav menu_style_home_one navbar-scrolltofixed stricky main-menu">
+        <header className="header-nav menu_style_home_one navbar-scrolltofixed stricky main-menu" onClick={onHeaderClick}>
           <div className="container-fluid p0">
             <nav>
               <div className="menu-toggle">
@@ -180,7 +196,7 @@ function Header() {
                       </ul>
                     </li>
                     <li>
-                      <a href="page-add-new-property.html">Create Listing</a>
+                      <a href="page-add-new-property.html" >Create Listing</a>
                     </li>
                   </ul>
                 </li>
@@ -335,17 +351,26 @@ function Header() {
                     <span className="dn-lg">Login/Register</span>
                   </a>
                 </li>
-                <li className="list-inline-item add_listing">
-                  <a href="page-add-new-property.html">
+                <li className="list-inline-item add_listing" >
+                 
+                  <a href="add-property" >
                     <span className="flaticon-plus"></span>
                     <span className="dn-lg"> Create Listing</span>
                   </a>
+                   
+                  
                 </li>
+               
               </ul>
+              
             </nav>
           </div>
         </header>
     )
+    
 }
 
 export default Header;
+
+
+

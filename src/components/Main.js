@@ -8,8 +8,7 @@ function Main() {
     const [items, setItems] = useState([]);
   useEffect(() => {
     
-    fetch("https://localhost:44353/api/Home/Get")
-      .then((res) => res.json())
+    getAll
       .then(
         (result) => {
           setIsLoaded(true);
@@ -61,9 +60,7 @@ function Main() {
               <div className="feature_property_slider">
               {items.map(item => (
             <MainItem key={item.id} data={item}>
-              {item.beds} {item.price}
-              {item.baths} {item.price}
-              {item.type.name} {item.price}
+             
             </MainItem>
           ))}
               </div>
