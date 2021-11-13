@@ -11,31 +11,29 @@ import SignUpModal from "./components/SignUpModal";
 import Create from "./components/CreateProperty";
 import { useState, useEffect } from "react";
 
+import {Route, Link, Switch, Routes} from 'react-router-dom'
+
 function App() {
-  const [state, setState] = useState("start");
-
-  const routes = {
-    "start": "Main",
-    "add-property": "Create",
-  };
-
-  const navChange = (path) => {
-        setState(path)
-  }
-
+  
   useEffect(() => {}, []);
   return (
     <div className="wrapper">
       <div className="preloader"></div>
 
-      <Header navChange={navChange} />
+      <Header  />
 
       <SignUpModal />
 
+    
       <HomeSearch />
-      {state === "start" && <Main />}
 
-      {state === '/add-property' && <Create />}
+     <Routes>
+      <Route path="/home" element={<Main />} />
+      <Route path="/create" element={<Create />} />
+      </Routes>
+      
+    
+      
 
       <CitySearch />
 
@@ -49,7 +47,7 @@ function App() {
 
       <Footer />
 
-      <a className="scrollToHome" href="#">
+      <a className="scrollToHome" to="#">
         <i className="flaticon-arrows"></i>
       </a>
     </div>
