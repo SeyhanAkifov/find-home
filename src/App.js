@@ -43,7 +43,7 @@ function App() {
 
       <Testimonials />
 
-      <OurBlog />
+      
 
       <OurPartners />
 

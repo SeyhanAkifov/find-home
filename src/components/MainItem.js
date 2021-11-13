@@ -8,13 +8,13 @@ function MainItem (params) {
                        
                         <img
                           className="img-whp"
-                          src="images/property/fp2.jpg"
+                          src="./images/house.jpg"
                           alt="fp2.jpg"
                         ></img>
                         <div className="thmb_cntnt">
                           <ul className="tag mb0">
                             <li className="list-inline-item">
-                              <a href="#">{params.data.propertyType}</a>
+                              <a href="#">{params.data.propertyType}</a><p>{params.data.condition}</p>
                             </li>
                           </ul>
                           <ul className="icon mb0">

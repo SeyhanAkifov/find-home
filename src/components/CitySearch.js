@@ -18,13 +18,13 @@ function CitySearch () {
                   <div className="thumb">
                     <img
                       className="img-fluid w100"
-                      src="images/property/pc1.jpg"
+                      src="images/munich.jpg"
                       alt="pc1.jpg"
                     ></img>
                   </div>
                   <div className="overlay">
                     <div className="details">
-                      <h4>Miami</h4>
+                      <h4>Munich</h4>
                       <p>24 Properties</p>
                     </div>
                   </div>
@@ -35,13 +35,13 @@ function CitySearch () {
                   <div className="thumb">
                     <img
                       className="img-fluid w100"
-                      src="images/property/pc2.jpg"
+                      src="images/berlin.jpg"
                       alt="pc2.jpg"
                     ></img>
                   </div>
                   <div className="overlay">
                     <div className="details">
-                      <h4>Los Angeles</h4>
+                      <h4>Berlin</h4>
                       <p>18 Properties</p>
                     </div>
                   </div>
@@ -52,13 +52,13 @@ function CitySearch () {
                   <div className="thumb">
                     <img
                       className="img-fluid w100"
-                      src="images/property/pc3.jpg"
+                      src="images/hamburg.jpg"
                       alt="pc3.jpg"
                     ></img>
                   </div>
                   <div className="overlay">
                     <div className="details">
-                      <h4>New York</h4>
+                      <h4>Hamburg</h4>
                       <p>89 Properties</p>
                     </div>
                   </div>
@@ -69,13 +69,13 @@ function CitySearch () {
                   <div className="thumb">
                     <img
                       className="img-fluid w100"
-                      src="images/property/pc4.jpg"
+                      src="images/dresden.jpg"
                       alt="pc4.jpg"
                     ></img>
                   </div>
                   <div className="overlay">
                     <div className="details">
-                      <h4>Florida</h4>
+                      <h4>Dresden</h4>
                       <p>47 Properties</p>
                     </div>
                   </div>

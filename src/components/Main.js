@@ -8,7 +8,8 @@ function Main() {
     const [items, setItems] = useState([]);
   useEffect(() => {
     
-    getAll
+    fetch("http://apifindhome.seyhanakifov.com/api/Home/Get")
+      .then((res) => res.json())
       .then(
         (result) => {
           setIsLoaded(true);
