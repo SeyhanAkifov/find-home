@@ -126,7 +126,7 @@ function Header({ navChange }) {
               </Link>
             </li>
             <li className="last">
-              <Link to="/details">
+              <Link to="/details/2">
                 <span className="title">Details</span>
               </Link>
             </li>
