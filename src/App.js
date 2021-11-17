@@ -3,12 +3,16 @@ import Footer from "./components/Footer";
 import OurPartners from "./components/OurPartners";
 import HomeSearch from "./components/HomeSearch";
 import Main from "./components/Main";
+import MainSearch from "./components/MainSearch";
 import CitySearch from "./components/CitySearch";
 import WhyChooseUs from "./components/WhyChooseUs";
 import Testimonials from "./components/Testimonials";
 import OurBlog from "./components/OurBlog";
 import SignUpModal from "./components/SignUpModal";
 import Create from "./components/CreateProperty";
+import Register from "./components/Register";
+import Login from "./components/Login";
+import Details from "./components/Details";
 import { useState, useEffect } from "react";
 
 import {Route, Link, Switch, Routes} from 'react-router-dom'
@@ -28,8 +32,13 @@ function App() {
       <HomeSearch />
 
      <Routes>
-      <Route path="/home" element={<Main />} />
-      <Route path="/create" element={<Create />} />
+      <Route path="/home"  exact element={<Main />} />
+      <Route path="/" exact element={<Main />} />
+      <Route path="/home/search" exact  element={<MainSearch />} />
+      <Route path="/create" exact element={<Create />} />
+      <Route path="/register" exact element={<Register />} />
+      <Route path="/login" exact element={<Login />} />
+      <Route path="/details" exact element={<Details />} />
       </Routes>
       
     
