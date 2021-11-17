@@ -13,44 +13,35 @@ import Create from "./components/CreateProperty";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Details from "./components/Details";
-import { useState, useEffect } from "react";
-
-import {Route, Link, Switch, Routes} from 'react-router-dom'
+import { Route, Link, Switch, Routes } from "react-router-dom";
 
 function App() {
-  
-  useEffect(() => {}, []);
   return (
     <div className="wrapper">
       <div className="preloader"></div>
 
-      <Header  />
+      <Header />
 
       <SignUpModal />
 
-    
       <HomeSearch />
 
-     <Routes>
-      <Route path="/home"  exact element={<Main />} />
-      <Route path="/" exact element={<Main />} />
-      <Route path="/home/search" exact  element={<MainSearch />} />
-      <Route path="/create" exact element={<Create />} />
-      <Route path="/register" exact element={<Register />} />
-      <Route path="/login" exact element={<Login />} />
-      <Route path="/details" exact element={<Details />} />
+      <Routes>
+        <Route path="/home" exact element={<Main />} />
+        <Route path="/" exact element={<Main />} />
+        <Route path="/properties/" exact element={<Main />} />
+        <Route path="/home/search" exact element={<MainSearch />} />
+        <Route path="/create" exact element={<Create />} />
+        <Route path="/register" exact element={<Register />} />
+        <Route path="/login" exact element={<Login />} />
+        <Route path="/details/:id" exact element={<Details />} />
       </Routes>
-      
-    
-      
 
       <CitySearch />
 
       <WhyChooseUs />
 
       <Testimonials />
-
-      
 
       <OurPartners />
 

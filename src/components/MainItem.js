@@ -1,3 +1,5 @@
+import { Route, Link, Switch } from "react-router-dom";
+
 function MainItem (params) {
   console.log(params.data)
   return (
@@ -63,6 +65,9 @@ function MainItem (params) {
                                 ></img>
                               </a>
                             </li>
+                            <li><Link to={`/details/${params.data.id}`}>
+                <span className="title">Details</span>
+              </Link></li>
                             <li className="list-inline-item">
                               <a href="#"></a>
                             </li>
@@ -73,6 +78,7 @@ function MainItem (params) {
                         </div>
                       </div>
                     </div>
+                    
                   </div>
     )
 }

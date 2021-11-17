@@ -1,4 +1,26 @@
-function Details () {
+import { useState, useEffect } from "react"
+import Get  from '../services/propertyServices'
+
+function Details ({id}) {
+console.log(id);
+    const [property, setProperty] = useState({});
+
+    useEffect(async () => {
+        fetch("http://apifindhome.seyhanakifov.com/api/Home/GetWithId?id=2", {
+            headers: {
+              token:
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic2V5aGFuIiwianRpIjoiYWM5Zjc0OTctMTA2NS00ZjgxLWJlNWMtOTE3NGY3ZWQ3MTAzIiwiZXhwIjoxNjM2ODk3ODgyLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjU5OTIxIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo0MjAwIn0.bL9Bc7Olqxld1lEuu2mS-zXlEb4UUmOogXxLy5QYLiU",
+              expiration: "2021-11-14T13:51:22Z",
+            },
+          })
+          .then((res) => res.json())
+          .then(data => setProperty(data))
+          
+        
+          
+    }, []);
+
+    console.log(property);
     return (
         <section className="our-agent-single pb30-991">
 		<div className="container">
@@ -17,11 +39,11 @@ function Details () {
 								</div>
 								<h4 className="mb30">Description</h4>
 						    	<p className="mb25">Evans Tower very high demand corner junior one bedroom plus a large balcony boasting full open NYC views. You need to see the views to believe them. Mint condition with new hardwood floors. Lots of closets plus washer and dryer.</p>
-						    	<p className="gpara second_para white_goverlay mt10 mb10">Fully furnished. Elegantly appointed condominium unit situated on premier location. PS6. The wide entry hall leads to a large living room with dining area. This expansive 2 bedroom and 2 renovated marble bathroom apartment has great windows. Despite the interior views, the apartments Southern and Eastern exposures allow for lovely natural light to fill every room. The master suite is surrounded by handcrafted milkwork and features incredible walk-in closet and storage space.</p>
+						    	<p className="gpara second_para white_goverlay mt10 mb10">Fully furnished. Elegantly appointed condominium unit situated on premier location. PS6. The wide entry hall leads to a large living room with dining area. This expansive 2 bedroom and 2 renovated marble bathroom apartment has great windows. Despite the interior views, the apartments Southern and Eastern exposures allow htmlFor lovely natural light to fill every room. The master suite is surrounded by handcrafted milkwork and features incredible walk-in closet and storage space.</p>
 								<div className="collapse" id="collapseExample">
 								  	<div className="card card-body">
-								    	<p className="mt10 mb10">Fully furnished. Elegantly appointed condominium unit situated on premier location. PS6. The wide entry hall leads to a large living room with dining area. This expansive 2 bedroom and 2 renovated marble bathroom apartment has great windows. Despite the interior views, the apartments Southern and Eastern exposures allow for lovely natural light to fill every room. The master suite is surrounded by handcrafted milkwork and features incredible walk-in closet and storage space.</p>
-								    	<p className="mt10 mb10">Fully furnished. Elegantly appointed condominium unit situated on premier location. PS6. The wide entry hall leads to a large living room with dining area. This expansive 2 bedroom and 2 renovated marble bathroom apartment has great windows. Despite the interior views, the apartments Southern and Eastern exposures allow for lovely natural light to fill every room. The master suite is surrounded by handcrafted milkwork and features incredible walk-in closet and storage space.</p>
+								    	<p className="mt10 mb10">Fully furnished. Elegantly appointed condominium unit situated on premier location. PS6. The wide entry hall leads to a large living room with dining area. This expansive 2 bedroom and 2 renovated marble bathroom apartment has great windows. Despite the interior views, the apartments Southern and Eastern exposures allow htmlFor lovely natural light to fill every room. The master suite is surrounded by handcrafted milkwork and features incredible walk-in closet and storage space.</p>
+								    	<p className="mt10 mb10">Fully furnished. Elegantly appointed condominium unit situated on premier location. PS6. The wide entry hall leads to a large living room with dining area. This expansive 2 bedroom and 2 renovated marble bathroom apartment has great windows. Despite the interior views, the apartments Southern and Eastern exposures allow htmlFor lovely natural light to fill every room. The master suite is surrounded by handcrafted milkwork and features incredible walk-in closet and storage space.</p>
 								  	</div>
 								</div>
 								<p className="overlay_close">
@@ -72,7 +94,7 @@ function Details () {
 										</ul>
 										<ul className="list-inline-item">
 											<li><p><span>Apartment</span></p></li>
-											<li><p><span>For Sale</span></p></li>
+											<li><p><span>htmlFor Sale</span></p></li>
 										</ul>
 									</div>
 								</div>
@@ -409,7 +431,7 @@ function Details () {
 										</div>
 									</div>
 									<div className="col-lg-6 col-xl-6">
-										<div className="my_profile_setting_input ui_kit_select_search form-group">
+										<div className="my_profile_setting_input ui_kit_select_search htmlForm-group">
 											<select className="selectpicker" data-live-search="true" data-width="100%">
 												<option data-tokens="Terms">Terms</option>
 												<option data-tokens="Terms2">Terms2</option>
@@ -419,23 +441,23 @@ function Details () {
 										</div>
 									</div>
 									<div className="col-lg-6 col-xl-6">
-										<div className="my_profile_setting_input form-group">
-									    	<input type="text" className="form-control" id="formGroupExampleWebsite" placeholder="Interest"/>
+										<div className="my_profile_setting_input htmlForm-group">
+									    	<input type="text" className="htmlForm-control" id="htmlFormGroupExampleWebsite" placeholder="Interest"/>
 										</div>
 									</div>
 									<div className="col-lg-6 col-xl-6">
-										<div className="my_profile_setting_input form-group">
-									    	<input type="text" className="form-control" id="formGroupExampleFaceBook" placeholder="Home Price"/>
+										<div className="my_profile_setting_input htmlForm-group">
+									    	<input type="text" className="htmlForm-control" id="htmlFormGroupExampleFaceBook" placeholder="Home Price"/>
 										</div>
 									</div>
 									<div className="col-lg-6 col-xl-4">
-										<div className="my_profile_setting_input form-group">
-									    	<input type="text" className="form-control" id="formGroupExampleTwitter" placeholder="Down Payment"/>
+										<div className="my_profile_setting_input htmlForm-group">
+									    	<input type="text" className="htmlForm-control" id="htmlFormGroupExampleTwitter" placeholder="Down Payment"/>
 										</div>
 									</div>
 									<div className="col-lg-6 col-xl-2">
-										<div className="my_profile_setting_input form-group">
-									    	<input type="text" className="form-control" id="formGroupExampleLinkedin" placeholder="10%"/>
+										<div className="my_profile_setting_input htmlForm-group">
+									    	<input type="text" className="htmlForm-control" id="htmlFormGroupExampleLinkedin" placeholder="10%"/>
 										</div>
 									</div>
 								</div>
@@ -503,7 +525,7 @@ function Details () {
 												</div>
 									    	</h4>
 									    	<a className="sspd_postdate fz14" href="#">December 28, 2020</a>
-									    	<p className="mt10">Beautiful home, very picturesque and close to everything in jtree! A little warm for a hot weekend, but would love to come back during the cooler seasons!</p>
+									    	<p className="mt10">Beautiful home, very picturesque and close to everything in jtree! A little warm htmlFor a hot weekend, but would love to come back during the cooler seasons!</p>
 										</div>
 									</div>
 									<div className="custom_hr"></div>
@@ -523,7 +545,7 @@ function Details () {
 												</div>
 									    	</h4>
 									    	<a className="sspd_postdate fz14" href="#">December 28, 2020</a>
-									    	<p className="mt10">Beautiful home, very picturesque and close to everything in jtree! A little warm for a hot weekend, but would love to come back during the cooler seasons!</p>
+									    	<p className="mt10">Beautiful home, very picturesque and close to everything in jtree! A little warm htmlFor a hot weekend, but would love to come back during the cooler seasons!</p>
 										</div>
 									</div>
 								</div>
@@ -532,7 +554,7 @@ function Details () {
 						<div className="col-lg-12">
 							<div className="product_single_content">
 								<div className="mbp_pagination_comments mt30">
-									<div className="mbp_comment_form style2">
+									<div className="mbp_comment_htmlForm style2">
 										<h4>Write a Review</h4>
 										<ul className="sspd_review">
 											<li className="list-inline-item">
@@ -546,15 +568,15 @@ function Details () {
 											</li>
 											<li className="list-inline-item review_rating_para">Your Rating & Review</li>
 										</ul>
-										<form className="comments_form">
-											<div className="form-group">
-										    	<input type="text" className="form-control" id="exampleInputName1" aria-describedby="textHelp" placeholder="Review Title"/>
+										<htmlForm className="comments_htmlForm">
+											<div className="htmlForm-group">
+										    	<input type="text" className="htmlForm-control" id="exampleInputName1" aria-describedby="textHelp" placeholder="Review Title"/>
 											</div>
-											<div className="form-group">
-											    <textarea className="form-control" id="exampleFormControlTextarea1" rows="12" placeholder="Your Review"></textarea>
+											<div className="htmlForm-group">
+											    <textarea className="htmlForm-control" id="examplehtmlFormControlTextarea1" rows="12" placeholder="Your Review"></textarea>
 											</div>
 											<button type="submit" className="btn btn-thm">Submit Review <span className="flaticon-right-arrow-1"></span></button>
-										</form>
+										</htmlForm>
 									</div>
 								</div>
 							</div>
@@ -568,7 +590,7 @@ function Details () {
 									<img className="img-whp" src="images/property/fp1.jpg" alt="fp1.jpg"/>
 									<div className="thmb_cntnt">
 										<ul className="tag mb0">
-											<li className="list-inline-item"><a href="#">For Rent</a></li>
+											<li className="list-inline-item"><a href="#">htmlFor Rent</a></li>
 											<li className="list-inline-item"><a href="#">Featured</a></li>
 										</ul>
 										<ul className="icon mb0">
@@ -605,7 +627,7 @@ function Details () {
 									<img className="img-whp" src="images/property/fp2.jpg" alt="fp2.jpg"/>
 									<div className="thmb_cntnt">
 										<ul className="tag mb0">
-											<li className="list-inline-item"><a href="#">For Rent</a></li>
+											<li className="list-inline-item"><a href="#">htmlFor Rent</a></li>
 										</ul>
 										<ul className="icon mb0">
 											<li className="list-inline-item"><a href="#"><span className="flaticon-transfer-1"></span></a></li>
@@ -641,7 +663,7 @@ function Details () {
 									<img className="img-whp" src="images/property/fp3.jpg" alt="fp3.jpg"/>
 									<div className="thmb_cntnt">
 										<ul className="tag mb0">
-											<li className="list-inline-item"><a href="#">For Sale</a></li>
+											<li className="list-inline-item"><a href="#">htmlFor Sale</a></li>
 										</ul>
 										<ul className="icon mb0">
 											<li className="list-inline-item"><a href="#"><span className="flaticon-transfer-1"></span></a></li>
@@ -677,7 +699,7 @@ function Details () {
 									<img className="img-whp" src="images/property/fp1.jpg" alt="fp1.jpg"/>
 									<div className="thmb_cntnt">
 										<ul className="tag mb0">
-											<li className="list-inline-item"><a href="#">For Rent</a></li>
+											<li className="list-inline-item"><a href="#">htmlFor Rent</a></li>
 											<li className="list-inline-item"><a href="#">Featured</a></li>
 										</ul>
 										<ul className="icon mb0">
@@ -727,23 +749,23 @@ function Details () {
 							</div>
 							<ul className="sasw_list mb0">
 								<li className="search_area">
-								    <div className="form-group">
-								    	<input type="text" className="form-control" id="exampleInputName1" placeholder="Your Name"/>
+								    <div className="htmlForm-group">
+								    	<input type="text" className="htmlForm-control" id="exampleInputName1" placeholder="Your Name"/>
 								    </div>
 								</li>
 								<li className="search_area">
-								    <div className="form-group">
-								    	<input type="number" className="form-control" id="exampleInputName2" placeholder="Phone"/>
+								    <div className="htmlForm-group">
+								    	<input type="number" className="htmlForm-control" id="exampleInputName2" placeholder="Phone"/>
 								    </div>
 								</li>
 								<li className="search_area">
-								    <div className="form-group">
-								    	<input type="email" className="form-control" id="exampleInputEmail" placeholder="Email"/>
+								    <div className="htmlForm-group">
+								    	<input type="email" className="htmlForm-control" id="exampleInputEmail" placeholder="Email"/>
 								    </div>
 								</li>
 								<li className="search_area">
-		                            <div className="form-group">
-		                                <textarea id="form_message" name="form_message" className="form-control required" rows="5" required="required" placeholder="I'm interest in [ Listing Single ]"></textarea>
+		                            <div className="htmlForm-group">
+		                                <textarea id="htmlForm_message" name="htmlForm_message" className="htmlForm-control required" rows="5" required="required" placeholder="I'm interest in [ Listing Single ]"></textarea>
 		                            </div>
 								</li>
 								<li>
@@ -758,15 +780,15 @@ function Details () {
 						<div className="sidebar_advanced_search_widget">
 							<ul className="sasw_list mb0">
 								<li className="search_area">
-								    <div className="form-group">
-								    	<input type="text" className="form-control" id="exampleInputName1" placeholder="keyword"/>
-								    	<label for="exampleInputEmail"><span className="flaticon-magnifying-glass"></span></label>
+								    <div className="htmlForm-group">
+								    	<input type="text" className="htmlForm-control" id="exampleInputName1" placeholder="keyword"/>
+								    	<label htmlFor="exampleInputEmail"><span className="flaticon-magnifying-glass"></span></label>
 								    </div>
 								</li>
 								<li className="search_area">
-								    <div className="form-group">
-								    	<input type="text" className="form-control" id="exampleInputEmail" placeholder="Location"/>
-								    	<label for="exampleInputEmail"><span className="flaticon-maps-and-flags"></span></label>
+								    <div className="htmlForm-group">
+								    	<input type="text" className="htmlForm-control" id="exampleInputEmail" placeholder="Location"/>
+								    	<label htmlFor="exampleInputEmail"><span className="flaticon-maps-and-flags"></span></label>
 								    </div>
 								</li>
 								<li>
@@ -803,7 +825,7 @@ function Details () {
 									<div className="small_dropdown2">
 									    <div id="prncgs2" className="btn dd_btn">
 									    	<span>Price</span>
-									    	<label for="exampleInputEmail2"><span className="fa fa-angle-down"></span></label>
+									    	<label htmlFor="exampleInputEmail2"><span className="fa fa-angle-down"></span></label>
 									    </div>
 									  	<div className="dd_content2">
 										    <div className="pricing_acontent">
@@ -877,13 +899,13 @@ function Details () {
 									</div>
 								</li>
 								<li className="min_area list-inline-item">
-								    <div className="form-group">
-								    	<input type="text" className="form-control" id="exampleInputName2" placeholder="Min Area"/>
+								    <div className="htmlForm-group">
+								    	<input type="text" className="htmlForm-control" id="exampleInputName2" placeholder="Min Area"/>
 								    </div>
 								</li>
 								<li className="max_area list-inline-item">
-								    <div className="form-group">
-								    	<input type="text" className="form-control" id="exampleInputName3" placeholder="Max Area"/>
+								    <div className="htmlForm-group">
+								    	<input type="text" className="htmlForm-control" id="exampleInputName3" placeholder="Max Area"/>
 								    </div>
 								</li>
 								<li>
@@ -901,49 +923,49 @@ function Details () {
 										                	<li>
 																<div className="custom-control custom-checkbox">
 																	<input type="checkbox" className="custom-control-input" id="customCheck16"/>
-																	<label className="custom-control-label" for="customCheck16">Air Conditioning</label>
+																	<label className="custom-control-label" htmlFor="customCheck16">Air Conditioning</label>
 																</div>
 										                	</li>
 										                	<li>
 																<div className="custom-control custom-checkbox">
 																	<input type="checkbox" className="custom-control-input" id="customCheck17"/>
-																	<label className="custom-control-label" for="customCheck17">Barbeque</label>
+																	<label className="custom-control-label" htmlFor="customCheck17">Barbeque</label>
 																</div>
 										                	</li>
 										                	<li>
 																<div className="custom-control custom-checkbox">
 																	<input type="checkbox" className="custom-control-input" id="customCheck18"/>
-																	<label className="custom-control-label" for="customCheck18">Gym</label>
+																	<label className="custom-control-label" htmlFor="customCheck18">Gym</label>
 																</div>
 										                	</li>
 										                	<li>
 																<div className="custom-control custom-checkbox">
 																	<input type="checkbox" className="custom-control-input" id="customCheck19"/>
-																	<label className="custom-control-label" for="customCheck19">Microwave</label>
+																	<label className="custom-control-label" htmlFor="customCheck19">Microwave</label>
 																</div>
 										                	</li>
 										                	<li>
 																<div className="custom-control custom-checkbox">
 																	<input type="checkbox" className="custom-control-input" id="customCheck20"/>
-																	<label className="custom-control-label" for="customCheck20">TV Cable</label>
+																	<label className="custom-control-label" htmlFor="customCheck20">TV Cable</label>
 																</div>
 										                	</li>
 										                	<li>
 																<div className="custom-control custom-checkbox">
 																	<input type="checkbox" className="custom-control-input" id="customCheck21"/>
-																	<label className="custom-control-label" for="customCheck21">Lawn</label>
+																	<label className="custom-control-label" htmlFor="customCheck21">Lawn</label>
 																</div>
 										                	</li>
 										                	<li>
 																<div className="custom-control custom-checkbox">
 																	<input type="checkbox" className="custom-control-input" id="customCheck22"/>
-																	<label className="custom-control-label" for="customCheck22">Refrigerator</label>
+																	<label className="custom-control-label" htmlFor="customCheck22">Refrigerator</label>
 																</div>
 										                	</li>
 										                	<li>
 																<div className="custom-control custom-checkbox">
 																	<input type="checkbox" className="custom-control-input" id="customCheck23"/>
-																	<label className="custom-control-label" for="customCheck23">Swimming Pool</label>
+																	<label className="custom-control-label" htmlFor="customCheck23">Swimming Pool</label>
 																</div>
 										                	</li>
 										                </ul>
@@ -951,43 +973,43 @@ function Details () {
 										                	<li>
 																<div className="custom-control custom-checkbox">
 																	<input type="checkbox" className="custom-control-input" id="customCheck24"/>
-																	<label className="custom-control-label" for="customCheck24">WiFi</label>
+																	<label className="custom-control-label" htmlFor="customCheck24">WiFi</label>
 																</div>
 										                	</li>
 										                	<li>
 																<div className="custom-control custom-checkbox">
 																	<input type="checkbox" className="custom-control-input" id="customCheck25"/>
-																	<label className="custom-control-label" for="customCheck25">Sauna</label>
+																	<label className="custom-control-label" htmlFor="customCheck25">Sauna</label>
 																</div>
 										                	</li>
 										                	<li>
 																<div className="custom-control custom-checkbox">
 																	<input type="checkbox" className="custom-control-input" id="customCheck26"/>
-																	<label className="custom-control-label" for="customCheck26">Dryer</label>
+																	<label className="custom-control-label" htmlFor="customCheck26">Dryer</label>
 																</div>
 										                	</li>
 										                	<li>
 																<div className="custom-control custom-checkbox">
 																	<input type="checkbox" className="custom-control-input" id="customCheck27"/>
-																	<label className="custom-control-label" for="customCheck27">Washer</label>
+																	<label className="custom-control-label" htmlFor="customCheck27">Washer</label>
 																</div>
 										                	</li>
 										                	<li>
 																<div className="custom-control custom-checkbox">
 																	<input type="checkbox" className="custom-control-input" id="customCheck28"/>
-																	<label className="custom-control-label" for="customCheck28">Laundry</label>
+																	<label className="custom-control-label" htmlFor="customCheck28">Laundry</label>
 																</div>
 										                	</li>
 										                	<li>
 																<div className="custom-control custom-checkbox">
 																	<input type="checkbox" className="custom-control-input" id="customCheck29"/>
-																	<label className="custom-control-label" for="customCheck29">Outdoor Shower</label>
+																	<label className="custom-control-label" htmlFor="customCheck29">Outdoor Shower</label>
 																</div>
 										                	</li>
 										                	<li>
 																<div className="custom-control custom-checkbox">
 																	<input type="checkbox" className="custom-control-input" id="customCheck30"/>
-																	<label className="custom-control-label" for="customCheck30">Window Coverings</label>
+																	<label className="custom-control-label" htmlFor="customCheck30">Window Coverings</label>
 																</div>
 										                	</li>
 										                </ul>
@@ -1014,7 +1036,7 @@ function Details () {
 										<img className="img-whp" src="images/property/fp1.jpg" alt="fp1.jpg"/>
 										<div className="thmb_cntnt">
 											<ul className="tag mb0">
-												<li className="list-inline-item"><a href="#">For Rent</a></li>
+												<li className="list-inline-item"><a href="#">htmlFor Rent</a></li>
 												<li className="list-inline-item"><a href="#">Featured</a></li>
 											</ul>
 											<a className="fp_price" href="#">$13,000<small>/mo</small></a>
@@ -1029,7 +1051,7 @@ function Details () {
 										<img className="img-whp" src="images/property/fp2.jpg" alt="fp2.jpg"/>
 										<div className="thmb_cntnt">
 											<ul className="tag mb0">
-												<li className="list-inline-item"><a href="#">For Rent</a></li>
+												<li className="list-inline-item"><a href="#">htmlFor Rent</a></li>
 												<li className="list-inline-item"><a href="#">Featured</a></li>
 											</ul>
 											<a className="fp_price" href="#">$13,000<small>/mo</small></a>
@@ -1044,7 +1066,7 @@ function Details () {
 										<img className="img-whp" src="images/property/fp3.jpg" alt="fp3.jpg"/>
 										<div className="thmb_cntnt">
 											<ul className="tag mb0">
-												<li className="list-inline-item"><a href="#">For Rent</a></li>
+												<li className="list-inline-item"><a href="#">htmlFor Rent</a></li>
 												<li className="list-inline-item"><a href="#">Featured</a></li>
 											</ul>
 											<a className="fp_price" href="#">$13,000<small>/mo</small></a>
@@ -1059,7 +1081,7 @@ function Details () {
 										<img className="img-whp" src="images/property/fp4.jpg" alt="fp4.jpg"/>
 										<div className="thmb_cntnt">
 											<ul className="tag mb0">
-												<li className="list-inline-item"><a href="#">For Rent</a></li>
+												<li className="list-inline-item"><a href="#">htmlFor Rent</a></li>
 												<li className="list-inline-item"><a href="#">Featured</a></li>
 											</ul>
 											<a className="fp_price" href="#">$13,000<small>/mo</small></a>
@@ -1074,7 +1096,7 @@ function Details () {
 										<img className="img-whp" src="images/property/fp5.jpg" alt="fp5.jpg"/>
 										<div className="thmb_cntnt">
 											<ul className="tag mb0">
-												<li className="list-inline-item"><a href="#">For Rent</a></li>
+												<li className="list-inline-item"><a href="#">htmlFor Rent</a></li>
 												<li className="list-inline-item"><a href="#">Featured</a></li>
 											</ul>
 											<a className="fp_price" href="#">$13,000<small>/mo</small></a>
