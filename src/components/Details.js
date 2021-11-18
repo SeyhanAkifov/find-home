@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react"
 import Get  from '../services/propertyServices'
+import { useHistory, useParams } from "react-router-dom";
 
-function Details ({id}) {
-console.log(id);
-    const [property, setProperty] = useState({});
+
+function Details () {
+    let id = useParams();
+
+    const [property, setProperty] = useState([]);
 
     useEffect(async () => {
-        fetch("http://apifindhome.seyhanakifov.com/api/Home/GetWithId?id=2", {
+        fetch(`http://apifindhome.seyhanakifov.com/api/Home/GetWithId?id=${id.id}`, {
             headers: {
               token:
                 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic2V5aGFuIiwianRpIjoiYWM5Zjc0OTctMTA2NS00ZjgxLWJlNWMtOTE3NGY3ZWQ3MTAzIiwiZXhwIjoxNjM2ODk3ODgyLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjU5OTIxIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo0MjAwIn0.bL9Bc7Olqxld1lEuu2mS-zXlEb4UUmOogXxLy5QYLiU",
@@ -31,10 +34,10 @@ console.log(id);
 							<div className="listing_single_description">
 								<div className="lsd_list">
 									<ul className="mb0">
-										<li className="list-inline-item"><a href="#">Apartment</a></li>
-										<li className="list-inline-item"><a href="#">Beds: 4</a></li>
-										<li className="list-inline-item"><a href="#">Baths: 2</a></li>
-										<li className="list-inline-item"><a href="#">Sq Ft: 5280</a></li>
+										<li className="list-inline-item"><a href="#">{}</a></li>
+										<li className="list-inline-item"><a href="#">Beds: {property.beds}</a></li>
+										<li className="list-inline-item"><a href="#">Baths: {property.baths}</a></li>
+										<li className="list-inline-item"><a href="#">Sq Ft: {property.area}</a></li>
 									</ul>
 								</div>
 								<h4 className="mb30">Description</h4>
@@ -68,7 +71,7 @@ console.log(id);
 										</ul>
 										<ul className="list-inline-item">
 											<li><p><span>HZ27</span></p></li>
-											<li><p><span>$130,000</span></p></li>
+											<li><p><span>${property.price}</span></p></li>
 											<li><p><span>1560 Sq Ft</span></p></li>
 											<li><p><span>2016-01-09</span></p></li>
 										</ul>
@@ -431,7 +434,7 @@ console.log(id);
 										</div>
 									</div>
 									<div className="col-lg-6 col-xl-6">
-										<div className="my_profile_setting_input ui_kit_select_search htmlForm-group">
+										<div className="my_profile_setting_input ui_kit_select_search form-group">
 											<select className="selectpicker" data-live-search="true" data-width="100%">
 												<option data-tokens="Terms">Terms</option>
 												<option data-tokens="Terms2">Terms2</option>
@@ -441,23 +444,23 @@ console.log(id);
 										</div>
 									</div>
 									<div className="col-lg-6 col-xl-6">
-										<div className="my_profile_setting_input htmlForm-group">
-									    	<input type="text" className="htmlForm-control" id="htmlFormGroupExampleWebsite" placeholder="Interest"/>
+										<div className="my_profile_setting_input form-group">
+									    	<input type="text" className="form-control" id="htmlFormGroupExampleWebsite" placeholder="Interest"/>
 										</div>
 									</div>
 									<div className="col-lg-6 col-xl-6">
-										<div className="my_profile_setting_input htmlForm-group">
-									    	<input type="text" className="htmlForm-control" id="htmlFormGroupExampleFaceBook" placeholder="Home Price"/>
+										<div className="my_profile_setting_input form-group">
+									    	<input type="text" className="form-control" id="htmlFormGroupExampleFaceBook" placeholder="Home Price"/>
 										</div>
 									</div>
 									<div className="col-lg-6 col-xl-4">
-										<div className="my_profile_setting_input htmlForm-group">
-									    	<input type="text" className="htmlForm-control" id="htmlFormGroupExampleTwitter" placeholder="Down Payment"/>
+										<div className="my_profile_setting_input form-group">
+									    	<input type="text" className="form-control" id="htmlFormGroupExampleTwitter" placeholder="Down Payment"/>
 										</div>
 									</div>
 									<div className="col-lg-6 col-xl-2">
-										<div className="my_profile_setting_input htmlForm-group">
-									    	<input type="text" className="htmlForm-control" id="htmlFormGroupExampleLinkedin" placeholder="10%"/>
+										<div className="my_profile_setting_input form-group">
+									    	<input type="text" className="form-control" id="htmlFormGroupExampleLinkedin" placeholder="10%"/>
 										</div>
 									</div>
 								</div>
@@ -568,15 +571,15 @@ console.log(id);
 											</li>
 											<li className="list-inline-item review_rating_para">Your Rating & Review</li>
 										</ul>
-										<htmlForm className="comments_htmlForm">
-											<div className="htmlForm-group">
-										    	<input type="text" className="htmlForm-control" id="exampleInputName1" aria-describedby="textHelp" placeholder="Review Title"/>
+										<form className="comments_htmlForm">
+											<div className="form-group">
+										    	<input type="text" className="form-control" id="exampleInputName1" aria-describedby="textHelp" placeholder="Review Title"/>
 											</div>
-											<div className="htmlForm-group">
-											    <textarea className="htmlForm-control" id="examplehtmlFormControlTextarea1" rows="12" placeholder="Your Review"></textarea>
+											<div className="form-group">
+											    <textarea className="form-control" id="examplehtmlFormControlTextarea1" rows="12" placeholder="Your Review"></textarea>
 											</div>
 											<button type="submit" className="btn btn-thm">Submit Review <span className="flaticon-right-arrow-1"></span></button>
-										</htmlForm>
+										</form>
 									</div>
 								</div>
 							</div>
@@ -749,23 +752,23 @@ console.log(id);
 							</div>
 							<ul className="sasw_list mb0">
 								<li className="search_area">
-								    <div className="htmlForm-group">
-								    	<input type="text" className="htmlForm-control" id="exampleInputName1" placeholder="Your Name"/>
+								    <div className="form-group">
+								    	<input type="text" className="form-control" id="exampleInputName1" placeholder="Your Name"/>
 								    </div>
 								</li>
 								<li className="search_area">
-								    <div className="htmlForm-group">
-								    	<input type="number" className="htmlForm-control" id="exampleInputName2" placeholder="Phone"/>
+								    <div className="form-group">
+								    	<input type="number" className="form-control" id="exampleInputName2" placeholder="Phone"/>
 								    </div>
 								</li>
 								<li className="search_area">
-								    <div className="htmlForm-group">
-								    	<input type="email" className="htmlForm-control" id="exampleInputEmail" placeholder="Email"/>
+								    <div className="form-group">
+								    	<input type="email" className="form-control" id="exampleInputEmail" placeholder="Email"/>
 								    </div>
 								</li>
 								<li className="search_area">
-		                            <div className="htmlForm-group">
-		                                <textarea id="htmlForm_message" name="htmlForm_message" className="htmlForm-control required" rows="5" required="required" placeholder="I'm interest in [ Listing Single ]"></textarea>
+		                            <div className="form-group">
+		                                <textarea id="htmlForm_message" name="htmlForm_message" className="form-control required" rows="5" required="required" placeholder="I'm interest in [ Listing Single ]"></textarea>
 		                            </div>
 								</li>
 								<li>
@@ -780,14 +783,14 @@ console.log(id);
 						<div className="sidebar_advanced_search_widget">
 							<ul className="sasw_list mb0">
 								<li className="search_area">
-								    <div className="htmlForm-group">
-								    	<input type="text" className="htmlForm-control" id="exampleInputName1" placeholder="keyword"/>
+								    <div className="form-group">
+								    	<input type="text" className="form-control" id="exampleInputName1" placeholder="keyword"/>
 								    	<label htmlFor="exampleInputEmail"><span className="flaticon-magnifying-glass"></span></label>
 								    </div>
 								</li>
 								<li className="search_area">
-								    <div className="htmlForm-group">
-								    	<input type="text" className="htmlForm-control" id="exampleInputEmail" placeholder="Location"/>
+								    <div className="form-group">
+								    	<input type="text" className="form-control" id="exampleInputEmail" placeholder="Location"/>
 								    	<label htmlFor="exampleInputEmail"><span className="flaticon-maps-and-flags"></span></label>
 								    </div>
 								</li>
@@ -899,13 +902,13 @@ console.log(id);
 									</div>
 								</li>
 								<li className="min_area list-inline-item">
-								    <div className="htmlForm-group">
-								    	<input type="text" className="htmlForm-control" id="exampleInputName2" placeholder="Min Area"/>
+								    <div className="form-group">
+								    	<input type="text" className="form-control" id="exampleInputName2" placeholder="Min Area"/>
 								    </div>
 								</li>
 								<li className="max_area list-inline-item">
-								    <div className="htmlForm-group">
-								    	<input type="text" className="htmlForm-control" id="exampleInputName3" placeholder="Max Area"/>
+								    <div className="form-group">
+								    	<input type="text" className="form-control" id="exampleInputName3" placeholder="Max Area"/>
 								    </div>
 								</li>
 								<li>
