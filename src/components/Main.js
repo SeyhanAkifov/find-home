@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import MainItem from "./MainItem";
+import HomeSearch from "../components/HomeSearch";
 import getAll from "../services/mainServices";
 
 function Main() {
@@ -36,6 +37,8 @@ function Main() {
     return <div>Loading...</div>;
   } else {
     return (
+      <>
+      <HomeSearch />
       <section id="feature-property" className="feature-property bgc-f7">
         <div className="container">
           <div className="row">
@@ -72,6 +75,7 @@ function Main() {
           </div>
         </div>
       </section>
+      </>
     );
   }
 }
