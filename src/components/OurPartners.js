@@ -1,3 +1,5 @@
+import { Route, Link, Switch } from "react-router-dom";
+
 function OurPartners () {
     return (
         <>
@@ -71,9 +73,9 @@ function OurPartners () {
               </div>
               <div className="col-lg-4">
                 <div className="parner_reg_btn text-right tac-smd">
-                  <a className="btn btn-thm2" href="#">
+                  <Link to="/register" className="btn btn-thm2" href="#">
                     Register Now
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

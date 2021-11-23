@@ -8,8 +8,8 @@ function Details() {
   const [property, setProperty] = useState([]);
 
   useEffect(async () => {
-    fetch(
-      `http://apifindhome.seyhanakifov.com/api/Home/GetWithId?id=${id.id}`,
+    await fetch(
+      `https://localhost:44382/api/Home/GetWithId?id=${id.id}`,
       {
         headers: {
           token:
@@ -23,6 +23,7 @@ function Details() {
   }, []);
 
   console.log(property);
+  
   return (
     <section className="our-agent-single pb30-991">
       <div className="container">
@@ -34,7 +35,7 @@ function Details() {
                   <div className="lsd_list">
                     <ul className="mb0">
                       <li className="list-inline-item">
-                        <a href="#">{}</a>
+                        <a href="#">{property.type}</a>
                       </li>
                       <li className="list-inline-item">
                         <a href="#">Beds: {property.beds}</a>
@@ -118,19 +119,19 @@ function Details() {
                           <p>Property ID :</p>
                         </li>
                         <li>
-                          <p>Price :</p>
+                          <p>Price : </p>
                         </li>
                         <li>
-                          <p>Property Size :</p>
+                          <p>Property Size : </p>
                         </li>
                         <li>
-                          <p>Year Built :</p>
+                          <p>Year Built : </p>
                         </li>
                       </ul>
                       <ul className="list-inline-item">
                         <li>
                           <p>
-                            <span>HZ27</span>
+                            <span>{property.id}</span>
                           </p>
                         </li>
                         <li>
@@ -140,12 +141,12 @@ function Details() {
                         </li>
                         <li>
                           <p>
-                            <span>1560 Sq Ft</span>
+                            <span>{property.size} Sq Ft</span>
                           </p>
                         </li>
                         <li>
                           <p>
-                            <span>2016-01-09</span>
+                            <span>{property.yearOfConstruction}</span>
                           </p>
                         </li>
                       </ul>
@@ -153,27 +154,27 @@ function Details() {
                     <div className="col-md-6 col-lg-6 col-xl-4">
                       <ul className="list-inline-item">
                         <li>
-                          <p>Bedrooms :</p>
+                          <p>Bedrooms : </p>
                         </li>
                         <li>
-                          <p>Bathrooms :</p>
+                          <p>Bathrooms : </p>
                         </li>
                         <li>
                           <p>Garage :</p>
                         </li>
                         <li>
-                          <p>Garage Size :</p>
+                          <p>Garden :</p>
                         </li>
                       </ul>
                       <ul className="list-inline-item">
                         <li>
                           <p>
-                            <span>8</span>
+                            <span>{property.beds}</span>
                           </p>
                         </li>
                         <li>
                           <p>
-                            <span>4</span>
+                            <span>{property.baths}</span>
                           </p>
                         </li>
                         <li>
@@ -183,7 +184,7 @@ function Details() {
                         </li>
                         <li>
                           <p>
-                            <span>200 SqFt</span>
+                            <span>{property.garden ? 'Yes' : 'No'}</span>
                           </p>
                         </li>
                       </ul>
@@ -200,12 +201,12 @@ function Details() {
                       <ul className="list-inline-item">
                         <li>
                           <p>
-                            <span>Apartment</span>
+                            <span>{property.type}</span>
                           </p>
                         </li>
                         <li>
                           <p>
-                            <span>htmlFor Sale</span>
+                            <span>For {property.adFor}</span>
                           </p>
                         </li>
                       </ul>
@@ -213,75 +214,7 @@ function Details() {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-12">
-                <div className="additional_details">
-                  <div className="row">
-                    <div className="col-lg-12">
-                      <h4 className="mb15">Additional details</h4>
-                    </div>
-                    <div className="col-md-6 col-lg-6">
-                      <ul className="list-inline-item">
-                        <li>
-                          <p>Deposit :</p>
-                        </li>
-                        <li>
-                          <p>Pool Size :</p>
-                        </li>
-                        <li>
-                          <p>Additional Rooms :</p>
-                        </li>
-                      </ul>
-                      <ul className="list-inline-item">
-                        <li>
-                          <p>
-                            <span>20%</span>
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            <span>300 Sqft</span>
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            <span>Guest Bath</span>
-                          </p>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="col-md-6 col-lg-6">
-                      <ul className="list-inline-item">
-                        <li>
-                          <p>Last remodel year :</p>
-                        </li>
-                        <li>
-                          <p>Amenities :</p>
-                        </li>
-                        <li>
-                          <p>Equipment :</p>
-                        </li>
-                      </ul>
-                      <ul className="list-inline-item">
-                        <li>
-                          <p>
-                            <span>1987</span>
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            <span>Clubhouse</span>
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            <span>Grill - Gas</span>
-                          </p>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              
 
               <div className="col-lg-12">
                 <div className="application_statics mt30">
@@ -636,43 +569,7 @@ function Details() {
               </div>
             </div>
 
-            <div className="terms_condition_widget">
-              <h4 className="title">Categories Property</h4>
-              <div className="widget_list">
-                <ul className="list_details">
-                  <li>
-                    <a href="#">
-                      <i className="fa fa-caret-right mr10"></i>Apartment{" "}
-                      <span className="float-right">6 properties</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i className="fa fa-caret-right mr10"></i>Condo{" "}
-                      <span className="float-right">12 properties</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i className="fa fa-caret-right mr10"></i>Family House{" "}
-                      <span className="float-right">8 properties</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i className="fa fa-caret-right mr10"></i>Modern Villa{" "}
-                      <span className="float-right">26 properties</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i className="fa fa-caret-right mr10"></i>Town House{" "}
-                      <span className="float-right">89 properties</span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
+            
           </div>
         </div>
       </div>
