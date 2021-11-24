@@ -1,4 +1,4 @@
-import { Route, Link, Switch } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function MainItem (params) {
   console.log(params.data)
@@ -16,24 +16,24 @@ function MainItem (params) {
                         <div className="thmb_cntnt">
                           <ul className="tag mb0">
                             <li className="list-inline-item">
-                              <a href="#">{params.data.propertyType}</a><p>{params.data.condition}</p>
+                              <Link to="#">{params.data.propertyType}</Link><p>{params.data.condition}</p>
                             </li>
                           </ul>
                           <ul className="icon mb0">
                             <li className="list-inline-item">
-                              <a href="#">
+                              <Link to="#">
                                 <span className="flaticon-transfer-1"></span>
-                              </a>
+                              </Link>
                             </li>
                             <li className="list-inline-item">
-                              <a href="#">
+                              <Link to="#">
                                 <span className="flaticon-heart"></span>
-                              </a>
+                              </Link>
                             </li>
                           </ul>
-                          <a className="fp_price" href="#">
+                          <Link className="fp_price" to="#">
                             ${params.data.price}<small>/</small>
-                          </a>
+                          </Link>
                         </div>
                       </div>
                       <div className="details">
@@ -45,31 +45,31 @@ function MainItem (params) {
                           </p>
                           <ul className="prop_details mb0">
                             <li className="list-inline-item">
-                              <a href="#">Beds: {params.data.beds}</a>
+                              <Link to="#">Beds: {params.data.beds}</Link>
                             </li>
                             <li className="list-inline-item">
-                              <a href="#">Baths: {params.data.baths}</a>
+                              <Link to="#">Baths: {params.data.baths}</Link>
                             </li>
                             <li className="list-inline-item">
-                              <a href="#">Sq Ft:{params.data.area} </a>
+                              <Link to="#">Sq Ft:{params.data.area} </Link>
                             </li>
                           </ul>
                         </div>
                         <div className="fp_footer">
                           <ul className="fp_meta float-left mb0">
                             <li className="list-inline-item">
-                              <a href="#">
+                              <Link to="#">
                                 <img
                                   src="images/property/pposter1.png"
                                   alt="pposter1.png"
                                 ></img>
-                              </a>
+                              </Link>
                             </li>
                             <li><Link to={`/details/${params.data.id}`}>
                 <span className="title">Details</span>
               </Link></li>
                             <li className="list-inline-item">
-                              <a href="#"></a>
+                              <Link to="#"></Link>
                             </li>
                           </ul>
                           <div className="fp_pdate float-right">

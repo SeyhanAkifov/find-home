@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Footer () {
     return (
 		<div>
@@ -9,7 +11,7 @@ function Footer () {
                   <h4>About Site</h4>
                   <p>
                     We’re reimagining how you buy, sell and rent.It’s now easier
-                    to get into a place you love.So let’s do this, together.
+                    to get into Link place you love.So let’s do this, together.
                   </p>
                 </div>
               </div>
@@ -18,19 +20,19 @@ function Footer () {
                   <h4>Quick Links</h4>
                   <ul className="list-unstyled">
                     <li>
-                      <a href="#">About Us</a>
+                      <Link to="#">About Us</Link>
                     </li>
                     <li>
-                      <a href="#">Terms & Conditions</a>
+                      <Link to="#">Terms & Conditions</Link>
                     </li>
                     <li>
-                      <a href="#">User’s Guide</a>
+                      <Link to="#">User’s Guide</Link>
                     </li>
                     <li>
-                      <a href="#">Support Center</a>
+                      <Link to="#">Support Center</Link>
                     </li>
                     <li>
-                      <a href="#">Press Info</a>
+                      <Link to="#">Press Info</Link>
                     </li>
                   </ul>
                 </div>
@@ -40,19 +42,19 @@ function Footer () {
                   <h4>Contact Us</h4>
                   <ul className="list-unstyled">
                     <li>
-                      <a href="#">info @findhouse.com</a>
+                      <Link to="#">info @findhouse.com</Link>
                     </li>
                     <li>
-                      <a href="#">Collins Street West, Victoria</a>
+                      <Link to="#">Collins Street West, Victoria</Link>
                     </li>
                     <li>
-                      <a href="#">8007, Australia.</a>
+                      <Link to="#">8007, Australia.</Link>
                     </li>
                     <li>
-                      <a href="#">+1 246-345-0699</a>
+                      <Link to="#">+1 246-345-0699</Link>
                     </li>
                     <li>
-                      <a href="#">+1 246-345-0695</a>
+                      <Link to="#">+1 246-345-0695</Link>
                     </li>
                   </ul>
                 </div>
@@ -62,34 +64,34 @@ function Footer () {
                   <h4>Follow us</h4>
                   <ul className="mb30">
                     <li className="list-inline-item">
-                      <a href="#">
+                      <Link to="#">
                         <i className="fa fa-facebook"></i>
-                      </a>
+                      </Link>
                     </li>
                     <li className="list-inline-item">
-                      <a href="#">
+                      <Link to="#">
                         <i className="fa fa-twitter"></i>
-                      </a>
+                      </Link>
                     </li>
                     <li className="list-inline-item">
-                      <a href="#">
+                      <Link to="#">
                         <i className="fa fa-instagram"></i>
-                      </a>
+                      </Link>
                     </li>
                     <li className="list-inline-item">
-                      <a href="#">
+                      <Link to="#">
                         <i className="fa fa-pinterest"></i>
-                      </a>
+                      </Link>
                     </li>
                     <li className="list-inline-item">
-                      <a href="#">
+                      <Link to="#">
                         <i className="fa fa-dribbble"></i>
-                      </a>
+                      </Link>
                     </li>
                     <li className="list-inline-item">
-                      <a href="#">
+                      <Link to="#">
                         <i className="fa fa-google"></i>
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                   <h4>Subscribe</h4>
@@ -122,22 +124,22 @@ function Footer () {
                 <div className="footer_menu_widget">
                   <ul>
                     <li className="list-inline-item">
-                      <a href="#">Home</a>
+                      <Link to="#">Home</Link>
                     </li>
                     <li className="list-inline-item">
-                      <a href="#">Listing</a>
+                      <Link to="#">Listing</Link>
                     </li>
                     <li className="list-inline-item">
-                      <a href="#">Property</a>
+                      <Link to="#">Property</Link>
                     </li>
                     <li className="list-inline-item">
-                      <a href="#">Pages</a>
+                      <Link to="#">Pages</Link>
                     </li>
                     <li className="list-inline-item">
-                      <a href="#">Blog</a>
+                      <Link to="#">Blog</Link>
                     </li>
                     <li className="list-inline-item">
-                      <a href="#">Contact</a>
+                      <Link to="#">Contact</Link>
                     </li>
                   </ul>
                 </div>

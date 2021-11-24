@@ -7,13 +7,12 @@ import MainSearch from "./components/MainSearch";
 import CitySearch from "./components/CitySearch";
 import WhyChooseUs from "./components/WhyChooseUs";
 import Testimonials from "./components/Testimonials";
-import OurBlog from "./components/OurBlog";
 import SignUpModal from "./components/SignUpModal";
-import Create from "./components/CreateProperty";
+import CreateProperty from "./components/CreateProperty";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Details from "./components/Details";
-import { Route, Link, Switch, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
@@ -25,13 +24,14 @@ function App() {
       <SignUpModal />
 
       <HomeSearch />
+      
 
       <Routes>
         <Route path="/home" exact element={<Main />} />
         <Route path="/" exact element={<Main />} />
         <Route path="/properties/" exact element={<Main />} />
         <Route path="/home/search" exact element={<MainSearch />} />
-        <Route path="/create" exact element={<Create />} />
+        <Route path="/create" element={<CreateProperty />} />
         <Route path="/register" exact element={<Register />} />
         <Route path="/login" exact element={<Login />} />
         <Route path="/details/:id" exact element={<Details />} />

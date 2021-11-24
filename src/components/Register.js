@@ -5,6 +5,18 @@ function Register () {
 
 	const onFormSubmit = (e) => {
 		e.preventDefault();
+
+		let formData = new FormData(e.currentTarget);
+
+		
+		let username = formData.get('username');
+		let password = formData.get('password');
+		let confirmPassword = formData.get('confirmPassword');
+
+		console.log(username);
+		console.log(password);
+		console.log(confirmPassword);
+
 		navigate({pathname: '/login'})
 	}
     return (
@@ -20,16 +32,16 @@ function Register () {
 						<div className="details">
 							<form action="#" onSubmit={onFormSubmit}>
 								<div className="form-group">
-							    	<input type="text" className="form-control" id="exampleInputName2" placeholder="Username"/>
+							    	<input type="text" name='username' className="form-control" id="exampleInputName2" placeholder="Username"/>
 								</div>
 								 <div className="form-group">
-							    	<input type="email" className="form-control" id="exampleInputEmail3" placeholder="Email Address"/>
+							    	<input type="email" name='email' className="form-control" id="exampleInputEmail3" placeholder="Email Address"/>
 								</div>
 								<div className="form-group">
-							    	<input type="password" className="form-control" id="exampleInputPassword4" placeholder="Password"/>
+							    	<input type="password" name='password' className="form-control" id="exampleInputPassword4" placeholder="Password"/>
 								</div>
 								<div className="form-group">
-							    	<input type="password" className="form-control" id="exampleInputPassword5" placeholder="Confirm Password"/>
+							    	<input type="password" name='confirmPassword' className="form-control" id="exampleInputPassword5" placeholder="Confirm Password"/>
 								</div>
 								<div className="form-group custom-control custom-checkbox">
 									<input type="checkbox" className="custom-control-input" id="exampleCheck3"/>

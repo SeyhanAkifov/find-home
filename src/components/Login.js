@@ -5,6 +5,14 @@ function Login () {
 
 	const onFormSubmit = (e) => {
 		e.preventDefault();
+
+		let formData = new FormData(e.currentTarget);
+		let username = formData.get('username');
+		let password = formData.get('password');
+		console.log(username);
+		console.log(password);
+		
+		
 		navigate({pathname: '/home'})
 	}
 
@@ -20,10 +28,10 @@ function Login () {
 								<p className="text-center">Don't have an account? <a className="text-thm" href="page-register.html">Sign Up!</a></p>
 							</div>
 							 <div className="form-group">
-						    	<input type="email" className="form-control" id="exampleInputEmail3" placeholder="Email Address"/>
+						    	<input type="email" className="form-control" name='username' id="exampleInputEmail3" placeholder="Email Address"/>
 							</div>
 							<div className="form-group">
-						    	<input type="password" className="form-control" id="exampleInputPassword4" placeholder="Password"/>
+						    	<input type="password" className="form-control" name='password' id="exampleInputPassword4" placeholder="Password"/>
 							</div>
 							<div className="form-group custom-control custom-checkbox">
 								<input type="checkbox" className="custom-control-input" id="exampleCheck3"/>

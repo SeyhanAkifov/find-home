@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
-import Get from "../services/propertyServices";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Details() {
   let id = useParams();
 
   const [property, setProperty] = useState([]);
 
-  useEffect(async () => {
-    await fetch(
+  useEffect( () => {
+     fetch(
       `https://localhost:44382/api/Home/GetWithId?id=${id.id}`,
       {
         headers: {
@@ -35,30 +35,30 @@ function Details() {
                   <div className="lsd_list">
                     <ul className="mb0">
                       <li className="list-inline-item">
-                        <a href="#">{property.type}</a>
+                        <Link to="#">{property.type}</Link>
                       </li>
                       <li className="list-inline-item">
-                        <a href="#">Beds: {property.beds}</a>
+                        <Link to="#">Beds: {property.beds}</Link>
                       </li>
                       <li className="list-inline-item">
-                        <a href="#">Baths: {property.baths}</a>
+                        <Link to="#">Baths: {property.baths}</Link>
                       </li>
                       <li className="list-inline-item">
-                        <a href="#">Sq Ft: {property.area}</a>
+                        <Link to="#">Sq Ft: {property.area}</Link>
                       </li>
                     </ul>
                   </div>
                   <h4 className="mb30">Description</h4>
                   <p className="mb25">
                     Evans Tower very high demand corner junior one bedroom plus
-                    a large balcony boasting full open NYC views. You need to
+                    Link large balcony boasting full open NYC views. You need to
                     see the views to believe them. Mint condition with new
                     hardwood floors. Lots of closets plus washer and dryer.
                   </p>
                   <p className="gpara second_para white_goverlay mt10 mb10">
                     Fully furnished. Elegantly appointed condominium unit
                     situated on premier location. PS6. The wide entry hall leads
-                    to a large living room with dining area. This expansive 2
+                    to Link large living room with dining area. This expansive 2
                     bedroom and 2 renovated marble bathroom apartment has great
                     windows. Despite the interior views, the apartments Southern
                     and Eastern exposures allow htmlFor lovely natural light to
@@ -71,7 +71,7 @@ function Details() {
                       <p className="mt10 mb10">
                         Fully furnished. Elegantly appointed condominium unit
                         situated on premier location. PS6. The wide entry hall
-                        leads to a large living room with dining area. This
+                        leads to Link large living room with dining area. This
                         expansive 2 bedroom and 2 renovated marble bathroom
                         apartment has great windows. Despite the interior views,
                         the apartments Southern and Eastern exposures allow
@@ -82,7 +82,7 @@ function Details() {
                       <p className="mt10 mb10">
                         Fully furnished. Elegantly appointed condominium unit
                         situated on premier location. PS6. The wide entry hall
-                        leads to a large living room with dining area. This
+                        leads to Link large living room with dining area. This
                         expansive 2 bedroom and 2 renovated marble bathroom
                         apartment has great windows. Despite the interior views,
                         the apartments Southern and Eastern exposures allow
@@ -93,17 +93,17 @@ function Details() {
                     </div>
                   </div>
                   <p className="overlay_close">
-                    <a
+                    <Link
                       className="text-thm fz14"
                       data-toggle="collapse"
-                      href="#collapseExample"
+                      to="#collapseExample"
                       role="button"
                       aria-expanded="false"
                       aria-controls="collapseExample"
                     >
                       Show More{" "}
                       <span className="flaticon-download-1 fz12"></span>
-                    </a>
+                    </Link>
                   </p>
                 </div>
               </div>
@@ -225,90 +225,90 @@ function Details() {
                     <div className="col-sm-6 col-md-6 col-lg-4">
                       <ul className="order_list list-inline-item">
                         <li>
-                          <a href="#">
+                          <Link to="#">
                             <span className="flaticon-tick"></span>Air
                             Conditioning
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a href="#">
+                          <Link to="#">
                             <span className="flaticon-tick"></span>Barbeque
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a href="#">
+                          <Link to="#">
                             <span className="flaticon-tick"></span>Dryer
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a href="#">
+                          <Link to="#">
                             <span className="flaticon-tick"></span>Gym
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a href="#">
+                          <Link to="#">
                             <span className="flaticon-tick"></span>Laundry
-                          </a>
+                          </Link>
                         </li>
                       </ul>
                     </div>
                     <div className="col-sm-6 col-md-6 col-lg-4">
                       <ul className="order_list list-inline-item">
                         <li>
-                          <a href="#">
+                          <Link to="#">
                             <span className="flaticon-tick"></span>Lawn
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a href="#">
+                          <Link to="#">
                             <span className="flaticon-tick"></span>Microwave
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a href="#">
+                          <Link to="#">
                             <span className="flaticon-tick"></span>Outdoor
                             Shower
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a href="#">
+                          <Link to="#">
                             <span className="flaticon-tick"></span>Refrigerator
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a href="#">
+                          <Link to="#">
                             <span className="flaticon-tick"></span>Sauna
-                          </a>
+                          </Link>
                         </li>
                       </ul>
                     </div>
                     <div className="col-sm-6 col-md-6 col-lg-4">
                       <ul className="order_list list-inline-item">
                         <li>
-                          <a href="#">
+                          <Link to="#">
                             <span className="flaticon-tick"></span>Swimming Pool
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a href="#">
+                          <Link to="#">
                             <span className="flaticon-tick"></span>TV Cable
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a href="#">
+                          <Link to="#">
                             <span className="flaticon-tick"></span>Washer
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a href="#">
+                          <Link to="#">
                             <span className="flaticon-tick"></span>WiFi
-                          </a>
+                          </Link>
                         </li>
                         <li>
-                          <a href="#">
+                          <Link to="#">
                             <span className="flaticon-tick"></span>Window
                             Coverings
-                          </a>
+                          </Link>
                         </li>
                       </ul>
                     </div>
@@ -332,9 +332,9 @@ function Details() {
                       <h5 className="mt-0 mb0">Samul Williams</h5>
                       <p className="mb0">(123)456-7890</p>
                       <p className="mb0">info@findhouse.com</p>
-                      <a className="text-thm" href="#">
+                      <Link className="text-thm" to="#">
                         View My Listing
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>

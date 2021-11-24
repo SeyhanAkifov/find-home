@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { Route, Link, Switch } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Header({ navChange }) {
   let loggedIn = false;
@@ -8,7 +8,7 @@ function Header({ navChange }) {
   const onClickHandler = (e) => {
     e.preventDefault();
 
-    if (e.target.tagName == "A") {
+    if (e.target.tagName == "Link") {
       let url = new URL(e.target.href);
       navChange(url.pathname);
     }
@@ -31,7 +31,7 @@ function Header({ navChange }) {
               <span className="icon-bar"></span>
             </button>
           </div>
-          <a to="#" className="navbar_brand float-left dn-smd">
+          <Link to="#" className="navbar_brand float-left dn-smd">
             <img
               className="logo1 img-fluid"
               src="images/header-logo.png"
@@ -43,7 +43,7 @@ function Header({ navChange }) {
               alt="header-logo2.png"
             ></img>
             <span>FindHouse</span>
-          </a>
+          </Link>
           <ul
             id="respMenu"
             className="ace-responsive-menu text-right"
@@ -53,6 +53,13 @@ function Header({ navChange }) {
               <Link to="/home">
                 
                   <span className="title">Home</span>
+                
+              </Link>
+            </li>
+            <li>
+              <Link to="/create">
+                
+                  <span className="title">Add Property</span>
                 
               </Link>
             </li>
@@ -67,28 +74,28 @@ function Header({ navChange }) {
               </Link>
               <ul>
                 <li>
-                  <a to="#">User Admin</a>
+                  <Link to="#">User Admin</Link>
                   <ul>
                     <li>
-                      <a to="page-dashboard.html">Dashboard</a>
+                      <Link to="page-dashboard.html">Dashboard</Link>
                     </li>
                     <li>
-                      <a to="page-my-properties.html">My Properties</a>
+                      <Link to="page-my-properties.html">My Properties</Link>
                     </li>
                     <li>
-                      <a to="page-message.html">My Message</a>
+                      <Link to="page-message.html">My Message</Link>
                     </li>
                     <li>
-                      <a to="page-my-review.html">My Review</a>
+                      <Link to="page-my-review.html">My Review</Link>
                     </li>
                     <li>
-                      <a to="page-my-favorites.html">My Favorites</a>
+                      <Link to="page-my-favorites.html">My Favorites</Link>
                     </li>
                     <li>
-                      <a to="page-add-new-property.html">Add Property</a>
+                      <Link to="page-add-new-property.html">Add Property</Link>
                     </li>
                     <li>
-                      <a to="page-my-profile.html">My Profile</a>
+                      <Link to="page-my-profile.html">My Profile</Link>
                     </li>
                   </ul>
                 </li>
@@ -96,7 +103,7 @@ function Header({ navChange }) {
                   <Link to="#">Listing Single</Link>
                   </li>
                 <li>
-                  <a to="page-add-new-property.html">Create Listing</a>
+                  <Link to="page-add-new-property.html">Create Listing</Link>
                 </li>
               </ul>
             </li>

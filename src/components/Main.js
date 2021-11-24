@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import MainItem from "./MainItem";
 import HomeSearch from "../components/HomeSearch";
-import getAll from "../services/mainServices";
+
 //http://apifindhome.seyhanakifov.com/api/Home/Get
 function Main() {
   const [error, setError] = useState(null);
@@ -22,7 +23,7 @@ function Main() {
           setItems(result);
         },
         // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
+        // instead of Link catch() block so that we don't swallow
         // exceptions from actual bugs in components.
         (error) => {
           setIsLoaded(true);
@@ -43,7 +44,7 @@ function Main() {
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
-              <a href="#feature-property">
+              <Link to="#feature-property">
                 <div className="mouse_scroll">
                   <div className="icon">
                     <h4>Scroll Down</h4>
@@ -53,7 +54,7 @@ function Main() {
                     <img src="images/resource/mouse.png" alt="mouse.png"></img>
                   </div>
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
