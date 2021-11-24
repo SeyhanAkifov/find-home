@@ -2,38 +2,32 @@ import { useState, useEffect } from "react";
 import MainItem from "./MainItem";
 import getAll from "../services/mainServices";
 
-function MainSearch() {
-  console.log();
-  const [error, setError] = useState(null);
+function MainSearch({token}) {
+  console.log('main search');
+   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
   useEffect(() => {
-    fetch("https://localhost:44382/api/Property/Search", {
-      headers: {
-        token:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic2V5aGFuIiwianRpIjoiYWM5Zjc0OTctMTA2NS00ZjgxLWJlNWMtOTE3NGY3ZWQ3MTAzIiwiZXhwIjoxNjM2ODk3ODgyLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjU5OTIxIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo0MjAwIn0.bL9Bc7Olqxld1lEuu2mS-zXlEb4UUmOogXxLy5QYLiU",
-        expiration: "2021-11-14T13:51:22Z",
-      },
-      body:{
-        type : "House",
-        location : "Berlin",
-        min : 20000,
-        max :50000,
-      }
+    fetch("https://localhost:44382/api/Property/Search?type=House&location=Berlin&min=20000&max=5400000", {
+      headers : {
+        Authorization: `Bearer ${token}`
+       },
+      
     })
       .then((res) => res.json())
-      .then(
-        (result) => {
-         console.log(result);
-          setItems(result);
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-         
-        }
-      );
+    .then(
+      (result) => {
+        setIsLoaded(true);
+        setItems(result);
+      },
+      // Note: it's important to handle errors here
+      // instead of Link catch() block so that we don't swallow
+      // exceptions from actual bugs in components.
+      (error) => {
+        setIsLoaded(true);
+        setError(error);
+      }
+    );
   }, []);
 
   if (error) {

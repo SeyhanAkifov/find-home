@@ -1,18 +1,21 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 
 import { Link } from "react-router-dom";
 
-function Header({ navChange }) {
+function Header({ setToken }) {
   let loggedIn = false;
   let username = "Seyhan";
-  const onClickHandler = (e) => {
-    e.preventDefault();
+  let navigate = useNavigate();
+  
 
-    if (e.target.tagName == "Link") {
-      let url = new URL(e.target.href);
-      navChange(url.pathname);
-    }
-  };
+  const Logout = (e) => {
+    e.preventDefault()
+    setToken('asasas');
+    
+    navigate({ pathname: "/home" });
+
+  }
 
   return (
     <header className="header-nav menu_style_home_one navbar-scrolltofixed stricky main-menu">
@@ -63,50 +66,8 @@ function Header({ navChange }) {
                 
               </Link>
             </li>
-            <li>
-              <Link to="#">
-                <span className="title">Listing</span>
-              </Link>
-              </li>
-            <li>
-              <Link to="#">
-                <span className="title">Property</span>
-              </Link>
-              <ul>
-                <li>
-                  <Link to="#">User Admin</Link>
-                  <ul>
-                    <li>
-                      <Link to="page-dashboard.html">Dashboard</Link>
-                    </li>
-                    <li>
-                      <Link to="page-my-properties.html">My Properties</Link>
-                    </li>
-                    <li>
-                      <Link to="page-message.html">My Message</Link>
-                    </li>
-                    <li>
-                      <Link to="page-my-review.html">My Review</Link>
-                    </li>
-                    <li>
-                      <Link to="page-my-favorites.html">My Favorites</Link>
-                    </li>
-                    <li>
-                      <Link to="page-add-new-property.html">Add Property</Link>
-                    </li>
-                    <li>
-                      <Link to="page-my-profile.html">My Profile</Link>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <Link to="#">Listing Single</Link>
-                  </li>
-                <li>
-                  <Link to="page-add-new-property.html">Create Listing</Link>
-                </li>
-              </ul>
-            </li>
+            
+            
             <li>
               <Link to="#">
                 <span className="title">Pages</span>
@@ -125,6 +86,11 @@ function Header({ navChange }) {
             <li className="last">
               <Link to="/login">
                 <span className="title">Login</span>
+              </Link>
+            </li>
+            <li className="last" onClick={Logout}>
+              <Link to="#">
+                <span className="title">LogOut</span>
               </Link>
             </li>
             <li className="last">

@@ -14,27 +14,34 @@ import Login from "./components/Login";
 import Details from "./components/Details";
 import { Route, Routes } from "react-router-dom";
 
+import React, { useState } from 'react';
+
 function App() {
-  return (
+  const [token, setToken] = useState();
+
+  console.log(token);
+    
+    return (
     <div className="wrapper">
       <div className="preloader"></div>
 
-      <Header />
+      <Header setToken={setToken} />
 
       <SignUpModal />
 
-      <HomeSearch />
+      <HomeSearch  token={token}/>
       
 
       <Routes>
-        <Route path="/home" exact element={<Main />} />
-        <Route path="/" exact element={<Main />} />
+      
+        <Route path="/home" strict element={<Main token={token} />} />
+        <Route path="/" exact element={<Main  token={token} />} />
         <Route path="/properties/" exact element={<Main />} />
-        <Route path="/home/search" exact element={<MainSearch />} />
+        <Route path="/search" strict element={<MainSearch token={token} />} />
         <Route path="/create" element={<CreateProperty />} />
         <Route path="/register" exact element={<Register />} />
-        <Route path="/login" exact element={<Login />} />
-        <Route path="/details/:id" exact element={<Details />} />
+        <Route path="/login" exact element={<Login setToken={setToken} />} />
+        <Route path="/details/:id" exact element={<Details token={token} />} />
       </Routes>
 
       <CitySearch />
@@ -52,6 +59,7 @@ function App() {
       </a>
     </div>
   );
+  
 }
 
 export default App;
