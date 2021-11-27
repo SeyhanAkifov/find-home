@@ -1,35 +1,17 @@
-import { useState, useEffect } from "react";
+import useFetch from "../hooks/useFetch";
 import { Link } from "react-router-dom";
 import MainItem from "./MainItem";
-import HomeSearch from "../components/HomeSearch";
+import CitySearch from "../components/CitySearch";
+import { useContext } from "react";
+import AuthContext from '../contexts/AuthContext';
+
 
 //http://apifindhome.seyhanakifov.com/api/Home/Get
-function Main({token}) {
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [items, setItems] = useState([]);
-  useEffect(() => {
-    fetch("https://localhost:44382/api/Home/Get", {
-     headers : {
-      Authorization: `Bearer ${token}`
-     }
-    })
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setItems(result);
-        },
-        // Note: it's important to handle errors here
-        // instead of Link catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      );
-  }, []);
-  console.log(items);
+function Main() {
+  const token = useContext(AuthContext);
+  console.log(token);
+  const url = 'https://localhost:44382/api/Home/Get'
+  const [items, error, isLoaded] = useFetch(url, token);
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
@@ -74,6 +56,7 @@ function Main({token}) {
           </div>
         </div>
       </section>
+     
       </>
     );
   }
