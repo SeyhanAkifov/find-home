@@ -5,9 +5,9 @@ import { useState, useEffect } from "react";
 function Login({setToken}) {
 	const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [items, setItems] = useState([]);
+ 
   let navigate = useNavigate();
-	let token = ""
+	
   const onFormSubmit = async (e) => {
     e.preventDefault();
 
@@ -40,7 +40,7 @@ function Login({setToken}) {
         }
       );
    
-		console.log(token);
+		
     navigate({ pathname: "/home" });
   };
 

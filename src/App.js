@@ -13,6 +13,7 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import Details from "./components/Details";
 import { Route, Routes } from "react-router-dom";
+import AuthContext from './contexts/AuthContext'
 
 import React, { useState } from 'react';
 
@@ -22,6 +23,7 @@ function App() {
   console.log(token);
     
     return (
+      <AuthContext.Provider value={token}>
     <div className="wrapper">
       <div className="preloader"></div>
 
@@ -35,7 +37,7 @@ function App() {
       <Routes>
       
         <Route path="/home" strict element={<Main token={token} />} />
-        <Route path="/" exact element={<Main  token={token} />} />
+        <Route path="/" exact element={<Main />} />
         <Route path="/properties/" exact element={<Main />} />
         <Route path="/search" strict element={<MainSearch token={token} />} />
         <Route path="/create" element={<CreateProperty />} />
@@ -44,7 +46,7 @@ function App() {
         <Route path="/details/:id" exact element={<Details token={token} />} />
       </Routes>
 
-      <CitySearch />
+      <CitySearch  />
 
       <WhyChooseUs />
 
@@ -58,6 +60,7 @@ function App() {
         <i className="flaticon-arrows"></i>
       </a>
     </div>
+    </AuthContext.Provider >
   );
   
 }

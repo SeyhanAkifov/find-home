@@ -1,9 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import MainItem from "./MainItem";
 import getAll from "../services/mainServices";
 
-function MainSearch({token}) {
+
+function MainSearch({token, props}) {
   console.log('main search');
+  console.log(props);
+  
    const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
