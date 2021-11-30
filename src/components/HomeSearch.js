@@ -1,9 +1,16 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import useFetch from "../hooks/useFetch";
 
-function HomeSearch(props, params) {
-  const [items, setItems] = useState([]);
+ function HomeSearch(props, params) {
+  
   let navigate = useNavigate();
+ 
+    let url = "https://localhost:44382/api/Home/GetTypes";
+
+    const [items, error, isLoaded] = useFetch(url);
+     
+ 
 
   function submitHandler(e) {
     e.preventDefault();
@@ -36,20 +43,7 @@ function HomeSearch(props, params) {
     });
   }
 
-  useEffect(() => {
-    fetch("https://localhost:44382/api/Home/GetTypes", {})
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          console.log(result);
-          setItems(result);
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {}
-      );
-  }, []);
+console.log(items);
 
   return (
     <section className="home-one home1-overlay home1_bgi1">
@@ -92,6 +86,7 @@ function HomeSearch(props, params) {
                     </a>
                   </li>
                 </ul>
+               
                 <div
                   className="tab-content home1_adsrchfrm"
                   id="pills-tabContent"
@@ -109,12 +104,15 @@ function HomeSearch(props, params) {
                         <li className="list-inline-item">
                           <div className="search_option_two">
                             <div className="candidate_revew_select">
-                              <select className="selectpicker w100 show-tick">
-                                {items.map((item) => (
-                                  <option key={item.id} data={item}>
-                                    {item.name}
-                                  </option>
-                                ))}
+                              <select className="custompicker w100 show-tick" >
+                                
+                              <option value="asa" disabled>Select one--</option>
+                              
+                                    {items.map((item) => (
+                                      <option key={item.id} value={item.name} >{item.name}</option>
+                                    ))}
+                                  
+                                
                               </select>
                             </div>
                           </div>

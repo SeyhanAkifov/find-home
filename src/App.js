@@ -26,11 +26,9 @@ function App() {
 
       <Header  setToken={setToken}/>
       
-      <HomeSearch  token={token}/>
+      <HomeSearch />
       
-
       <Routes>
-      
         <Route path="/home" strict element={<Main />} />
         <Route path="/" exact element={<Main />} />
         <Route path="/properties/" exact element={<Main />} />
