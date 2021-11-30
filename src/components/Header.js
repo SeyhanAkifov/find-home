@@ -1,17 +1,17 @@
-import { useState, useEffect } from "react";
+import { useContext } from "react";
 import { useNavigate } from 'react-router-dom';
+import AuthContext from "../contexts/AuthContext";
 
 import { Link } from "react-router-dom";
 
 function Header({ setToken }) {
-  let loggedIn = false;
-  let username = "Seyhan";
+  const token = useContext(AuthContext);
   let navigate = useNavigate();
   
 
   const Logout = (e) => {
     e.preventDefault()
-    setToken('asasas');
+    setToken(null);
     
     navigate({ pathname: "/home" });
 
@@ -111,7 +111,7 @@ function Header({ setToken }) {
                 data-target=".bd-example-modal-lg"
               >
                 <span className="dn-lg">
-                  {loggedIn ? "Login/Register" : username}
+                  {token ? "Seyhan" : "Login/Register"}
                 </span>
               </Link>
             </li>

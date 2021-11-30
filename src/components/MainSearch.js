@@ -1,17 +1,19 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect,  } from "react";
+import { useParams} from 'react-router-dom'
 import MainItem from "./MainItem";
-import getAll from "../services/mainServices";
 
 
-function MainSearch({token, props}) {
+
+function MainSearch({token}) {
+  let query = useParams();
   console.log('main search');
-  console.log(props);
+  console.log(query);
   
    const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
   useEffect(() => {
-    fetch("https://localhost:44382/api/Property/Search?type=House&location=Berlin&min=20000&max=5400000", {
+    fetch(`https://localhost:44382/api/Property/Search?${query.query}`, {
       headers : {
         Authorization: `Bearer ${token}`
        },
@@ -31,7 +33,7 @@ function MainSearch({token, props}) {
         setError(error);
       }
     );
-  }, []);
+  }, [token, query.query]);
 
   if (error) {
     return <div>Error: {error.message}</div>;

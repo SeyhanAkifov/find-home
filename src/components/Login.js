@@ -1,8 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
 
 
 function Login({setToken}) {
+ 
 	const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
  
@@ -17,19 +20,31 @@ function Login({setToken}) {
     console.log(username);
     console.log(password);
 
-   
+    
      await fetch("https://localhost:44382/api/Account/Login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           // 'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: '{"username":"seyhan","password":"Seyhan1@"}',
+        body: JSON.stringify({
+          username,
+          password
+        })
       }).then((res) => res.json())
       .then(
         (result) => {
           setIsLoaded(true);
+          
+          console.log(result.status);
+          if (result.status === 400) {
+            setError(result.title);
+            
+          }else{
           setToken(result.token);
+          
+          }
+          
         },
         // Note: it's important to handle errors here
         // instead of Link catch() block so that we don't swallow
@@ -37,12 +52,23 @@ function Login({setToken}) {
         (error) => {
           setIsLoaded(true);
           setError(error);
+          console.log(error);
+          console.log(isLoaded);
         }
       );
-   
-		
-    navigate({ pathname: "/home" });
+
+     if (!error) {
+      navigate({ pathname: "/login" });
+     }
+     else{
+      navigate({ pathname: "/home" });
+     }
+       
+      
   };
+
+  
+    
 
   return (
     <section className="our-log bgc-fa">
@@ -55,14 +81,15 @@ function Login({setToken}) {
                   <h3 className="text-center">Login to your account</h3>
                   <p className="text-center">
                     Don't have an account?{" "}
-                    <a className="text-thm" href="page-register.html">
+                    <Link className="text-thm" to="page-register.html">
                       Sign Up!
-                    </a>
+                    </Link>
                   </p>
                 </div>
+                <span>{error}</span>
                 <div className="form-group">
                   <input
-                    type="email"
+                    type="text"
                     className="form-control"
                     name="username"
                     id="exampleInputEmail3"
@@ -90,9 +117,9 @@ function Login({setToken}) {
                   >
                     Remember me
                   </label>
-                  <a className="tdu btn-fpswd float-right" href="#">
+                  <Link className="tdu btn-fpswd float-right" to="#">
                     Forgot Password?
-                  </a>
+                  </Link>
                 </div>
                 <button
                   type="submit"
@@ -100,28 +127,7 @@ function Login({setToken}) {
                 >
                   Login
                 </button>
-                <div className="divide">
-                  <span className="lf_divider">Or</span>
-                  <hr />
-                </div>
-                <div className="row mt40">
-                  <div className="col-lg">
-                    <button
-                      type="submit"
-                      className="btn btn-block color-white bgc-fb mb0"
-                    >
-                      <i className="fa fa-facebook float-left mt5"></i> Facebook
-                    </button>
-                  </div>
-                  <div className="col-lg">
-                    <button
-                      type="submit"
-                      className="btn btn2 btn-block color-white bgc-gogle mb0"
-                    >
-                      <i className="fa fa-google float-left mt5"></i> Google
-                    </button>
-                  </div>
-                </div>
+                
               </form>
             </div>
           </div>

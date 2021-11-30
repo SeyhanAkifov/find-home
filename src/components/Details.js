@@ -18,7 +18,7 @@ console.log(token);
     )
     .then((res) => res.json())
       .then((data) => setProperty(data));
-  }, []);
+  }, [id.id, token]);
 
   console.log(property);
   

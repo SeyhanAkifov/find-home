@@ -1,20 +1,17 @@
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import OurPartners from "./components/OurPartners";
 import HomeSearch from "./components/HomeSearch";
 import Main from "./components/Main";
 import MainSearch from "./components/MainSearch";
 import CitySearch from "./components/CitySearch";
 import WhyChooseUs from "./components/WhyChooseUs";
 import Testimonials from "./components/Testimonials";
-import SignUpModal from "./components/SignUpModal";
 import CreateProperty from "./components/CreateProperty";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Details from "./components/Details";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Link } from "react-router-dom";
 import AuthContext from './contexts/AuthContext'
-
 import React, { useState } from 'react';
 
 function App() {
@@ -27,19 +24,17 @@ function App() {
     <div className="wrapper">
       <div className="preloader"></div>
 
-      <Header setToken={setToken} />
-
-      <SignUpModal />
-
+      <Header  setToken={setToken}/>
+      
       <HomeSearch  token={token}/>
       
 
       <Routes>
       
-        <Route path="/home" strict element={<Main token={token} />} />
+        <Route path="/home" strict element={<Main />} />
         <Route path="/" exact element={<Main />} />
         <Route path="/properties/" exact element={<Main />} />
-        <Route path="/search" strict element={<MainSearch token={token} />} />
+        <Route path="/search/:query" strict element={<MainSearch />} />
         <Route path="/create" element={<CreateProperty />} />
         <Route path="/register" exact element={<Register />} />
         <Route path="/login" exact element={<Login setToken={setToken} />} />
@@ -52,13 +47,11 @@ function App() {
 
       <Testimonials />
 
-      <OurPartners />
-
       <Footer />
 
-      <a className="scrollToHome" to="#">
+      <Link className="scrollToHome" to="#">
         <i className="flaticon-arrows"></i>
-      </a>
+      </Link>
     </div>
     </AuthContext.Provider >
   );

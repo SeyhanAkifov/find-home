@@ -28,7 +28,7 @@ const useFetch = (url, token) => {
         );
 
         
-    }, [url])
+    }, [url, token])
 
     return [
         state,

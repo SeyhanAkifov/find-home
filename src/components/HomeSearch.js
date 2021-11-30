@@ -1,57 +1,43 @@
 import { useState, useEffect } from "react";
-import { Route, Link, Switch } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function HomeSearch (props, ) {
+function HomeSearch(props, params) {
   const [items, setItems] = useState([]);
+  let navigate = useNavigate();
 
   function submitHandler(e) {
     e.preventDefault();
-    console.log(e.target)
-    console.log(e.target[0].value)
-    console.log(e.target[2].value)
-    console.log(e.target[3].value)
-    console.log(e.target[4].value)
-    props.push({
-      
-      query: { 
-        type: e.target[0].value,
-        location: e.target[2].value,
-        min: e.target[3].value,
-        max: e.target[4].value,
-       }
-    })
-    console.log(e.target[0].value)
-    console.log(e.target[2].value)
-    console.log(e.target[3].value)
-    console.log(e.target[4].value)
-    console.log(props)
-  }
+    console.log(e.target);
+    console.log(e.target[0].value);
+    console.log(e.target[2].value);
+    console.log(e.target[3].value);
+    console.log(e.target[4].value);
+    console.log(params);
+    let query = {
+      type: e.target[0].value,
+      location: e.target[2].value,
+      min: e.target[3].value,
+      max: e.target[4].value,
+    };
 
-  function Test(e){
-    e.preventDefault();
-    console.log(e.target)
+    let url = `${query.type ? `type=` + query.type : ""}${
+      query.location ? `&location=` + query.location : ""
+    }${query.min ? `&min=` + query.min : ""}${
+      query.max ? `&max=` + query.max : ""
+    }`;
+    console.log(e.target[0].value);
+    console.log(e.target[2].value);
+    console.log(e.target[3].value);
+    console.log(e.target[4].value);
+    console.log(props);
 
-    props.router.push({
-      pathname: '/yourRoute',
-      query: { 
-        type: e.target[0].value,
-        location: e.target[2].value,
-        min: e.target[3].value,
-        max: e.target[4].value,
-       }
-    })
-    console.log(e.target[0].value)
-    console.log(e.target[2].value)
-    console.log(e.target[3].value)
-    console.log(e.target[4].value)
-    console.log(props)
+    navigate({
+      pathname: `/search/${url}`,
+    });
   }
 
   useEffect(() => {
-    fetch("https://localhost:44382/api/Home/GetTypes", {
-      
-      
-    })
+    fetch("https://localhost:44382/api/Home/GetTypes", {})
       .then((res) => res.json())
       .then(
         (result) => {
@@ -110,20 +96,20 @@ function HomeSearch (props, ) {
                   className="tab-content home1_adsrchfrm"
                   id="pills-tabContent"
                 >
-                  <form 
+                  <form
+                    action="#"
+                    onSubmit={submitHandler}
                     className="tab-pane fade show active"
                     id="pills-home"
                     role="tabpanel"
                     aria-labelledby="pills-home-tab"
-                    
                   >
-                    <div className="home1-advnc-search" >
+                    <div className="home1-advnc-search">
                       <ul className="h1ads_1st_list mb0">
-                       
                         <li className="list-inline-item">
                           <div className="search_option_two">
                             <div className="candidate_revew_select">
-                              <select className="selectpicker w100 show-tick" >
+                              <select className="selectpicker w100 show-tick">
                                 {items.map((item) => (
                                   <option key={item.id} data={item}>
                                     {item.name}
@@ -136,7 +122,7 @@ function HomeSearch (props, ) {
                         <li className="list-inline-item">
                           <div className="form-group">
                             <input
-                            name="location"
+                              name="location"
                               type="text"
                               className="form-control"
                               id="exampleInputEmail"
@@ -175,20 +161,15 @@ function HomeSearch (props, ) {
                             </div>
                           </div>
                         </li>
-                       
+
                         <li className="list-inline-item">
                           <div className="search_option_button">
-                            <Link to="/search" >
-                            <button type="submit" className="btn btn-thm"  >
-                              Search
-                            </button>
-                            </Link>
+                            <button className="btn btn-thm">Search</button>
                           </div>
                         </li>
                       </ul>
                     </div>
                   </form>
-                  
                 </div>
               </div>
             </div>
