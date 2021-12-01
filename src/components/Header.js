@@ -5,7 +5,8 @@ import AuthContext from "../contexts/AuthContext";
 import { Link } from "react-router-dom";
 
 function Header({ setToken }) {
-  const token = useContext(AuthContext);
+  const {token, username, email } = useContext(AuthContext);
+  
   let navigate = useNavigate();
 
   const Logout = (e) => {
@@ -66,7 +67,7 @@ function Header({ setToken }) {
                 data-target=".bd-example-modal-lg"
               >
                 <span className="dn-lg">
-                  {token ? "Seyhan" : "Login/Register"}
+                  {token ? username : "Login/Register"}
                 </span>
               </Link>
             </li>

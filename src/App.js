@@ -16,11 +16,13 @@ import React, { useState } from 'react';
 
 function App() {
   const [token, setToken] = useState();
+  const [username, setUsername] = useState();
+  const [email, setEmail] = useState();
 
   console.log(token);
     
     return (
-      <AuthContext.Provider value={token}>
+      <AuthContext.Provider value={{token, username, email}}>
     <div className="wrapper">
       <div className="preloader"></div>
 
@@ -35,8 +37,8 @@ function App() {
         <Route path="/search/:query" strict element={<MainSearch />} />
         <Route path="/create" element={<CreateProperty />} />
         <Route path="/register" exact element={<Register />} />
-        <Route path="/login" exact element={<Login setToken={setToken} />} />
-        <Route path="/details/:id" exact element={<Details token={token} />} />
+        <Route path="/login" exact element={<Login setToken={setToken} setUsername={setUsername} setEmail={setEmail} />} />
+        <Route path="/details/:id" exact element={<Details />} />
       </Routes>
 
       <CitySearch  />

@@ -32,7 +32,7 @@
 .flaticon-photo-camera:before { content: "\f107"; }
 .flaticon-share:before { content: "\f108"; }
 .flaticon-printer:before { content: "\f109"; }
-.flaticon-tick:before { content: "\f10a"; }
+.flaticon-tick:before { content: "\f10a"; color: green;}
 .flaticon-play:before { content: "\f10b"; }
 .flaticon-college-graduation:before { content: "\f10c"; }
 .flaticon-heartbeat:before { content: "\f10d"; }

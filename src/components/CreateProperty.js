@@ -1,6 +1,132 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+
+import AuthContext from "../contexts/AuthContext";
 
 function CreateProperty() {
+
+  const {token, username, email } = useContext(AuthContext);
+
+  const onFormSubmit = async (e) => {
+    e.preventDefault();
+
+    let formData = new FormData(e.currentTarget);
+    let title = formData.get("title");
+    let description = formData.get("description");
+    let type = formData.get("type");
+    let status = formData.get("status");
+    let price = formData.get("price");
+    let area = formData.get("area");
+    let rooms = formData.get("rooms");
+    let baths = formData.get("baths");
+    let floor = formData.get("floor");
+    let adFor = formData.get("adFor");
+    let year = formData.get("year");
+    let address = formData.get("address");
+    let city = formData.get("city");
+    let country = formData.get("country");
+    let zip = formData.get("zip");
+
+    let airConditioning = formData.get("airConditioning") ? true : false;
+    let lawn = formData.get("lawn") ? true : false;
+    let swimmingPool = formData.get("swimmingPool") ? true : false;
+    let barbeque = formData.get("barbeque") ? true : false;
+    let kitchen = formData.get("kitchen") ? true : false;
+    let tvCable = formData.get("tvCable") ? true : false;
+    let dryer = formData.get("dryer") ? true : false;
+    let outdoorShower = formData.get("outdoorShower") ? true : false;
+    let washer = formData.get("washer") ? true : false;
+    let gym = formData.get("gym") ? true : false;
+    let refrigerator = formData.get("refrigerator") ? true : false;
+    let wifi = formData.get("wifi") ? true : false;
+    let laundry = formData.get("laundry") ? true : false;
+    let sauna = formData.get("sauna") ? true : false;
+    let windowCoverings = formData.get("windowCoverings") ? true : false;
+    let garden = formData.get("garden") ? true : false;
+    console.log(title);
+    console.log(description);
+    console.log(type);
+    console.log(status);
+    console.log(price);
+    console.log(area);
+    console.log(rooms);
+    console.log(baths);
+    console.log(floor);
+    console.log(adFor);
+    console.log(year);
+    console.log(address);
+    console.log(city);
+    console.log(country);
+    console.log(zip);
+    
+    console.log(airConditioning);
+    console.log(lawn);
+    console.log(swimmingPool);
+    console.log(barbeque);
+    console.log(kitchen);
+    console.log(tvCable);
+    console.log(dryer);
+    console.log(outdoorShower);
+    console.log(washer);
+    console.log(gym);
+    console.log(refrigerator);
+    console.log(wifi);
+    console.log(laundry);
+    console.log(sauna);
+    console.log(windowCoverings);
+
+
+    fetch('https://localhost:44382/api/Home/Post', {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body : JSON.stringify({
+        
+          "typeName": type,
+          "adFor": adFor,
+          "title": title,
+          "description": description,
+          "beds": rooms,
+          "floor": floor,
+          "baths": baths,
+          "condition": status,
+          "yearOfConstruction": year,
+          "area": area,
+          "cityName": city,
+          "countryName": country,
+          "address": address,
+          "postCode" : zip,
+          "price": price,
+          "garden": garden,
+          "feature": {
+            "id": 0,
+            "airConditioning": airConditioning,
+            "barbeque": barbeque,
+            "dryer": dryer,
+            "gym": gym,
+            "laundry": laundry,
+            "lawn": lawn,
+            "kitchen": kitchen,
+            "outdoorShower": outdoorShower,
+            "refrigerator": refrigerator,
+            "sauna": sauna,
+            "swimmingPool": swimmingPool,
+            "tvCable": tvCable,
+            "washer": washer,
+            "wifi": wifi,
+            "windowCoverings": windowCoverings
+          
+        }
+        
+      })
+
+      
+    })
+  };
+
   return (
     <>
       <div className="col-lg-12 mb10">
@@ -11,7 +137,7 @@ function CreateProperty() {
       </div>
       <div className="col-lg-12">
         <div className="my_dashboard_review">
-          <div className="row">
+          <form className="row" onSubmit={onFormSubmit}>
             <div className="col-lg-12">
               <h4 className="mb30">Create Listing</h4>
               <div className="my_profile_setting_input form-group">
@@ -20,6 +146,7 @@ function CreateProperty() {
                   type="text"
                   className="form-control"
                   id="propertyTitle"
+                  name="title"
                 />
               </div>
             </div>
@@ -30,6 +157,7 @@ function CreateProperty() {
                   className="form-control"
                   id="propertyDescription"
                   rows="7"
+                  name="description"
                 ></textarea>
               </div>
             </div>
@@ -37,15 +165,18 @@ function CreateProperty() {
               <div className="my_profile_setting_input ui_kit_select_search form-group">
                 <label>Type</label>
                 <select
-                  className="selectpicker"
+                  className="custompicker"
                   data-live-search="true"
                   data-width="100%"
+                  name="type"
                 >
-                  <option data-tokens="type1">Type1</option>
-                  <option data-tokens="Type2">Type2</option>
-                  <option data-tokens="Type3">Type3</option>
-                  <option data-tokens="Type4">Type4</option>
-                  <option data-tokens="Type5">Type5</option>
+                  <option data-tokens="type1">House</option>
+                  <option data-tokens="Type2">Apartment</option>
+                  <option data-tokens="Type3">Bungalow</option>
+                  <option data-tokens="Type4">Condo</option>
+                  <option data-tokens="Type5">Land</option>
+                  <option data-tokens="Type5">Single Family</option>
+                  <option data-tokens="Type5">Double Family</option>
                 </select>
               </div>
             </div>
@@ -53,15 +184,16 @@ function CreateProperty() {
               <div className="my_profile_setting_input ui_kit_select_search form-group">
                 <label>Status</label>
                 <select
-                  className="selectpicker"
+                  className="custompicker"
                   data-live-search="true"
                   data-width="100%"
+                  name="status"
                 >
-                  <option data-tokens="Status1">Status1</option>
-                  <option data-tokens="Status2">Status2</option>
-                  <option data-tokens="Status3">Status3</option>
-                  <option data-tokens="Status4">Status4</option>
-                  <option data-tokens="Status5">Status5</option>
+                  <option data-tokens="Status1">New Build</option>
+                  <option data-tokens="Status2">Renovated House</option>
+                  <option data-tokens="Status3">Must be Renovated</option>
+                  <option data-tokens="Status4">Old House</option>
+                  
                 </select>
               </div>
             </div>
@@ -72,6 +204,7 @@ function CreateProperty() {
                   type="text"
                   className="form-control"
                   id="formGroupExamplePrice"
+                  name="price"
                 />
               </div>
             </div>
@@ -82,6 +215,7 @@ function CreateProperty() {
                   type="text"
                   className="form-control"
                   id="formGroupExampleArea"
+                  name="area"
                 />
               </div>
             </div>
@@ -89,9 +223,10 @@ function CreateProperty() {
               <div className="my_profile_setting_input ui_kit_select_search form-group">
                 <label>Rooms</label>
                 <select
-                  className="selectpicker"
+                  className="custompicker"
                   data-live-search="true"
                   data-width="100%"
+                  name="rooms"
                 >
                   <option data-tokens="Status1">1</option>
                   <option data-tokens="Status2">2</option>
@@ -102,16 +237,66 @@ function CreateProperty() {
                 </select>
               </div>
             </div>
-            <div className="col-xl-12">
-              <div className="my_profile_setting_input">
-                <button className="btn btn1 float-left">Back</button>
-                <button className="btn btn2 float-right">Next</button>
+            <div className="col-lg-4 col-xl-4">
+              <div className="my_profile_setting_input ui_kit_select_search form-group">
+                <label>Baths</label>
+                <select
+                  className="custompicker"
+                  data-live-search="true"
+                  data-width="100%"
+                  name="baths"
+                >
+                  <option data-tokens="Status1">1</option>
+                  <option data-tokens="Status2">2</option>
+                  <option data-tokens="Status3">3</option>
+                  <option data-tokens="Status4">4</option>
+                  <option data-tokens="Status5">5</option>
+                  <option data-tokens="Status6">Other</option>
+                </select>
               </div>
             </div>
-          </div>
-        </div>
-        <div className="my_dashboard_review mt30">
-          <div className="row">
+            <div className="col-lg-4 col-xl-4">
+              <div className="my_profile_setting_input ui_kit_select_search form-group">
+                <label>Floor</label>
+                <select
+                  className="custompicker"
+                  data-live-search="true"
+                  data-width="100%"
+                  name="floor"
+                >
+                  <option data-tokens="Status1">1</option>
+                  <option data-tokens="Status2">2</option>
+                  <option data-tokens="Status3">3</option>
+                  <option data-tokens="Status4">4</option>
+                  <option data-tokens="Status5">5</option>
+                  <option data-tokens="Status6">Other</option>
+                </select>
+              </div>
+            </div>
+            <div className="col-lg-4 col-xl-4">
+              <div className="my_profile_setting_input form-group">
+                <label htmlFor="formGroupExampleArea">Ad htmlFor</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="formGroupExampleArea"
+                  name="adFor"
+                />
+              </div>
+            </div>
+            <div className="col-lg-4 col-xl-4">
+              <div className="my_profile_setting_input form-group">
+                <label htmlFor="formGroupExampleArea">
+                  Year of construction
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="formGroupExampleArea"
+                  name="year"
+                />
+              </div>
+            </div>
             <div className="col-lg-12">
               <h4 className="mb30">Location</h4>
               <div className="my_profile_setting_input form-group">
@@ -120,44 +305,42 @@ function CreateProperty() {
                   type="text"
                   className="form-control"
                   id="propertyAddress"
+                  name="address"
                 />
               </div>
             </div>
-            <div className="col-lg-6 col-xl-6">
-              <div className="my_profile_setting_input form-group">
-                <label htmlFor="propertyState">County / State</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="propertyState"
-                />
-              </div>
-            </div>
+
             <div className="col-lg-6 col-xl-6">
               <div className="my_profile_setting_input form-group">
                 <label htmlFor="propertyCity">City</label>
-                <input type="text" className="form-control" id="propertyCity" />
+                <input
+                  type="text"
+                  className="form-control"
+                  id="propertyCity"
+                  name="city"
+                />
               </div>
             </div>
-            <div className="col-lg-4 col-xl-4">
-              <div className="my_profile_setting_input form-group">
-                <label htmlFor="neighborHood">Neighborhood</label>
-                <input type="text" className="form-control" id="neighborHood" />
-              </div>
-            </div>
+
             <div className="col-lg-4 col-xl-4">
               <div className="my_profile_setting_input form-group">
                 <label htmlFor="zipCode">Zip</label>
-                <input type="text" className="form-control" id="zipCode" />
+                <input
+                  type="text"
+                  className="form-control"
+                  id="zipCode"
+                  name="zip"
+                />
               </div>
             </div>
             <div className="col-lg-4 col-xl-4">
               <div className="my_profile_setting_input ui_kit_select_search form-group">
                 <label>Country</label>
                 <select
-                  className="selectpicker"
+                  className="custompicker"
                   data-live-search="true"
                   data-width="100%"
+                  name="country"
                 >
                   <option data-tokens="Turkey">Turkey</option>
                   <option data-tokens="Iran">Iran</option>
@@ -168,55 +351,281 @@ function CreateProperty() {
                 </select>
               </div>
             </div>
-            <div className="col-lg-12">
-              <div className="my_profile_setting_input form-group">
-                <div className="h400 bdrs8" id="map-canvas"></div>
-              </div>
+            <div className="col-sm-4 col-md-4 col-lg-4 col-xl-2">
+              <ul className="ui_kit_checkbox selectable-list">
+                <li>
+                  <div className="custom-control custom-checkbox">
+                    <input
+                      type="checkbox"
+                      className="custom-control-input"
+                      id="customCheck1"
+                      name="airConditioning"
+                    />
+                    <label
+                      className="custom-control-label"
+                      htmlFor="customCheck1"
+                    >
+                      Air Conditioning
+                    </label>
+                  </div>
+                </li>
+                <li>
+                  <div className="custom-control custom-checkbox">
+                    <input
+                      type="checkbox"
+                      className="custom-control-input"
+                      id="customCheck2"
+                      name="lawn"
+                    />
+                    <label
+                      className="custom-control-label"
+                      htmlFor="customCheck2"
+                    >
+                      Lawn
+                    </label>
+                  </div>
+                </li>
+                <li>
+                  <div className="custom-control custom-checkbox">
+                    <input
+                      type="checkbox"
+                      className="custom-control-input"
+                      id="customCheck3"
+                      name="swimmingPool"
+                    />
+                    <label
+                      className="custom-control-label"
+                      htmlFor="customCheck3"
+                    >
+                      Swimming Pool
+                    </label>
+                  </div>
+                </li>
+                <li>
+                  <div className="custom-control custom-checkbox">
+                    <input
+                      type="checkbox"
+                      className="custom-control-input"
+                      id="customCheck4"
+                      name="barbeque"
+                    />
+                    <label
+                      className="custom-control-label"
+                      htmlFor="customCheck4"
+                    >
+                      Barbeque
+                    </label>
+                  </div>
+                </li>
+                <li>
+                  <div className="custom-control custom-checkbox">
+                    <input
+                      type="checkbox"
+                      className="custom-control-input"
+                      id="customCheck5"
+                      name="kitchen"
+                    />
+                    <label
+                      className="custom-control-label"
+                      htmlFor="customCheck5"
+                    >
+                      Kitchen
+                    </label>
+                  </div>
+                </li>
+              </ul>
             </div>
-            <div className="col-lg-4 col-xl-4">
-              <div className="my_profile_setting_input form-group">
-                <label htmlFor="googleMapLat">
-                  Latitude (htmlFor Google Maps)
-                </label>
-                <input type="text" className="form-control" id="googleMapLat" />
-              </div>
+            <div className="col-sm-4 col-md-4 col-lg-4 col-xl-2">
+              <ul className="ui_kit_checkbox selectable-list">
+                <li>
+                  <div className="custom-control custom-checkbox">
+                    <input
+                      type="checkbox"
+                      className="custom-control-input"
+                      id="customCheck6"
+                      name="tvCable"
+                    />
+                    <label
+                      className="custom-control-label"
+                      htmlFor="customCheck6"
+                    >
+                      TV Cable
+                    </label>
+                  </div>
+                </li>
+                <li>
+                  <div className="custom-control custom-checkbox">
+                    <input
+                      type="checkbox"
+                      className="custom-control-input"
+                      id="customCheck7"
+                      name="dryer"
+                    />
+                    <label
+                      className="custom-control-label"
+                      htmlFor="customCheck7"
+                    >
+                      Dryer
+                    </label>
+                  </div>
+                </li>
+                <li>
+                  <div className="custom-control custom-checkbox">
+                    <input
+                      type="checkbox"
+                      className="custom-control-input"
+                      id="customCheck8"
+                      name="outdoorShower"
+                    />
+                    <label
+                      className="custom-control-label"
+                      htmlFor="customCheck8"
+                    >
+                      Outdoor Shower
+                    </label>
+                  </div>
+                </li>
+                <li>
+                  <div className="custom-control custom-checkbox">
+                    <input
+                      type="checkbox"
+                      className="custom-control-input"
+                      id="customCheck8"
+                      name="garden"
+                    />
+                    <label
+                      className="custom-control-label"
+                      htmlFor="customCheck8"
+                    >
+                      Garden
+                    </label>
+                  </div>
+                </li>
+                <li>
+                  <div className="custom-control custom-checkbox">
+                    <input
+                      type="checkbox"
+                      className="custom-control-input"
+                      id="customCheck9"
+                      name="washer"
+                    />
+                    <label
+                      className="custom-control-label"
+                      htmlFor="customCheck9"
+                    >
+                      Washer
+                    </label>
+                  </div>
+                </li>
+                <li>
+                  <div className="custom-control custom-checkbox">
+                    <input
+                      type="checkbox"
+                      className="custom-control-input"
+                      id="customCheck10"
+                      name="gym"
+                    />
+                    <label
+                      className="custom-control-label"
+                      htmlFor="customCheck10"
+                    >
+                      Gym
+                    </label>
+                  </div>
+                </li>
+              </ul>
             </div>
-            <div className="col-lg-4 col-xl-4">
-              <div className="my_profile_setting_input form-group">
-                <label htmlFor="googleMapLong">
-                  Longitude (htmlFor Google Maps)
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="googleMapLong"
-                />
-              </div>
-            </div>
-            <div className="col-lg-4 col-xl-4">
-              <div className="my_profile_setting_input ui_kit_select_search form-group">
-                <label>Google Map Street View</label>
-                <select
-                  className="selectpicker"
-                  data-live-search="true"
-                  data-width="100%"
-                >
-                  <option data-tokens="Turkey">Street View v1</option>
-                  <option data-tokens="Iran">Street View v2</option>
-                  <option data-tokens="Iraq">Street View v3</option>
-                  <option data-tokens="Spain">Street View v4</option>
-                  <option data-tokens="Greece">Street View v5</option>
-                  <option data-tokens="Portugal">Street View v6</option>
-                </select>
-              </div>
+            <div className="col-sm-4 col-md-4 col-lg-4 col-xl-2">
+              <ul className="ui_kit_checkbox selectable-list">
+                <li>
+                  <div className="custom-control custom-checkbox">
+                    <input
+                      type="checkbox"
+                      className="custom-control-input"
+                      id="customCheck11"
+                      name="refrigerator"
+                    />
+                    <label
+                      className="custom-control-label"
+                      htmlFor="customCheck11"
+                    >
+                      Refrigerator
+                    </label>
+                  </div>
+                </li>
+                <li>
+                  <div className="custom-control custom-checkbox">
+                    <input
+                      type="checkbox"
+                      className="custom-control-input"
+                      id="customCheck12"
+                      name="wifi"
+                    />
+                    <label
+                      className="custom-control-label"
+                      htmlFor="customCheck12"
+                    >
+                      WiFi
+                    </label>
+                  </div>
+                </li>
+                <li>
+                  <div className="custom-control custom-checkbox">
+                    <input
+                      type="checkbox"
+                      className="custom-control-input"
+                      id="customCheck13"
+                      name="laundry"
+                    />
+                    <label
+                      className="custom-control-label"
+                      htmlFor="customCheck13"
+                    >
+                      Laundry
+                    </label>
+                  </div>
+                </li>
+                <li>
+                  <div className="custom-control custom-checkbox">
+                    <input
+                      type="checkbox"
+                      className="custom-control-input"
+                      id="customCheck14"
+                      name="sauna"
+                    />
+                    <label
+                      className="custom-control-label"
+                      htmlFor="customCheck14"
+                    >
+                      Sauna
+                    </label>
+                  </div>
+                </li>
+                <li>
+                  <div className="custom-control custom-checkbox">
+                    <input
+                      type="checkbox"
+                      className="custom-control-input"
+                      id="customCheck15"
+                      name="windowCoverings"
+                    />
+                    <label
+                      className="custom-control-label"
+                      htmlFor="customCheck15"
+                    >
+                      Window Coverings
+                    </label>
+                  </div>
+                </li>
+              </ul>
             </div>
             <div className="col-xl-12">
               <div className="my_profile_setting_input">
-                <button className="btn btn1 float-left">Back</button>
-                <button className="btn btn2 float-right">Next</button>
+                <button className="btn btn1 float-left">Clear</button>
+                <button className="btn btn2 float-right">Create</button>
               </div>
             </div>
-          </div>
+          </form>
         </div>
 
         <div className="my_dashboard_review mt30">

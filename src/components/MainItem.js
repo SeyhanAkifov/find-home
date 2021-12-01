@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import AuthContext from "../contexts/AuthContext";
 
 function MainItem(params) {
+  const token = useContext(AuthContext);
+  let navigate = useNavigate();
+  
   console.log(params.data);
   return (
     <div className="item">
@@ -65,7 +71,7 @@ function MainItem(params) {
                 </Link>
               </li>
               <li>
-                <Link to={`/details/${params.data.id}`}>
+                <Link to={token.token ? `/details/${params.data.id}` : '/login'}>
                   <span className="title">Details</span>
                 </Link>
               </li>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 
 
-function Login({setToken}) {
+function Login({setToken, setUsername, setEmail}) {
  
 	const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -42,6 +42,8 @@ function Login({setToken}) {
             
           }else{
           setToken(result.token);
+          setUsername(result.username);
+          setEmail(result.email)
           
           }
           
