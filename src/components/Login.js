@@ -1,14 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { login } from "../services/authServices" 
 
 
 
-function Login({setToken, setUsername, setEmail}) {
+function Login({setUserInfo}) {
  
-	const [error, setError] = useState(null);
+  
+	const [error, setError] = useState ([]);
   const [isLoaded, setIsLoaded] = useState(false);
- 
+  
   let navigate = useNavigate();
 	
   const onFormSubmit = async (e) => {
@@ -21,29 +23,26 @@ function Login({setToken, setUsername, setEmail}) {
     console.log(password);
 
     
-     await fetch("https://localhost:44382/api/Account/Login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: JSON.stringify({
-          username,
-          password
-        })
-      }).then((res) => res.json())
+     await login(username, password)
       .then(
         (result) => {
           setIsLoaded(true);
-          
-          console.log(result.status);
-          if (result.status === 400) {
-            setError(result.title);
+          console.log(result);
+          console.log(result.errors);
+          console.log(result.headers);
+          if (result.errors) {
+            setError([result.errors.Password? result.errors.Password[0]: "", result.errors.Username ? " and " + result.errors.Username[0] : ""]);
+            console.log(error);
+            setIsLoaded(false)
             
-          }else{
-          setToken(result.token);
-          setUsername(result.username);
-          setEmail(result.email)
+          }else if(result.isSuccessStatusCode === false){
+            setError(result.reasonPhrase);
+            setIsLoaded(false)
+          }
+          else{
+            setIsLoaded(true)
+            setUserInfo({ isAuthenticated : true , token : result.token,email :  result.email})
+            navigate({ pathname: "/home" });
           
           }
           
@@ -59,12 +58,16 @@ function Login({setToken, setUsername, setEmail}) {
         }
       );
 
-     if (!error) {
-      navigate({ pathname: "/login" });
-     }
-     else{
-      navigate({ pathname: "/home" });
-     }
+    //  if (!isLoaded) {
+    //   navigate({ pathname: "/login" });
+    //   console.log(isLoaded);
+    //   console.log(error);
+    //   console.log('error');
+    //  }
+    //  else{
+    //   navigate({ pathname: "/home" });
+    //   console.log('home');
+    //  }
        
       
   };

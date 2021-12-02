@@ -74,7 +74,7 @@ function CreateProperty() {
     console.log(laundry);
     console.log(sauna);
     console.log(windowCoverings);
-
+    console.log(email);
 
     fetch('https://localhost:44382/api/Home/Post', {
       method: "POST",
@@ -85,6 +85,7 @@ function CreateProperty() {
       },
       body : JSON.stringify({
         
+          "creator" : email,
           "typeName": type,
           "adFor": adFor,
           "title": title,

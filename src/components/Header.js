@@ -1,18 +1,21 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
+import { logout } from "../services/authServices";
 
 import { Link } from "react-router-dom";
 
-function Header({ setToken }) {
-  const {token, username, email } = useContext(AuthContext);
-  
+function Header({ setUserInfo }) {
+  const userInfo = useContext(AuthContext);
+  console.log(userInfo);
+  let token = userInfo.token;
+  let username = userInfo.email
   let navigate = useNavigate();
 
   const Logout = (e) => {
     e.preventDefault();
-    setToken(null);
-
+    
+	setUserInfo({isAuthenticated : false, email : null, token : null})
     navigate({ pathname: "/home" });
   };
 

@@ -50,6 +50,7 @@ function Details() {
               <div className="row">
                 <div className="col-lg-12">
                   <div className="listing_single_description">
+                  <h1>{property.title}</h1>
                     <div className="lsd_list">
                       <ul className="mb0">
                         <li className="list-inline-item">
@@ -68,11 +69,13 @@ function Details() {
                     </div>
                     <h4 className="mb30">Description</h4>
                     <p className="mb25">
-                      Evans Tower very high demand corner junior one bedroom
-                      plus Link large balcony boasting full open NYC views. You
-                      need to see the views to believe them. Mint condition with
-                      new hardwood floors. Lots of closets plus washer and
-                      dryer.
+                    Fully furnished. Elegantly appointed condominium unit
+                      situated on premier location. PS6. The wide entry hall
+                      leads to Link large living room with dining area. This
+                      expansive 2 bedroom and 2 renovated marble bathroom
+                      apartment has great windows. Despite the interior views,
+                      {property.description}
+                      
                     </p>
                     <p className="gpara second_para white_goverlay mt10 mb10">
                       Fully furnished. Elegantly appointed condominium unit
@@ -148,6 +151,7 @@ function Details() {
                           <li>
                             <p>Year Built : </p>
                           </li>
+                          
                         </ul>
                         <ul className="list-inline-item">
                           <li>
@@ -162,7 +166,7 @@ function Details() {
                           </li>
                           <li>
                             <p>
-                              <span>{property.size} Sq Ft</span>
+                              <span>{property.area} Sq Ft</span>
                             </p>
                           </li>
                           <li>
@@ -170,6 +174,7 @@ function Details() {
                               <span>{property.yearOfConstruction}</span>
                             </p>
                           </li>
+                          
                         </ul>
                       </div>
                       <div className="col-md-6 col-lg-6 col-xl-4">
@@ -218,6 +223,12 @@ function Details() {
                           <li>
                             <p>Property Status :</p>
                           </li>
+                          <li>
+                            <p>Building Status : </p>
+                          </li>
+                          <li>
+                            <p>Garden : </p>
+                          </li>
                         </ul>
                         <ul className="list-inline-item">
                           <li>
@@ -228,6 +239,16 @@ function Details() {
                           <li>
                             <p>
                               <span>For {property.adFor}</span>
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              <span>{property.condition}</span>
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              <span>{property.garden ? "Yes" : "No"}</span>
                             </p>
                           </li>
                         </ul>
@@ -299,6 +320,15 @@ function Details() {
                     </div>
                   </div>
                 </div>
+                <div className="col-xl-12">
+              <div className="my_profile_setting_input">
+                {email  == property.creator ? <>
+                <button className="btn btn1 float-left">Edit</button>
+                <button className="btn btn2 float-right">Delete</button>
+                </>
+                  : <button className="btn btn2 float-right">Like</button>}
+              </div>
+            </div>
               </div>
             </div>
           </div>

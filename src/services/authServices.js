@@ -1,11 +1,28 @@
-import { authenticationService } from '@/_services';
+export const login = async (username, password) => {
 
-export function authHeader() {
-    // return authorization header with jwt token
-    const currentUser = authenticationService.currentUserValue;
-    if (currentUser && currentUser.token) {
-        return { Authorization: `Bearer ${currentUser.token}` };
-    } else {
-        return {};
-    }
+    return await fetch("https://localhost:44382/api/Account/Login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: JSON.stringify({
+          username,
+          password
+        })
+      }).then((res) => res.json())
+      
+      
+}
+
+export const logout = () => {
+    console.log('logout');
+    console.log(localStorage);
+    localStorage.removeItem('userInfo');
+   
+    console.log(localStorage);
+}
+
+export const getUser = () => {
+    return localStorage.getItem('userInfo');
 }
