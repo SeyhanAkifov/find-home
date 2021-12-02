@@ -2,10 +2,12 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 import AuthContext from "../contexts/AuthContext";
 
 function Details() {
+  let navigate = useNavigate();
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const { token, username, email } = useContext(AuthContext);
@@ -16,7 +18,9 @@ function Details() {
 
   useEffect(() => {
     fetch(`https://localhost:44382/api/Home/GetWithId?id=${id.id}`, {
+      
       headers: {
+        
         Authorization: `Bearer ${token}`,
       },
     })
@@ -32,6 +36,21 @@ function Details() {
         }
       );
   }, [id.id, token]);
+
+  const OnDelete = async (e) => {
+    e.preventDefault();
+    
+    await fetch(`https://localhost:44382/api/Home/DeleteWithId?id=${id.id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      
+
+    navigate({ pathname: "/home" });
+  };
 
   feature = property.feature;
   console.log(property);
@@ -324,7 +343,7 @@ function Details() {
               <div className="my_profile_setting_input">
                 {email  == property.creator ? <>
                 <button className="btn btn1 float-left">Edit</button>
-                <button className="btn btn2 float-right">Delete</button>
+                <button  onClick={OnDelete} className="btn btn2 float-right">Delete</button>
                 </>
                   : <button className="btn btn2 float-right">Like</button>}
               </div>
