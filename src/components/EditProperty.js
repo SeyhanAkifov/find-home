@@ -5,28 +5,21 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
 
-
 function EditProperty() {
-    let navigate = useNavigate();
-  
-    const { token, username, email } = useContext(AuthContext);
-  
-    
-  
-    let id = useParams();
-    console.log(token);
-    const [property, setProperty] = useState([]);
-    const [error, setError] = useState(null);
-    const [isLoaded, setIsLoaded] = useState(false);
-    let feature;
+  let navigate = useNavigate();
+    let counter = 1;
+  const { token, username, email } = useContext(AuthContext);
+
+  let id = useParams();
+  console.log(token);
+  const [property, setProperty] = useState([]);
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  let feature;
 
   useEffect(() => {
-
-    
     fetch(`https://localhost:44382/api/Home/GetWithId?id=${id.id}`, {
-      
       headers: {
-        
         Authorization: `Bearer ${token}`,
       },
     })
@@ -36,6 +29,7 @@ function EditProperty() {
           console.log(data);
           setProperty(data);
           setIsLoaded(true);
+          feature = data.feature;
         },
         (error) => {
           setIsLoaded(true);
@@ -43,142 +37,146 @@ function EditProperty() {
         }
       );
   }, [id.id, token]);
-  
 
-//   const onFormSubmit = async (e) => {
-//     e.preventDefault();
+  feature = property.feature;
+    const onFormSubmit = async (e) => {
+      e.preventDefault();
 
-//     let formData = new FormData(e.currentTarget);
-//     let title = formData.get("title");
-//     let description = formData.get("description");
-//     let type = formData.get("type");
-//     let status = formData.get("status");
-//     let price = formData.get("price");
-//     let area = formData.get("area");
-//     let rooms = formData.get("rooms");
-//     let baths = formData.get("baths");
-//     let floor = formData.get("floor");
-//     let adFor = formData.get("adFor");
-//     let year = formData.get("year");
-//     let address = formData.get("address");
-//     let city = formData.get("city");
-//     let country = formData.get("country");
-//     let zip = formData.get("zip");
+      let formData = new FormData(e.currentTarget);
+      let title = formData.get("title");
+      let description = formData.get("description");
+      let type = formData.get("type");
+      let status = formData.get("status");
+      let price = formData.get("price");
+      let area = formData.get("area");
+      let rooms = formData.get("rooms");
+      let baths = formData.get("baths");
+      let floor = formData.get("floor");
+      let adFor = formData.get("adFor");
+      let year = formData.get("year");
+      let address = formData.get("address");
+      let city = formData.get("city");
+      let country = formData.get("country");
+      let zip = formData.get("zip");
 
-//     let airConditioning = formData.get("airConditioning") ? true : false;
-//     let lawn = formData.get("lawn") ? true : false;
-//     let swimmingPool = formData.get("swimmingPool") ? true : false;
-//     let barbeque = formData.get("barbeque") ? true : false;
-//     let kitchen = formData.get("kitchen") ? true : false;
-//     let tvCable = formData.get("tvCable") ? true : false;
-//     let dryer = formData.get("dryer") ? true : false;
-//     let outdoorShower = formData.get("outdoorShower") ? true : false;
-//     let washer = formData.get("washer") ? true : false;
-//     let gym = formData.get("gym") ? true : false;
-//     let refrigerator = formData.get("refrigerator") ? true : false;
-//     let wifi = formData.get("wifi") ? true : false;
-//     let laundry = formData.get("laundry") ? true : false;
-//     let sauna = formData.get("sauna") ? true : false;
-//     let windowCoverings = formData.get("windowCoverings") ? true : false;
-//     let garden = formData.get("garden") ? true : false;
-//     console.log(title);
-//     console.log(description);
-//     console.log(type);
-//     console.log(status);
-//     console.log(price);
-//     console.log(area);
-//     console.log(rooms);
-//     console.log(baths);
-//     console.log(floor);
-//     console.log(adFor);
-//     console.log(year);
-//     console.log(address);
-//     console.log(city);
-//     console.log(country);
-//     console.log(zip);
-    
-//     console.log(airConditioning);
-//     console.log(lawn);
-//     console.log(swimmingPool);
-//     console.log(barbeque);
-//     console.log(kitchen);
-//     console.log(tvCable);
-//     console.log(dryer);
-//     console.log(outdoorShower);
-//     console.log(washer);
-//     console.log(gym);
-//     console.log(refrigerator);
-//     console.log(wifi);
-//     console.log(laundry);
-//     console.log(sauna);
-//     console.log(windowCoverings);
-//     console.log(email);
+      let airConditioning = formData.get("airConditioning") ? true : false;
+      let lawn = formData.get("lawn") ? true : false;
+      let swimmingPool = formData.get("swimmingPool") ? true : false;
+      let barbeque = formData.get("barbeque") ? true : false;
+      let kitchen = formData.get("kitchen") ? true : false;
+      let tvCable = formData.get("tvCable") ? true : false;
+      let dryer = formData.get("dryer") ? true : false;
+      let outdoorShower = formData.get("outdoorShower") ? true : false;
+      let washer = formData.get("washer") ? true : false;
+      let gym = formData.get("gym") ? true : false;
+      let refrigerator = formData.get("refrigerator") ? true : false;
+      let wifi = formData.get("wifi") ? true : false;
+      let laundry = formData.get("laundry") ? true : false;
+      let sauna = formData.get("sauna") ? true : false;
+      let windowCoverings = formData.get("windowCoverings") ? true : false;
+      let garden = formData.get("garden") ? true : false;
+      console.log(title);
+      console.log(description);
+      console.log(type);
+      console.log(status);
+      console.log(price);
+      console.log(area);
+      console.log(rooms);
+      console.log(baths);
+      console.log(floor);
+      console.log(adFor);
+      console.log(year);
+      console.log(address);
+      console.log(city);
+      console.log(country);
+      console.log(zip);
 
-//     fetch('https://localhost:44382/api/Home/Post', {
-//       method: "POST",
-//       headers: {
-//         Authorization: `Bearer ${token}`,
-//         "Content-Type": "application/json",
-//         // 'Content-Type': 'application/x-www-form-urlencoded',
-//       },
-//       body : JSON.stringify({
-        
-//           "creator" : email,
-//           "typeName": type,
-//           "adFor": adFor,
-//           "title": title,
-//           "description": description,
-//           "beds": rooms,
-//           "floor": floor,
-//           "baths": baths,
-//           "condition": status,
-//           "yearOfConstruction": year,
-//           "area": area,
-//           "cityName": city,
-//           "countryName": country,
-//           "address": address,
-//           "postCode" : zip,
-//           "price": price,
-//           "garden": garden,
-//           "feature": {
-//             "id": 0,
-//             "airConditioning": airConditioning,
-//             "barbeque": barbeque,
-//             "dryer": dryer,
-//             "gym": gym,
-//             "laundry": laundry,
-//             "lawn": lawn,
-//             "kitchen": kitchen,
-//             "outdoorShower": outdoorShower,
-//             "refrigerator": refrigerator,
-//             "sauna": sauna,
-//             "swimmingPool": swimmingPool,
-//             "tvCable": tvCable,
-//             "washer": washer,
-//             "wifi": wifi,
-//             "windowCoverings": windowCoverings
-          
-//         }
-        
-//       })
+      console.log(airConditioning);
+      console.log(lawn);
+      console.log(swimmingPool);
+      console.log(barbeque);
+      console.log(kitchen);
+      console.log(tvCable);
+      console.log(dryer);
+      console.log(outdoorShower);
+      console.log(washer);
+      console.log(gym);
+      console.log(refrigerator);
+      console.log(wifi);
+      console.log(laundry);
+      console.log(sauna);
+      console.log(windowCoverings);
+      console.log(email);
 
-      
-//     })
-//   };
+      fetch('https://localhost:44382/api/Home/Edit', {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body : JSON.stringify({
+            "id" : id.id,
+            "creator" : email,
+            "typeName": type,
+            "adFor": adFor,
+            "title": title,
+            "description": description,
+            "beds": rooms,
+            "floor": floor,
+            "baths": baths,
+            "condition": status,
+            "yearOfConstruction": year,
+            "area": area,
+            "cityName": city,
+            "countryName": country,
+            "address": address,
+            "postCode" : zip,
+            "price": price,
+            "garden": garden,
+            "feature": {
+              "id": 0,
+              "airConditioning": airConditioning,
+              "barbeque": barbeque,
+              "dryer": dryer,
+              "gym": gym,
+              "laundry": laundry,
+              "lawn": lawn,
+              "kitchen": kitchen,
+              "outdoorShower": outdoorShower,
+              "refrigerator": refrigerator,
+              "sauna": sauna,
+              "swimmingPool": swimmingPool,
+              "tvCable": tvCable,
+              "washer": washer,
+              "wifi": wifi,
+              "windowCoverings": windowCoverings
 
+          }
+
+        })
+
+      })
+    };
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+    return <div>Loading...</div>;
+  } else {
   return (
     <>
       <div className="col-lg-12 mb10">
         <div className="breadcrumb_content style2">
-          <h2 className="breadcrumb_title">Add New Property</h2>
+          <h2 className="breadcrumb_title">Edit Property</h2>
           <p>We are glad to see you again!</p>
         </div>
       </div>
       <div className="col-lg-12">
         <div className="my_dashboard_review">
-          <form className="row" onSubmit="{onFormSubmit}">
+          <form className="row" onSubmit={onFormSubmit}>
             <div className="col-lg-12">
-              <h4 className="mb30">Create Listing</h4>
+              <h4 className="mb30">Edit Property</h4>
               <div className="my_profile_setting_input form-group">
                 <label htmlFor="propertyTitle">Property Title</label>
                 <input
@@ -186,7 +184,7 @@ function EditProperty() {
                   className="form-control"
                   id="propertyTitle"
                   name="title"
-                  value={property.title}
+                  defaultValue={property.title}
                 />
               </div>
             </div>
@@ -198,7 +196,7 @@ function EditProperty() {
                   id="propertyDescription"
                   rows="7"
                   name="description"
-                  value={property.description}
+                  defaultValue={property.description}
                 ></textarea>
               </div>
             </div>
@@ -210,7 +208,7 @@ function EditProperty() {
                   data-live-search="true"
                   data-width="100%"
                   name="type"
-                  value={property.type}
+                  defaultValue={property.type}
                 >
                   <option data-tokens="type1">House</option>
                   <option data-tokens="Type2">Apartment</option>
@@ -230,13 +228,12 @@ function EditProperty() {
                   data-live-search="true"
                   data-width="100%"
                   name="status"
-                  value={property.condition}
+                  defaultValue={property.condition}
                 >
                   <option data-tokens="Status1">New Build</option>
                   <option data-tokens="Status2">Renovated House</option>
                   <option data-tokens="Status3">Must be Renovated</option>
                   <option data-tokens="Status4">Old House</option>
-                  
                 </select>
               </div>
             </div>
@@ -248,7 +245,7 @@ function EditProperty() {
                   className="form-control"
                   id="formGroupExamplePrice"
                   name="price"
-                  value={property.price}
+                  defaultValue={property.price}
                 />
               </div>
             </div>
@@ -260,7 +257,7 @@ function EditProperty() {
                   className="form-control"
                   id="formGroupExampleArea"
                   name="area"
-                  value={property.area}
+                  defaultValue={property.area}
                 />
               </div>
             </div>
@@ -272,7 +269,7 @@ function EditProperty() {
                   data-live-search="true"
                   data-width="100%"
                   name="rooms"
-                  value={property.beds}
+                  defaultValue={property.beds}
                 >
                   <option data-tokens="Status1">1</option>
                   <option data-tokens="Status2">2</option>
@@ -291,7 +288,7 @@ function EditProperty() {
                   data-live-search="true"
                   data-width="100%"
                   name="baths"
-                  value={property.baths}
+                  defaultValue={property.baths}
                 >
                   <option data-tokens="Status1">1</option>
                   <option data-tokens="Status2">2</option>
@@ -310,7 +307,7 @@ function EditProperty() {
                   data-live-search="true"
                   data-width="100%"
                   name="floor"
-                  value={property.floor}
+                  defaultValue={property.floor}
                 >
                   <option data-tokens="Status1">1</option>
                   <option data-tokens="Status2">2</option>
@@ -329,7 +326,7 @@ function EditProperty() {
                   className="form-control"
                   id="formGroupExampleArea"
                   name="adFor"
-                  value={property.adFor}
+                  defaultValue={property.adFor}
                 />
               </div>
             </div>
@@ -343,7 +340,7 @@ function EditProperty() {
                   className="form-control"
                   id="formGroupExampleArea"
                   name="year"
-                  value={property.yearOfConstruction}
+                  defaultValue={property.yearOfConstruction}
                 />
               </div>
             </div>
@@ -356,7 +353,7 @@ function EditProperty() {
                   className="form-control"
                   id="propertyAddress"
                   name="address"
-                  value={property.streetName + " " + property.streetNumber}
+                  defaultValue={property.streetName + " " + property.streetNumber}
                 />
               </div>
             </div>
@@ -369,7 +366,7 @@ function EditProperty() {
                   className="form-control"
                   id="propertyCity"
                   name="city"
-                  value={property.city}
+                  defaultValue={property.city}
                 />
               </div>
             </div>
@@ -382,7 +379,7 @@ function EditProperty() {
                   className="form-control"
                   id="zipCode"
                   name="zip"
-                  value={property.postCode}
+                  defaultValue={property.postCode}
                 />
               </div>
             </div>
@@ -394,7 +391,7 @@ function EditProperty() {
                   data-live-search="true"
                   data-width="100%"
                   name="country"
-                  value={property.country}
+                  defaultValue={property.country}
                 >
                   <option data-tokens="Turkey">Turkey</option>
                   <option data-tokens="Iran">Iran</option>
@@ -405,284 +402,96 @@ function EditProperty() {
                 </select>
               </div>
             </div>
-            
+
             <div className="col-sm-4 col-md-4 col-lg-4 col-xl-2">
               <ul className="ui_kit_checkbox selectable-list">
-                <li>
-                  <div className="custom-control custom-checkbox">
-                    <input
-                      type="checkbox"
-                      className="custom-control-input"
-                      id="customCheck1"
-                      name="airConditioning"
-                     
-                    />
-                    <label
-                      className="custom-control-label"
-                      htmlFor="customCheck1"
-                    >
-                      Air Conditioning
-                    </label>
-                  </div>
-                </li>
-                <li>
-                  <div className="custom-control custom-checkbox">
-                    <input
-                      type="checkbox"
-                      className="custom-control-input"
-                      id="customCheck2"
-                      name="lawn"
-                      
-                    />
-                    <label
-                      className="custom-control-label"
-                      htmlFor="customCheck2"
-                    >
-                      Lawn
-                    </label>
-                  </div>
-                </li>
-                <li>
-                  <div className="custom-control custom-checkbox">
-                    <input
-                      type="checkbox"
-                      className="custom-control-input"
-                      id="customCheck3"
-                      name="swimmingPool"
-                    />
-                    <label
-                      className="custom-control-label"
-                      htmlFor="customCheck3"
-                    >
-                      Swimming Pool
-                    </label>
-                  </div>
-                </li>
-                <li>
-                  <div className="custom-control custom-checkbox">
-                    <input
-                      type="checkbox"
-                      className="custom-control-input"
-                      id="customCheck4"
-                      name="barbeque"
-                    />
-                    <label
-                      className="custom-control-label"
-                      htmlFor="customCheck4"
-                    >
-                      Barbeque
-                    </label>
-                  </div>
-                </li>
-                <li>
-                  <div className="custom-control custom-checkbox">
-                    <input
-                      type="checkbox"
-                      className="custom-control-input"
-                      id="customCheck5"
-                      name="kitchen"
-                    />
-                    <label
-                      className="custom-control-label"
-                      htmlFor="customCheck5"
-                    >
-                      Kitchen
-                    </label>
-                  </div>
-                </li>
+                {Object.entries(feature)
+                  .slice(1, 6)
+                  .map(([key, value]) => (
+                    <li>
+                      <div className="custom-control custom-checkbox">
+                        <input
+                          type="checkbox"
+                          className="custom-control-input"
+                          id={`customCheck${counter}`}
+                          
+                          defaultChecked={value === true ? true : false}
+                          name={key}
+                        />
+                        <label
+                          className="custom-control-label"
+                          htmlFor={`customCheck${counter++}`}
+                        >
+                          {key}
+                        </label>
+                      </div>
+                    </li>
+                  ))}
               </ul>
             </div>
 
             <div className="col-sm-4 col-md-4 col-lg-4 col-xl-2">
               <ul className="ui_kit_checkbox selectable-list">
-                <li>
-                  <div className="custom-control custom-checkbox">
-                    <input
-                      type="checkbox"
-                      className="custom-control-input"
-                      id="customCheck6"
-                      name="tvCable"
-                    />
-                    <label
-                      className="custom-control-label"
-                      htmlFor="customCheck6"
-                    >
-                      TV Cable
-                    </label>
-                  </div>
-                </li>
-                <li>
-                  <div className="custom-control custom-checkbox">
-                    <input
-                      type="checkbox"
-                      className="custom-control-input"
-                      id="customCheck7"
-                      name="dryer"
-                    />
-                    <label
-                      className="custom-control-label"
-                      htmlFor="customCheck7"
-                    >
-                      Dryer
-                    </label>
-                  </div>
-                </li>
-                <li>
-                  <div className="custom-control custom-checkbox">
-                    <input
-                      type="checkbox"
-                      className="custom-control-input"
-                      id="customCheck8"
-                      name="outdoorShower"
-                    />
-                    <label
-                      className="custom-control-label"
-                      htmlFor="customCheck8"
-                    >
-                      Outdoor Shower
-                    </label>
-                  </div>
-                </li>
-                <li>
-                  <div className="custom-control custom-checkbox">
-                    <input
-                      type="checkbox"
-                      className="custom-control-input"
-                      id="customCheck8"
-                      name="garden"
-                    />
-                    <label
-                      className="custom-control-label"
-                      htmlFor="customCheck8"
-                    >
-                      Garden
-                    </label>
-                  </div>
-                </li>
-                <li>
-                  <div className="custom-control custom-checkbox">
-                    <input
-                      type="checkbox"
-                      className="custom-control-input"
-                      id="customCheck9"
-                      name="washer"
-                    />
-                    <label
-                      className="custom-control-label"
-                      htmlFor="customCheck9"
-                    >
-                      Washer
-                    </label>
-                  </div>
-                </li>
-                <li>
-                  <div className="custom-control custom-checkbox">
-                    <input
-                      type="checkbox"
-                      className="custom-control-input"
-                      id="customCheck10"
-                      name="gym"
-                    />
-                    <label
-                      className="custom-control-label"
-                      htmlFor="customCheck10"
-                    >
-                      Gym
-                    </label>
-                  </div>
-                </li>
+              {Object.entries(feature)
+                  .slice(6, 11)
+                  .map(([key, value]) => (
+                    <li>
+                      <div className="custom-control custom-checkbox">
+                        <input
+                          type="checkbox"
+                          className="custom-control-input"
+                          id={`customCheck${counter}`}
+                          
+                          defaultChecked={value === true ? true : false}
+                          name={key}
+                          
+                        />
+                        <label
+                          className="custom-control-label"
+                          htmlFor={`customCheck${counter++}`}
+                        >
+                          {key}
+                        </label>
+                      </div>
+                    </li>
+                  ))}
               </ul>
             </div>
 
             <div className="col-sm-4 col-md-4 col-lg-4 col-xl-2">
               <ul className="ui_kit_checkbox selectable-list">
-                <li>
-                  <div className="custom-control custom-checkbox">
-                    <input
-                      type="checkbox"
-                      className="custom-control-input"
-                      id="customCheck11"
-                      name="refrigerator"
-                    />
-                    <label
-                      className="custom-control-label"
-                      htmlFor="customCheck11"
-                    >
-                      Refrigerator
-                    </label>
-                  </div>
-                </li>
-                <li>
-                  <div className="custom-control custom-checkbox">
-                    <input
-                      type="checkbox"
-                      className="custom-control-input"
-                      id="customCheck12"
-                      name="wifi"
-                    />
-                    <label
-                      className="custom-control-label"
-                      htmlFor="customCheck12"
-                    >
-                      WiFi
-                    </label>
-                  </div>
-                </li>
-                <li>
-                  <div className="custom-control custom-checkbox">
-                    <input
-                      type="checkbox"
-                      className="custom-control-input"
-                      id="customCheck13"
-                      name="laundry"
-                    />
-                    <label
-                      className="custom-control-label"
-                      htmlFor="customCheck13"
-                    >
-                      Laundry
-                    </label>
-                  </div>
-                </li>
-                <li>
-                  <div className="custom-control custom-checkbox">
-                    <input
-                      type="checkbox"
-                      className="custom-control-input"
-                      id="customCheck14"
-                      name="sauna"
-                    />
-                    <label
-                      className="custom-control-label"
-                      htmlFor="customCheck14"
-                    >
-                      Sauna
-                    </label>
-                  </div>
-                </li>
-                <li>
-                  <div className="custom-control custom-checkbox">
-                    <input
-                      type="checkbox"
-                      className="custom-control-input"
-                      id="customCheck15"
-                      name="windowCoverings"
-                    />
-                    <label
-                      className="custom-control-label"
-                      htmlFor="customCheck15"
-                    >
-                      Window Coverings
-                    </label>
-                  </div>
-                </li>
+              {Object.entries(feature)
+                  .slice(11, 16)
+                  .map(([key, value]) => (
+                    <li>
+                      <div className="custom-control custom-checkbox">
+                        <input
+                        
+                          type="checkbox"
+                          className="custom-control-input"
+                          id={`customCheck${counter}`}
+                          
+                          defaultChecked={value === true ? true : false}
+                          name={key}
+                          
+                          
+                        />
+                        <label
+                          className="custom-control-label"
+                          htmlFor={`customCheck${counter++}`}
+                        >
+                          {key}
+                        </label>
+                      </div>
+                    </li>
+                  ))}
               </ul>
             </div>
 
             <div className="col-xl-12">
               <div className="my_profile_setting_input">
                 <button className="btn btn1 float-left">Clear</button>
-                <button className="btn btn2 float-right">Create</button>
+                <button className="btn btn2 float-right">Update</button>
               </div>
             </div>
           </form>
@@ -788,7 +597,7 @@ function EditProperty() {
         </div>
       </div>
     </>
-  );
+  )};
 }
 
 export default EditProperty;
