@@ -57,6 +57,7 @@ console.log(items);
                   From as low as $10 per day with limited time offer discounts.
                 </p>
               </div>
+            <button>Search</button>
               <div className="home_adv_srch_opt">
                 <ul className="nav nav-pills" id="pills-tab" role="tablist">
                   <li className="nav-item">

@@ -71,7 +71,7 @@ function MainItem(params) {
                 </Link>
               </li>
               <li>
-                <Link to={token.token ? `/details/${params.data.id}` : '/login'}>
+                <Link to={`/details/${params.data.id}`}>
                   <span className="title">Details</span>
                 </Link>
               </li>

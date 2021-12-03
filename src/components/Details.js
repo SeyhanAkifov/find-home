@@ -8,15 +8,22 @@ import AuthContext from "../contexts/AuthContext";
 
 function Details() {
   let navigate = useNavigate();
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
+  
   const { token, username, email } = useContext(AuthContext);
+
+  
+
   let id = useParams();
   console.log(token);
   const [property, setProperty] = useState([]);
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
   let feature;
 
+
   useEffect(() => {
+
+    
     fetch(`https://localhost:44382/api/Home/GetWithId?id=${id.id}`, {
       
       headers: {
@@ -27,6 +34,7 @@ function Details() {
       .then((res) => res.json())
       .then(
         (data) => {
+          console.log(data);
           setProperty(data);
           setIsLoaded(true);
         },
@@ -341,8 +349,10 @@ function Details() {
                 </div>
                 <div className="col-xl-12">
               <div className="my_profile_setting_input">
-                {email  == property.creator ? <>
+                {email  === property.creator ? <>
+                  <Link to={`/edit/${id.id}`}>
                 <button className="btn btn1 float-left">Edit</button>
+                </Link>
                 <button  onClick={OnDelete} className="btn btn2 float-right">Delete</button>
                 </>
                   : <button className="btn btn2 float-right">Like</button>}

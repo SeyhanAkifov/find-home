@@ -1,142 +1,170 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
-import { useEffect } from "react/cjs/react.development";
 
-function CreateProperty() {
-let navigate = useNavigate();
-  const {token, username, email } = useContext(AuthContext);
-  console.log(token);
-  console.log('navigate');
 
-  useEffect( () => {
-    if(!token){
-      navigate({ pathname : '/login'})
-    }
-  }, [token])
+function EditProperty() {
+    let navigate = useNavigate();
+  
+    const { token, username, email } = useContext(AuthContext);
+  
+    
+  
+    let id = useParams();
+    console.log(token);
+    const [property, setProperty] = useState([]);
+    const [error, setError] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false);
+    let feature;
+
+  useEffect(() => {
+
+    
+    fetch(`https://localhost:44382/api/Home/GetWithId?id=${id.id}`, {
+      
+      headers: {
+        
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then(
+        (data) => {
+          console.log(data);
+          setProperty(data);
+          setIsLoaded(true);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      );
+  }, [id.id, token]);
   
 
-  const onFormSubmit = async (e) => {
-    e.preventDefault();
+//   const onFormSubmit = async (e) => {
+//     e.preventDefault();
 
-    let formData = new FormData(e.currentTarget);
-    let title = formData.get("title");
-    let description = formData.get("description");
-    let type = formData.get("type");
-    let status = formData.get("status");
-    let price = formData.get("price");
-    let area = formData.get("area");
-    let rooms = formData.get("rooms");
-    let baths = formData.get("baths");
-    let floor = formData.get("floor");
-    let adFor = formData.get("adFor");
-    let year = formData.get("year");
-    let address = formData.get("address");
-    let city = formData.get("city");
-    let country = formData.get("country");
-    let zip = formData.get("zip");
+//     let formData = new FormData(e.currentTarget);
+//     let title = formData.get("title");
+//     let description = formData.get("description");
+//     let type = formData.get("type");
+//     let status = formData.get("status");
+//     let price = formData.get("price");
+//     let area = formData.get("area");
+//     let rooms = formData.get("rooms");
+//     let baths = formData.get("baths");
+//     let floor = formData.get("floor");
+//     let adFor = formData.get("adFor");
+//     let year = formData.get("year");
+//     let address = formData.get("address");
+//     let city = formData.get("city");
+//     let country = formData.get("country");
+//     let zip = formData.get("zip");
 
-    let airConditioning = formData.get("airConditioning") ? true : false;
-    let lawn = formData.get("lawn") ? true : false;
-    let swimmingPool = formData.get("swimmingPool") ? true : false;
-    let barbeque = formData.get("barbeque") ? true : false;
-    let kitchen = formData.get("kitchen") ? true : false;
-    let tvCable = formData.get("tvCable") ? true : false;
-    let dryer = formData.get("dryer") ? true : false;
-    let outdoorShower = formData.get("outdoorShower") ? true : false;
-    let washer = formData.get("washer") ? true : false;
-    let gym = formData.get("gym") ? true : false;
-    let refrigerator = formData.get("refrigerator") ? true : false;
-    let wifi = formData.get("wifi") ? true : false;
-    let laundry = formData.get("laundry") ? true : false;
-    let sauna = formData.get("sauna") ? true : false;
-    let windowCoverings = formData.get("windowCoverings") ? true : false;
-    let garden = formData.get("garden") ? true : false;
-    console.log(title);
-    console.log(description);
-    console.log(type);
-    console.log(status);
-    console.log(price);
-    console.log(area);
-    console.log(rooms);
-    console.log(baths);
-    console.log(floor);
-    console.log(adFor);
-    console.log(year);
-    console.log(address);
-    console.log(city);
-    console.log(country);
-    console.log(zip);
+//     let airConditioning = formData.get("airConditioning") ? true : false;
+//     let lawn = formData.get("lawn") ? true : false;
+//     let swimmingPool = formData.get("swimmingPool") ? true : false;
+//     let barbeque = formData.get("barbeque") ? true : false;
+//     let kitchen = formData.get("kitchen") ? true : false;
+//     let tvCable = formData.get("tvCable") ? true : false;
+//     let dryer = formData.get("dryer") ? true : false;
+//     let outdoorShower = formData.get("outdoorShower") ? true : false;
+//     let washer = formData.get("washer") ? true : false;
+//     let gym = formData.get("gym") ? true : false;
+//     let refrigerator = formData.get("refrigerator") ? true : false;
+//     let wifi = formData.get("wifi") ? true : false;
+//     let laundry = formData.get("laundry") ? true : false;
+//     let sauna = formData.get("sauna") ? true : false;
+//     let windowCoverings = formData.get("windowCoverings") ? true : false;
+//     let garden = formData.get("garden") ? true : false;
+//     console.log(title);
+//     console.log(description);
+//     console.log(type);
+//     console.log(status);
+//     console.log(price);
+//     console.log(area);
+//     console.log(rooms);
+//     console.log(baths);
+//     console.log(floor);
+//     console.log(adFor);
+//     console.log(year);
+//     console.log(address);
+//     console.log(city);
+//     console.log(country);
+//     console.log(zip);
     
-    console.log(airConditioning);
-    console.log(lawn);
-    console.log(swimmingPool);
-    console.log(barbeque);
-    console.log(kitchen);
-    console.log(tvCable);
-    console.log(dryer);
-    console.log(outdoorShower);
-    console.log(washer);
-    console.log(gym);
-    console.log(refrigerator);
-    console.log(wifi);
-    console.log(laundry);
-    console.log(sauna);
-    console.log(windowCoverings);
-    console.log(email);
+//     console.log(airConditioning);
+//     console.log(lawn);
+//     console.log(swimmingPool);
+//     console.log(barbeque);
+//     console.log(kitchen);
+//     console.log(tvCable);
+//     console.log(dryer);
+//     console.log(outdoorShower);
+//     console.log(washer);
+//     console.log(gym);
+//     console.log(refrigerator);
+//     console.log(wifi);
+//     console.log(laundry);
+//     console.log(sauna);
+//     console.log(windowCoverings);
+//     console.log(email);
 
-    fetch('https://localhost:44382/api/Home/Post', {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body : JSON.stringify({
+//     fetch('https://localhost:44382/api/Home/Post', {
+//       method: "POST",
+//       headers: {
+//         Authorization: `Bearer ${token}`,
+//         "Content-Type": "application/json",
+//         // 'Content-Type': 'application/x-www-form-urlencoded',
+//       },
+//       body : JSON.stringify({
         
-          "creator" : email,
-          "typeName": type,
-          "adFor": adFor,
-          "title": title,
-          "description": description,
-          "beds": rooms,
-          "floor": floor,
-          "baths": baths,
-          "condition": status,
-          "yearOfConstruction": year,
-          "area": area,
-          "cityName": city,
-          "countryName": country,
-          "address": address,
-          "postCode" : zip,
-          "price": price,
-          "garden": garden,
-          "feature": {
-            "id": 0,
-            "airConditioning": airConditioning,
-            "barbeque": barbeque,
-            "dryer": dryer,
-            "gym": gym,
-            "laundry": laundry,
-            "lawn": lawn,
-            "kitchen": kitchen,
-            "outdoorShower": outdoorShower,
-            "refrigerator": refrigerator,
-            "sauna": sauna,
-            "swimmingPool": swimmingPool,
-            "tvCable": tvCable,
-            "washer": washer,
-            "wifi": wifi,
-            "windowCoverings": windowCoverings
+//           "creator" : email,
+//           "typeName": type,
+//           "adFor": adFor,
+//           "title": title,
+//           "description": description,
+//           "beds": rooms,
+//           "floor": floor,
+//           "baths": baths,
+//           "condition": status,
+//           "yearOfConstruction": year,
+//           "area": area,
+//           "cityName": city,
+//           "countryName": country,
+//           "address": address,
+//           "postCode" : zip,
+//           "price": price,
+//           "garden": garden,
+//           "feature": {
+//             "id": 0,
+//             "airConditioning": airConditioning,
+//             "barbeque": barbeque,
+//             "dryer": dryer,
+//             "gym": gym,
+//             "laundry": laundry,
+//             "lawn": lawn,
+//             "kitchen": kitchen,
+//             "outdoorShower": outdoorShower,
+//             "refrigerator": refrigerator,
+//             "sauna": sauna,
+//             "swimmingPool": swimmingPool,
+//             "tvCable": tvCable,
+//             "washer": washer,
+//             "wifi": wifi,
+//             "windowCoverings": windowCoverings
           
-        }
+//         }
         
-      })
+//       })
 
       
-    })
-  };
+//     })
+//   };
 
   return (
     <>
@@ -148,7 +176,7 @@ let navigate = useNavigate();
       </div>
       <div className="col-lg-12">
         <div className="my_dashboard_review">
-          <form className="row" onSubmit={onFormSubmit}>
+          <form className="row" onSubmit="{onFormSubmit}">
             <div className="col-lg-12">
               <h4 className="mb30">Create Listing</h4>
               <div className="my_profile_setting_input form-group">
@@ -158,6 +186,7 @@ let navigate = useNavigate();
                   className="form-control"
                   id="propertyTitle"
                   name="title"
+                  value={property.title}
                 />
               </div>
             </div>
@@ -169,6 +198,7 @@ let navigate = useNavigate();
                   id="propertyDescription"
                   rows="7"
                   name="description"
+                  value={property.description}
                 ></textarea>
               </div>
             </div>
@@ -180,6 +210,7 @@ let navigate = useNavigate();
                   data-live-search="true"
                   data-width="100%"
                   name="type"
+                  value={property.type}
                 >
                   <option data-tokens="type1">House</option>
                   <option data-tokens="Type2">Apartment</option>
@@ -199,6 +230,7 @@ let navigate = useNavigate();
                   data-live-search="true"
                   data-width="100%"
                   name="status"
+                  value={property.condition}
                 >
                   <option data-tokens="Status1">New Build</option>
                   <option data-tokens="Status2">Renovated House</option>
@@ -216,6 +248,7 @@ let navigate = useNavigate();
                   className="form-control"
                   id="formGroupExamplePrice"
                   name="price"
+                  value={property.price}
                 />
               </div>
             </div>
@@ -227,6 +260,7 @@ let navigate = useNavigate();
                   className="form-control"
                   id="formGroupExampleArea"
                   name="area"
+                  value={property.area}
                 />
               </div>
             </div>
@@ -238,6 +272,7 @@ let navigate = useNavigate();
                   data-live-search="true"
                   data-width="100%"
                   name="rooms"
+                  value={property.beds}
                 >
                   <option data-tokens="Status1">1</option>
                   <option data-tokens="Status2">2</option>
@@ -256,6 +291,7 @@ let navigate = useNavigate();
                   data-live-search="true"
                   data-width="100%"
                   name="baths"
+                  value={property.baths}
                 >
                   <option data-tokens="Status1">1</option>
                   <option data-tokens="Status2">2</option>
@@ -274,6 +310,7 @@ let navigate = useNavigate();
                   data-live-search="true"
                   data-width="100%"
                   name="floor"
+                  value={property.floor}
                 >
                   <option data-tokens="Status1">1</option>
                   <option data-tokens="Status2">2</option>
@@ -292,6 +329,7 @@ let navigate = useNavigate();
                   className="form-control"
                   id="formGroupExampleArea"
                   name="adFor"
+                  value={property.adFor}
                 />
               </div>
             </div>
@@ -305,6 +343,7 @@ let navigate = useNavigate();
                   className="form-control"
                   id="formGroupExampleArea"
                   name="year"
+                  value={property.yearOfConstruction}
                 />
               </div>
             </div>
@@ -317,6 +356,7 @@ let navigate = useNavigate();
                   className="form-control"
                   id="propertyAddress"
                   name="address"
+                  value={property.streetName + " " + property.streetNumber}
                 />
               </div>
             </div>
@@ -329,6 +369,7 @@ let navigate = useNavigate();
                   className="form-control"
                   id="propertyCity"
                   name="city"
+                  value={property.city}
                 />
               </div>
             </div>
@@ -341,6 +382,7 @@ let navigate = useNavigate();
                   className="form-control"
                   id="zipCode"
                   name="zip"
+                  value={property.postCode}
                 />
               </div>
             </div>
@@ -352,6 +394,7 @@ let navigate = useNavigate();
                   data-live-search="true"
                   data-width="100%"
                   name="country"
+                  value={property.country}
                 >
                   <option data-tokens="Turkey">Turkey</option>
                   <option data-tokens="Iran">Iran</option>
@@ -362,6 +405,7 @@ let navigate = useNavigate();
                 </select>
               </div>
             </div>
+            
             <div className="col-sm-4 col-md-4 col-lg-4 col-xl-2">
               <ul className="ui_kit_checkbox selectable-list">
                 <li>
@@ -371,6 +415,7 @@ let navigate = useNavigate();
                       className="custom-control-input"
                       id="customCheck1"
                       name="airConditioning"
+                     
                     />
                     <label
                       className="custom-control-label"
@@ -387,6 +432,7 @@ let navigate = useNavigate();
                       className="custom-control-input"
                       id="customCheck2"
                       name="lawn"
+                      
                     />
                     <label
                       className="custom-control-label"
@@ -446,6 +492,7 @@ let navigate = useNavigate();
                 </li>
               </ul>
             </div>
+
             <div className="col-sm-4 col-md-4 col-lg-4 col-xl-2">
               <ul className="ui_kit_checkbox selectable-list">
                 <li>
@@ -546,6 +593,7 @@ let navigate = useNavigate();
                 </li>
               </ul>
             </div>
+
             <div className="col-sm-4 col-md-4 col-lg-4 col-xl-2">
               <ul className="ui_kit_checkbox selectable-list">
                 <li>
@@ -630,6 +678,7 @@ let navigate = useNavigate();
                 </li>
               </ul>
             </div>
+
             <div className="col-xl-12">
               <div className="my_profile_setting_input">
                 <button className="btn btn1 float-left">Clear</button>
@@ -742,4 +791,4 @@ let navigate = useNavigate();
   );
 }
 
-export default CreateProperty;
+export default EditProperty;
