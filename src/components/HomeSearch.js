@@ -6,20 +6,12 @@ import useFetch from "../hooks/useFetch";
   
   let navigate = useNavigate();
  
-    let url = "https://localhost:44382/api/Home/GetTypes";
+    let url = "http://apifindhome.seyhanakifov.com/api/Home/GetTypes";
 
     const [items, error, isLoaded] = useFetch(url);
-     
- 
-
-  function submitHandler(e) {
+    
+    function submitHandler(e) {
     e.preventDefault();
-    console.log(e.target);
-    console.log(e.target[0].value);
-    console.log(e.target[2].value);
-    console.log(e.target[3].value);
-    console.log(e.target[4].value);
-    console.log(params);
     let query = {
       type: e.target[0].value,
       location: e.target[2].value,
@@ -32,18 +24,13 @@ import useFetch from "../hooks/useFetch";
     }${query.min ? `&min=` + query.min : ""}${
       query.max ? `&max=` + query.max : ""
     }`;
-    console.log(e.target[0].value);
-    console.log(e.target[2].value);
-    console.log(e.target[3].value);
-    console.log(e.target[4].value);
-    console.log(props);
-
+    
     navigate({
       pathname: `/search/${url}`,
     });
   }
 
-console.log(items);
+
 
   return (
     <section className="home-one home1-overlay home1_bgi1">

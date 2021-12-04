@@ -19,20 +19,16 @@ function Login({setUserInfo}) {
     let formData = new FormData(e.currentTarget);
     let username = formData.get("username");
     let password = formData.get("password");
-    console.log(username);
-    console.log(password);
+    
 
     
      await login(username, password)
       .then(
         (result) => {
           setIsLoaded(true);
-          console.log(result);
-          console.log(result.errors);
-          console.log(result.headers);
+          
           if (result.errors) {
             setError([result.errors.Password? result.errors.Password[0]: "", result.errors.Username ? " and " + result.errors.Username[0] : ""]);
-            console.log(error);
             setIsLoaded(false)
             
           }else if(result.isSuccessStatusCode === false){
@@ -41,7 +37,7 @@ function Login({setUserInfo}) {
           }
           else{
             setIsLoaded(true)
-            setUserInfo({ isAuthenticated : true , token : result.token,email :  result.email})
+            setUserInfo({ isAuthenticated : true , token : result.token, email :  result.email})
             navigate({ pathname: "/home" });
           
           }
@@ -53,29 +49,11 @@ function Login({setUserInfo}) {
         (error) => {
           setIsLoaded(true);
           setError(error);
-          console.log(error);
-          console.log(isLoaded);
-        }
+         }
       );
-
-    //  if (!isLoaded) {
-    //   navigate({ pathname: "/login" });
-    //   console.log(isLoaded);
-    //   console.log(error);
-    //   console.log('error');
-    //  }
-    //  else{
-    //   navigate({ pathname: "/home" });
-    //   console.log('home');
-    //  }
-       
-      
-  };
-
-  
+    };
     
-
-  return (
+    return (
     <section className="our-log bgc-fa">
       <div className="container">
         <div className="row">

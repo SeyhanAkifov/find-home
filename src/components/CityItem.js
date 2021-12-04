@@ -1,5 +1,5 @@
 function CityItem (params) {
-    console.log(params.data)
+    
     return (
         <div className={`col-lg-${params.data.size} col-xl-${params.data.size}`}>
         <div className="properti_city">

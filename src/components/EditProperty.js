@@ -11,14 +11,13 @@ function EditProperty() {
   const { token, username, email } = useContext(AuthContext);
 
   let id = useParams();
-  console.log(token);
   const [property, setProperty] = useState([]);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   let feature;
 
   useEffect(() => {
-    fetch(`https://localhost:44382/api/Home/GetWithId?id=${id.id}`, {
+    fetch(`http://apifindhome.seyhanakifov.com/api/Home/GetWithId?id=${id.id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -26,8 +25,7 @@ function EditProperty() {
       .then((res) => res.json())
       .then(
         (data) => {
-          console.log(data);
-          setProperty(data);
+            setProperty(data);
           setIsLoaded(true);
           feature = data.feature;
         },
@@ -75,38 +73,7 @@ function EditProperty() {
       let sauna = formData.get("sauna") ? true : false;
       let windowCoverings = formData.get("windowCoverings") ? true : false;
       let garden = formData.get("garden") ? true : false;
-      console.log(title);
-      console.log(description);
-      console.log(type);
-      console.log(status);
-      console.log(price);
-      console.log(area);
-      console.log(rooms);
-      console.log(baths);
-      console.log(floor);
-      console.log(adFor);
-      console.log(year);
-      console.log(address);
-      console.log(city);
-      console.log(country);
-      console.log(zip);
-
-      console.log(airConditioning);
-      console.log(lawn);
-      console.log(swimmingPool);
-      console.log(barbeque);
-      console.log(kitchen);
-      console.log(tvCable);
-      console.log(dryer);
-      console.log(outdoorShower);
-      console.log(washer);
-      console.log(gym);
-      console.log(refrigerator);
-      console.log(wifi);
-      console.log(laundry);
-      console.log(sauna);
-      console.log(windowCoverings);
-      console.log(email);
+      
 
       fetch('https://localhost:44382/api/Home/Edit', {
         method: "POST",

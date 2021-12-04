@@ -4,6 +4,7 @@ import HomeSearch from "./components/HomeSearch";
 import Main from "./components/Main";
 import MainSearch from "./components/MainSearch";
 import MyProperties from "./components/MyProperties";
+import MyLikes from "./components/MyLikes";
 import CitySearch from "./components/CitySearch";
 import WhyChooseUs from "./components/WhyChooseUs";
 import Testimonials from "./components/Testimonials";
@@ -20,17 +21,11 @@ import {login, getUser} from "./services/authServices";
 
 function App() {
   const [userInfo, setUserInfo] = useState({isAuthenticated : false, email : null, token : null})
-  const [token, setToken] = useState();
-  const [username, setUsername] = useState();
-  const [email, setEmail] = useState();
-
-  console.log(token);
-
+  
   useEffect(() => {
 
     let userData = getUser();
-    console.log(userData);
-
+   
     
   }, [userInfo])
     
@@ -44,16 +39,17 @@ function App() {
       <HomeSearch />
       
       <Routes>
-        <Route path="/home" strict element={<Main />} />
-        <Route path="/" strict element={<Main />} />
-        <Route path="/properties/" exact element={<Main />} />
-        <Route path="/search/:query" strict element={<MainSearch />} />
+        <Route path="/home" element={<Main />} />
+        <Route path="/" element={<Main />} />
+        <Route path="/properties/" element={<Main />} />
+        <Route path="/search/:query" element={<MainSearch />} />
         <Route path="/create" element={<CreateProperty />} />
-        <Route path="/register" exact element={<Register />} />
-        <Route path="/login" exact element={<Login  setUserInfo={setUserInfo}  />} />
-        <Route path="/details/:id" strict element={<Details />} />
-        <Route path="/myProperties" exact element={<MyProperties />} />
-        <Route path="/edit/:id" exact element={<EditProperty />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login  setUserInfo={setUserInfo}  />} />
+        <Route path="/details/:id" element={<Details />} />
+        <Route path="/myProperties" element={<MyProperties />} />
+        <Route path="/myLiked" element={<MyLikes />} />
+        <Route path="/edit/:id" element={<EditProperty />} />
       </Routes>
 
       <CitySearch  />

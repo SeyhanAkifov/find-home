@@ -14,12 +14,8 @@ function Register() {
     let firstName = formData.get("firstName");
     let lastName = formData.get("lastName");
     let confirmPassword = formData.get("confirmPassword");
-
-    console.log(username);
-    console.log(password);
-    console.log(confirmPassword);
-
-    await fetch("https://localhost:44382/api/Account/Register", {
+    
+    await fetch("http://apifindhome.seyhanakifov.com/api/Account/Register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

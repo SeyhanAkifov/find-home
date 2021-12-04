@@ -9,15 +9,14 @@ import AuthContext from "../contexts/AuthContext";
 function MyProperties() {
   let navigate = useNavigate();
   const token = useContext(AuthContext);
-  console.log(token);
-
+  
   useEffect( () => {
     if(!token.token){
       navigate({ pathname : '/login'})
     }
   }, [token])
 
-  const url = `https://localhost:44382/api/Property/GetMy?user=${token.email}`;
+  const url = `http://apifindhome.seyhanakifov.com/api/Property/GetMy?user=${token.email}`;
   const [items, error, isLoaded] = useFetch(url, token.token);
   if (error) {
     return <div>Error: {error.message}</div>;

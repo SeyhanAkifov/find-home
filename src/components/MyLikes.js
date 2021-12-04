@@ -1,15 +1,23 @@
 import useFetch from "../hooks/useFetch";
 import { Link } from "react-router-dom";
 import MainItem from "./MainItem";
-
-import { useContext } from "react";
+import { useNavigate } from 'react-router-dom'
+import { useContext, useEffect } from "react";
 import AuthContext from "../contexts/AuthContext";
 
 //http://apifindhome.seyhanakifov.com/api/Home/Get
-function Main() {
+function MyLikes() {
+  let navigate = useNavigate();
   const token = useContext(AuthContext);
-  const url = "http://apifindhome.seyhanakifov.com/api/Home/Get";
-  const [items, error, isLoaded] = useFetch(url, token);
+  
+  useEffect( () => {
+    if(!token.token){
+      navigate({ pathname : '/login'})
+    }
+  }, [token])
+
+  const url = `https://localhost:44382/api/Home/GetMyLikes?username=${token.email}`;
+  const [items, error, isLoaded] = useFetch(url, token.token);
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
@@ -39,11 +47,12 @@ function Main() {
             </div>
           </div>
           <div className="container ovh">
+            {items.length > 0 ? 
             <div className="row">
               <div className="col-lg-6 offset-lg-3">
                 <div className="main-title text-center mb40">
-                  <h2>Featured Properties</h2>
-                  <p>Handpicked properties by our team.</p>
+                  <h2>My Liked Properties</h2>
+                  <p>Liked properties from me</p>
                 </div>
               </div>
               <div className="col-lg-12">
@@ -53,7 +62,7 @@ function Main() {
                   ))}
                 </div>
               </div>
-            </div>
+            </div> : <h1>No Items Yet</h1> }
           </div>
         </section>
       </>
@@ -61,4 +70,4 @@ function Main() {
   }
 }
 
-export default Main;
+export default MyLikes;

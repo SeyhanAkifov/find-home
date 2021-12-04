@@ -6,16 +6,10 @@ import CityItem from './CityItem'
 function CitySearch () {
   const token = useContext(AuthContext);
  
-  console.log(token);
-  
-    const url = "https://localhost:44382/api/Home/GetCitiesWitProperties";
+  const url = "http://apifindhome.seyhanakifov.com/api/Home/GetCitiesWitProperties";
       
-      const [items, error, isLoaded] = useFetch(url, token)
-  //     if (error) {
-  //   return <div>Error: {error.message}</div>;
-  // } else 
-
-  console.log(items);
+  const [items, error, isLoaded] = useFetch(url, token)
+  
   if (!isLoaded) {
     return <div>Loading...</div>;
   }else if (error) {

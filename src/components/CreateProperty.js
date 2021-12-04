@@ -7,16 +7,13 @@ import { useEffect } from "react/cjs/react.development";
 function CreateProperty() {
 let navigate = useNavigate();
   const {token, username, email } = useContext(AuthContext);
-  console.log(token);
-  console.log('navigate');
-
+  
   useEffect( () => {
     if(!token){
       navigate({ pathname : '/login'})
     }
   }, [token])
   
-
   const onFormSubmit = async (e) => {
     e.preventDefault();
 
@@ -53,38 +50,38 @@ let navigate = useNavigate();
     let sauna = formData.get("sauna") ? true : false;
     let windowCoverings = formData.get("windowCoverings") ? true : false;
     let garden = formData.get("garden") ? true : false;
-    console.log(title);
-    console.log(description);
-    console.log(type);
-    console.log(status);
-    console.log(price);
-    console.log(area);
-    console.log(rooms);
-    console.log(baths);
-    console.log(floor);
-    console.log(adFor);
-    console.log(year);
-    console.log(address);
-    console.log(city);
-    console.log(country);
-    console.log(zip);
+    // console.log(title);
+    // console.log(description);
+    // console.log(type);
+    // console.log(status);
+    // console.log(price);
+    // console.log(area);
+    // console.log(rooms);
+    // console.log(baths);
+    // console.log(floor);
+    // console.log(adFor);
+    // console.log(year);
+    // console.log(address);
+    // console.log(city);
+    // console.log(country);
+    // console.log(zip);
     
-    console.log(airConditioning);
-    console.log(lawn);
-    console.log(swimmingPool);
-    console.log(barbeque);
-    console.log(kitchen);
-    console.log(tvCable);
-    console.log(dryer);
-    console.log(outdoorShower);
-    console.log(washer);
-    console.log(gym);
-    console.log(refrigerator);
-    console.log(wifi);
-    console.log(laundry);
-    console.log(sauna);
-    console.log(windowCoverings);
-    console.log(email);
+    // console.log(airConditioning);
+    // console.log(lawn);
+    // console.log(swimmingPool);
+    // console.log(barbeque);
+    // console.log(kitchen);
+    // console.log(tvCable);
+    // console.log(dryer);
+    // console.log(outdoorShower);
+    // console.log(washer);
+    // console.log(gym);
+    // console.log(refrigerator);
+    // console.log(wifi);
+    // console.log(laundry);
+    // console.log(sauna);
+    // console.log(windowCoverings);
+    // console.log(email);
 
     fetch('https://localhost:44382/api/Home/Post', {
       method: "POST",

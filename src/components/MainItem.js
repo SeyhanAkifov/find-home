@@ -1,13 +1,16 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
 
 function MainItem(params) {
   const token = useContext(AuthContext);
+  const [error, setError] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false);
   let navigate = useNavigate();
   
-  console.log(params.data);
+  
+  
   return (
     <div className="item">
       <div className="feat_property">
@@ -41,7 +44,7 @@ function MainItem(params) {
         <div className="details">
           <div className="tc_content">
             <p className="text-thm"></p>
-            <h4>My Title</h4>
+            <h4>{params.data.title}</h4>
             <p>
               <span className="flaticon-placeholder">
                 {params.data.postCode} {params.data.streetName}{" "}

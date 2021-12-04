@@ -9,18 +9,17 @@ import AuthContext from "../contexts/AuthContext";
 function Details() {
   let navigate = useNavigate();
   
-  const { token, username, email } = useContext(AuthContext);
-
+  const userInfo = useContext(AuthContext);
   
-
+  let token = userInfo.token;
+  let username = userInfo.email
   let id = useParams();
-  console.log(token);
+  
   const [property, setProperty] = useState([]);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   let feature;
-
-
+  
   useEffect(() => {
 
     
@@ -34,7 +33,6 @@ function Details() {
       .then((res) => res.json())
       .then(
         (data) => {
-          console.log(data);
           setProperty(data);
           setIsLoaded(true);
         },
@@ -48,9 +46,10 @@ function Details() {
   const OnDelete = async (e) => {
     e.preventDefault();
     
-    await fetch(`https://localhost:44382/api/Home/DeleteWithId?id=${id.id}`, {
+    await fetch(`http://apifindhome.seyhanakifov.com/api/Home/DeleteWithId?id=${id.id}`, {
       method: 'DELETE',
       headers: {
+       
         Authorization: `Bearer ${token}`,
       },
     })
@@ -60,6 +59,43 @@ function Details() {
     navigate({ pathname: "/home" });
   };
 
+  const OnLike = async (e) => {
+    e.preventDefault();
+    
+    await fetch(`https://localhost:44382/api/Home/UserLike`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body : JSON.stringify({
+        username : username,
+        propertyId : id.id
+      })
+    })
+      .then((res) => res.json())
+      
+
+    navigate({ pathname: "/home" });
+  };
+
+  const OnUnlike = async (e) => {
+    e.preventDefault();
+    
+    await fetch(`https://localhost:44382/api/Home/UserUnlike?id=${1}`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      }
+    })
+      .then((res) => res.json())
+      
+
+    navigate({ pathname: "/home" });
+  };
+
+ 
   feature = property.feature;
   console.log(property);
   console.log(feature);
@@ -349,13 +385,19 @@ function Details() {
                 </div>
                 <div className="col-xl-12">
               <div className="my_profile_setting_input">
-                {email  === property.creator ? <>
+                {token ? 
+                username  === property.creator ? 
+                <>
                   <Link to={`/edit/${id.id}`}>
                 <button className="btn btn1 float-left">Edit</button>
                 </Link>
                 <button  onClick={OnDelete} className="btn btn2 float-right">Delete</button>
-                </>
-                  : <button className="btn btn2 float-right">Like</button>}
+                </> : 
+                <>
+                {property.likes.includes(username) ?
+                <button onClick={OnUnlike} className="btn btn2 float-right">Unlike</button> :
+                <button onClick={OnLike} className="btn btn2 float-right">Like</button> } </>  :
+                 ""}
               </div>
             </div>
               </div>

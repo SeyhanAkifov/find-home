@@ -6,14 +6,12 @@ import MainItem from "./MainItem";
 
 function MainSearch({token}) {
   let query = useParams();
-  console.log('main search');
-  console.log(query);
-  
-   const [error, setError] = useState(null);
+  const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
+  
   useEffect(() => {
-    fetch(`https://localhost:44382/api/Property/Search?${query.query}`, {
+    fetch(`http://apifindhome.seyhanakifov.com/api/Property/Search?${query.query}`, {
       headers : {
         Authorization: `Bearer ${token}`
        },
