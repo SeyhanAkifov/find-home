@@ -1,36 +1,33 @@
-import { useState, useEffect,  } from "react";
-import { useParams} from 'react-router-dom'
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import MainItem from "./MainItem";
 
-
-
-function MainSearch({token}) {
+function MainSearch({ token }) {
   let query = useParams();
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
-  
+
   useEffect(() => {
-    fetch(`http://apifindhome.seyhanakifov.com/api/Property/Search?${query.query}`, {
-      headers : {
-        Authorization: `Bearer ${token}`
-       },
-      
-    })
-      .then((res) => res.json())
-    .then(
-      (result) => {
-        setIsLoaded(true);
-        setItems(result);
-      },
-      // Note: it's important to handle errors here
-      // instead of Link catch() block so that we don't swallow
-      // exceptions from actual bugs in components.
-      (error) => {
-        setIsLoaded(true);
-        setError(error);
+    fetch(
+      `http://apifindhome.seyhanakifov.com/api/Property/Search?${query.query}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       }
-    );
+    )
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setItems(result);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      );
   }, [token, query.query]);
 
   if (error) {
@@ -58,21 +55,25 @@ function MainSearch({token}) {
           </div>
         </div>
         <div className="container ovh">
-          <div className="row">
-            <div className="col-lg-6 offset-lg-3">
-              <div className="main-title text-center mb40">
-                <h2>Featured Properties</h2>
-                <p>Handpicked properties by our team.</p>
+          {items.length > 0 ? (
+            <div className="row">
+              <div className="col-lg-6 offset-lg-3">
+                <div className="main-title text-center mb40">
+                  <h2>My Properties</h2>
+                  <p>Handpicked properties from me</p>
+                </div>
+              </div>
+              <div className="col-lg-12">
+                <div className="feature_property_slider">
+                  {items.map((item) => (
+                    <MainItem key={item.id} data={item}></MainItem>
+                  ))}
+                </div>
               </div>
             </div>
-            <div className="col-lg-12">
-              <div className="feature_property_slider">
-                {items.map((item) => (
-                  <MainItem key={item.id} data={item}></MainItem>
-                ))}
-              </div>
-            </div>
-          </div>
+          ) : (
+            <h1>No Items Yet</h1>
+          )}
         </div>
       </section>
     );

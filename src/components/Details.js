@@ -82,12 +82,16 @@ function Details() {
   const OnUnlike = async (e) => {
     e.preventDefault();
     
-    await fetch(`https://localhost:44382/api/Home/UserUnlike?id=${1}`, {
+    await fetch(`https://localhost:44382/api/Home/UserUnlike`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
-      }
+      },
+      body : JSON.stringify({
+        username : username,
+        propertyId : id.id
+      })
     })
       .then((res) => res.json())
       

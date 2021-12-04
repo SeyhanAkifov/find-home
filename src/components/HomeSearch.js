@@ -44,9 +44,19 @@ import useFetch from "../hooks/useFetch";
                   From as low as $10 per day with limited time offer discounts.
                 </p>
               </div>
-            <button>Search</button>
+            
               <div className="home_adv_srch_opt">
                 <ul className="nav nav-pills" id="pills-tab" role="tablist">
+                  <li className="nav-item">
+                <a className="nav-link active"
+                      id="pills-home-tab"
+                      data-toggle="pill"
+                      href="#pills-home"
+                      role="tab"
+                      aria-controls="pills-home"
+                      aria-selected="true">Search</a>
+                      </li>
+                      
                   <li className="nav-item">
                     <a
                       className="nav-link active"
