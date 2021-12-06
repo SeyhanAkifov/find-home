@@ -16,7 +16,7 @@ function MyLikes() {
     }
   }, [token])
 
-  const url = `https://localhost:44382/api/Home/GetMyLikes?username=${token.email}`;
+  const url = `https://apifindhome.seyhanakifov.com/api/Home/GetMyLikes?username=${token.email}`;
   const [items, error, isLoaded] = useFetch(url, token.token);
   if (error) {
     return <div>Error: {error.message}</div>;

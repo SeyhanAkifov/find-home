@@ -16,7 +16,7 @@ function MyProperties() {
     }
   }, [token])
 
-  const url = `http://apifindhome.seyhanakifov.com/api/Property/GetMy?user=${token.email}`;
+  const url = `https://apifindhome.seyhanakifov.com/api/Property/GetMy?user=${token.email}`;
   const [items, error, isLoaded] = useFetch(url, token.token);
   if (error) {
     return <div>Error: {error.message}</div>;

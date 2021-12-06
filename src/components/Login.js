@@ -64,7 +64,7 @@ function Login({setUserInfo}) {
                   <h3 className="text-center">Login to your account</h3>
                   <p className="text-center">
                     Don't have an account?{" "}
-                    <Link className="text-thm" to="page-register.html">
+                    <Link className="text-thm" to="/register">
                       Sign Up!
                     </Link>
                   </p>
@@ -100,9 +100,7 @@ function Login({setUserInfo}) {
                   >
                     Remember me
                   </label>
-                  <Link className="tdu btn-fpswd float-right" to="#">
-                    Forgot Password?
-                  </Link>
+                  
                 </div>
                 <button
                   type="submit"

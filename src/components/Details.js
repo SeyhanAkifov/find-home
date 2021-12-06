@@ -23,7 +23,7 @@ function Details() {
   useEffect(() => {
 
     
-    fetch(`https://localhost:44382/api/Home/GetWithId?id=${id.id}`, {
+    fetch(`https://apifindhome.seyhanakifov.com/api/Home/GetWithId?id=${id.id}`, {
       
       headers: {
         
@@ -46,7 +46,7 @@ function Details() {
   const OnDelete = async (e) => {
     e.preventDefault();
     
-    await fetch(`http://apifindhome.seyhanakifov.com/api/Home/DeleteWithId?id=${id.id}`, {
+    await fetch(`https://apifindhome.seyhanakifov.com/api/Home/DeleteWithId?id=${id.id}`, {
       method: 'DELETE',
       headers: {
        
@@ -62,7 +62,7 @@ function Details() {
   const OnLike = async (e) => {
     e.preventDefault();
     
-    await fetch(`https://localhost:44382/api/Home/UserLike`, {
+    await fetch(`https://apifindhome.seyhanakifov.com/api/Home/UserLike`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -82,7 +82,7 @@ function Details() {
   const OnUnlike = async (e) => {
     e.preventDefault();
     
-    await fetch(`https://localhost:44382/api/Home/UserUnlike`, {
+    await fetch(`https://apifindhome.seyhanakifov.com/api/Home/UserUnlike`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -384,6 +384,16 @@ function Details() {
                           ))}
                         </ul>
                       </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-12">
+                  <div className="application_statics mt30">
+                    <div className="row">
+                      <div className="col-lg-12">
+                        <h4 className="mb10">Added by</h4>
+                      </div>
+                      <h5>Email : {property.creator}</h5>
                     </div>
                   </div>
                 </div>

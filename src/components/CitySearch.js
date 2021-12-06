@@ -6,7 +6,7 @@ import CityItem from './CityItem'
 function CitySearch () {
   const token = useContext(AuthContext);
  
-  const url = "http://apifindhome.seyhanakifov.com/api/Home/GetCitiesWitProperties";
+  const url = "https://apifindhome.seyhanakifov.com/api/Home/GetCitiesWitProperties";
       
   const [items, error, isLoaded] = useFetch(url, token)
   

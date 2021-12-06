@@ -31,7 +31,7 @@ function Footer () {
               </div>
               <div className="col-lg-6 col-xl-6">
                 <div className="copyright-widget text-right">
-                  <p>© 2020 Find House.Made with love.</p>
+                  <p>© Seyhan Akifov  2021 Find Home.Made with love.</p>
                 </div>
               </div>
             </div>

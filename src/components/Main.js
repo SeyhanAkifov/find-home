@@ -1,6 +1,9 @@
 import useFetch from "../hooks/useFetch";
 import { Link } from "react-router-dom";
 import MainItem from "./MainItem";
+import HomeSearch from "./HomeSearch";
+
+
 
 import { useContext } from "react";
 import AuthContext from "../contexts/AuthContext";
@@ -8,7 +11,7 @@ import AuthContext from "../contexts/AuthContext";
 //http://apifindhome.seyhanakifov.com/api/Home/Get
 function Main() {
   const token = useContext(AuthContext);
-  const url = "http://apifindhome.seyhanakifov.com/api/Home/Get";
+  const url = "https://apifindhome.seyhanakifov.com/api/Home/Get";
   const [items, error, isLoaded] = useFetch(url, token);
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -16,8 +19,7 @@ function Main() {
     return <div>Loading...</div>;
   } else {
     return (
-      <>
-        <section id="feature-property" className="feature-property bgc-f7">
+      <section id="feature-property" className="feature-property bgc-f7">
           <div className="container">
             <div className="row">
               <div className="col-lg-12">
@@ -29,7 +31,7 @@ function Main() {
                     </div>
                     <div className="thumb">
                       <img
-                        src="images/resource/mouse.png"
+                        src="/images/resource/mouse.png"
                         alt="mouse.png"
                       ></img>
                     </div>
@@ -56,7 +58,7 @@ function Main() {
             </div>
           </div>
         </section>
-      </>
+      
     );
   }
 }

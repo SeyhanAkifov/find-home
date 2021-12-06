@@ -83,7 +83,7 @@ let navigate = useNavigate();
     // console.log(windowCoverings);
     // console.log(email);
 
-    fetch('https://localhost:44382/api/Home/Post', {
+    fetch('https://apifindhome.seyhanakifov.com/api/Home/Post', {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,

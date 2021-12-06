@@ -1,7 +1,11 @@
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
 function Register() {
   let navigate = useNavigate();
+	const [error, setError] = useState ([]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const onFormSubmit = async (e) => {
     e.preventDefault();
@@ -15,7 +19,7 @@ function Register() {
     let lastName = formData.get("lastName");
     let confirmPassword = formData.get("confirmPassword");
     
-    await fetch("http://apifindhome.seyhanakifov.com/api/Account/Register", {
+    await fetch("https://apifindhome.seyhanakifov.com/api/Account/Register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -30,9 +34,39 @@ function Register() {
       }),
     })
       .then((res) => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          console.log(result);
+          if (result.errors) {
+            setError([result.title]);
+            setIsLoaded(false)
+            
+          }else if(result.isSuccessStatusCode === false){
+            setError(result.reasonPhrase);
+            setIsLoaded(false)
+          }else if(result.status == "Error"){
+            setError([result.message]);
+            setIsLoaded(false)
+          }else{
+            setIsLoaded(true)
+            
+            navigate({ pathname: "/login" });
+          
+          }
+          
+        },
+        // Note: it's important to handle errors here
+        // instead of Link catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+         }
+      );
 
-
-    navigate({ pathname: "/login" });
+console.log(error);
+    
   };
   return (
     <section className="our-log-reg bgc-fa">
@@ -44,11 +78,12 @@ function Register() {
                 <h3 className="text-center">Register to start learning</h3>
                 <p className="text-center">
                   Have an account?{" "}
-                  <a className="text-thm" href="page-login.html">
+                  <Link className="text-thm" to="/login">
                     Login
-                  </a>
+                  </Link>
                 </p>
               </div>
+              <span>{error.map(x => x)}</span>
               <div className="details">
                 <form action="#" onSubmit={onFormSubmit}>
                   <div className="form-group">
@@ -105,48 +140,14 @@ function Register() {
                       placeholder="Last Name"
                     />
                   </div>
-                  <div className="form-group custom-control custom-checkbox">
-                    <input
-                      type="checkbox"
-                      className="custom-control-input"
-                      id="exampleCheck3"
-                    />
-                    <label
-                      className="custom-control-label"
-                      htmlFor="exampleCheck3"
-                    >
-                      Want to become an instructor?
-                    </label>
-                  </div>
+                  
                   <button
                     type="submit"
                     className="btn btn-log btn-block btn-thm2"
                   >
                     Register
                   </button>
-                  <div className="divide">
-                    <span className="lf_divider">Or</span>
-                    <hr />
-                  </div>
-                  <div className="row mt40">
-                    <div className="col-lg">
-                      <button
-                        type="submit"
-                        className="btn btn-block color-white bgc-fb mb0"
-                      >
-                        <i className="fa fa-facebook float-left mt5"></i>{" "}
-                        Facebook
-                      </button>
-                    </div>
-                    <div className="col-lg">
-                      <button
-                        type="submit"
-                        className="btn btn2 btn-block color-white bgc-gogle mb0"
-                      >
-                        <i className="fa fa-google float-left mt5"></i> Google
-                      </button>
-                    </div>
-                  </div>
+                  
                 </form>
               </div>
             </div>

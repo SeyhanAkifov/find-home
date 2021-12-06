@@ -1,6 +1,6 @@
 export const login = async (username, password) => {
 
-    return await fetch("http://apifindhome.seyhanakifov.com/api/Account/Login", {
+    return await fetch("https://apifindhome.seyhanakifov.com/api/Account/Login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

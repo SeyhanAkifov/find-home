@@ -6,16 +6,18 @@ import AuthContext from "../contexts/AuthContext";
 function MainItem(params) {
   const token = useContext(AuthContext);
   const [error, setError] = useState(null);
-    const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
   let navigate = useNavigate();
-  
-  
-  
+
   return (
     <div className="item">
       <div className="feat_property">
         <div className="thumb">
-          <img className="img-whp" src="./images/house.jpg" alt="fp2.jpg"></img>
+          <img
+            className="img-whp"
+            src="/images/house.jpg"
+            alt="house.jpg"
+          ></img>
           <div className="thmb_cntnt">
             <ul className="tag mb0">
               <li className="list-inline-item">
@@ -61,30 +63,16 @@ function MainItem(params) {
               <li className="list-inline-item">
                 <Link to="#">Sq Ft:{params.data.area} </Link>
               </li>
-            </ul>
-          </div>
-          <div className="fp_footer">
-            <ul className="fp_meta float-left mb0">
-              <li className="list-inline-item">
-                <Link to="#">
-                  <img
-                    src="images/property/pposter1.png"
-                    alt="pposter1.png"
-                  ></img>
-                </Link>
-              </li>
               <li>
-                <Link to={`/details/${params.data.id}`}>
-                  <span className="title">Details</span>
-                </Link>
-              </li>
-              <li className="list-inline-item">
-                <Link to="#"></Link>
+                <div className="search_option_button">
+                  <Link to={`/details/${params.data.id}`}>
+                    <button className="custompicker w100 show-tick btn btn-thm">
+                      Details
+                    </button>
+                  </Link>
+                </div>
               </li>
             </ul>
-            <div className="fp_pdate float-right">
-              {params.data.YearsAgo} years ago
-            </div>
           </div>
         </div>
       </div>
