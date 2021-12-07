@@ -4,6 +4,7 @@ import MainItem from "./MainItem";
 import { useNavigate } from 'react-router-dom'
 import { useContext, useEffect } from "react";
 import AuthContext from "../contexts/AuthContext";
+import "../Styles/Main.css"
 
 //http://apifindhome.seyhanakifov.com/api/Home/Get
 function MyLikes() {

@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../contexts/AuthContext";
+import "../Styles/Main.css"
 
 //http://apifindhome.seyhanakifov.com/api/Home/Get
 function Main() {

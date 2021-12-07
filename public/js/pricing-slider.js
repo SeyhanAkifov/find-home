@@ -14,10 +14,10 @@ $(document).on("ready",function() {
         prefix: '$'
     });
     noUiSlider.create(rangeSlider, {
-        start: [0, 98000],
+        start: [0, 400000],
         step: 1,
         range: {
-            'min': [52000],
+            'min': [50000],
             'max': [130000]
         },
         format: moneyFormat,

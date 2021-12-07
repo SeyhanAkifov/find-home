@@ -1,50 +1,6 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import useFetch from "../hooks/useFetch";
-
- function HomeSearch(props, params) {
-  
-  let navigate = useNavigate();
- 
-    let url = "https://apifindhome.seyhanakifov.com/api/Home/GetTypes";
-
-    const [items, error, isLoaded] = useFetch(url);
-    
-    function submitHandler(e) {
-    e.preventDefault();
-    let query = {
-      type: e.target[1].value,
-      location: e.target[2].value,
-      min: e.target[3].value,
-      max: e.target[4].value,
-    };
-
-    let url = `${query.type ? `type=` + query.type : ""}${
-      query.location ? `&location=` + query.location : ""
-    }${query.min ? `&min=` + query.min : ""}${
-      query.max ? `&max=` + query.max : ""
-    }`;
-    
-    navigate({
-      pathname: `/search/${url}`,
-    });
-  }
-
-  function OnClear(e){
-    e.preventDefault()
-    let form  = document.getElementById('pills-home');
-    form.reset()
-    console.log(form);
-  }
-
-
-
-  return (
-    <section className="home-one home1-overlay home1_bgi1">
-      <div className="container" >
-        <div className="row posr">
-          <div className="col-lg-12">
-            <div className="home_content">
+function HomeSearchItem () {
+    return (
+        <div className="home_content">
               <div className="home-text text-center">
                 <h2 className="fz55">Find Your Dream Home</h2>
                 <p className="fz18 color-white">
@@ -99,7 +55,7 @@ import useFetch from "../hooks/useFetch";
                         <li className="list-inline-item">
                           
                             <div className="search_option_button">
-                              <button onClick={OnClear} className="custompicker w100 show-tick btn btn-thm">Clear Inputs</button>
+                              <button className="custompicker w100 show-tick btn btn-thm">Clear Inputs</button>
                             </div>
                           
                         </li>
@@ -142,21 +98,20 @@ import useFetch from "../hooks/useFetch";
                               </label>
                             </div>
                             <div className="dd_content2">
-                              <div className="slider">
+                              <div className="pricing_acontent">
                                 <input
                                   type="text"
                                   className="amount"
-                                  id="slider-range-value1"
-                                  placeholder="$50000"
+                                  placeholder="$52,239"
                                 ></input>
                                 <input
                                   type="text"
                                   className="amount2"
-                                  id="slider-range-value2"
-                                  placeholder="$130000"
+                                  placeholder="$985,14"
                                 ></input>
                                 <div className="slider-range"></div>
-                               
+                                <span id="slider-range-value1"></span>
+                                <span id="slider-range-value2"></span>
                                 <div id="slider"></div>
                               </div>
                             </div>
@@ -174,11 +129,7 @@ import useFetch from "../hooks/useFetch";
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+    )
 }
 
-export default HomeSearch;
+export default HomeSearchItem

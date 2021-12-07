@@ -21,23 +21,25 @@ function Header({ setUserInfo }) {
 
   return (
     <>
+    
       <header className="header-nav menu_style_home_one navbar-scrolltofixed stricky main-menu">
         <div className="container-fluid p0">
           <nav>
             <div className="menu-toggle">
               <img
                 className="nav_logo_img img-fluid"
-                src="/images/header-logo.png"
+                src="/images/header-logo2.png"
                 alt="header-logo.png"
               ></img>
-
+              
               <button type="button" id="menu-btn">
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
               </button>
             </div>
-            <Link to="#" className="navbar_brand float-left dn-smd">
+            
+            <Link to="/home" className="navbar_brand float-left dn-smd">
               <img
                 className="logo1 img-fluid"
                 src="/images/header-logo.png"
@@ -49,6 +51,7 @@ function Header({ setUserInfo }) {
                 alt="header-logo2.png"
               ></img>
               <span>FindHome</span>
+             
             </Link>
             <ul
               id="respMenu"
@@ -69,9 +72,8 @@ function Header({ setUserInfo }) {
                       data-toggle="modal"
                       data-target=".bd-example-modal-lg"
                     >
-                      <span className="dn-lg">
-                        {token ? username : "Login/Register"}
-                      </span>
+                      {token ? username : "Login/Register"}
+                      
                     </Link>
                   </li>
                   <li>

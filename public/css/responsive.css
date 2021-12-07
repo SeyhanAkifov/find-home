@@ -544,8 +544,9 @@
 	header.header-nav.style_one {background-color: transparent;}
 	header.header-nav.menu_style_home_one{display: none;}
 	header.header-nav.menu_style_home_one .ace-responsive-menu,
-	header.header-nav.menu_style_home_one .ace-responsive-menu > li {background-color: #262626;}
-	header.header-nav.menu_style_home_one .ace-responsive-menu li a{padding: 27px 15px 27px 15px;}
+	header.header-nav.menu_style_home_one .ace-responsive-menu > li {background-color: transparent;     display: flex;
+		flex-direction: column; border-radius: 10px; padding-bottom: 3px;}
+	header.header-nav.menu_style_home_one .ace-responsive-menu li a{padding: 20px 15px 27px 15px;}
 
 
 
@@ -627,7 +628,7 @@
 	.properti_city .overlay{height: 100%;}
 	.footer_mailchimp_form .col-auto input.form-control{width: 170px;}
 	.mouse_scroll{display: none;}
-	.home_content{padding: 150px 0 400px !important;}
+	.home_content{padding: 75px 0 400px !important;}
 	.home_adv_srch_opt{margin-top: 100px;}
 	.error_page.footer_apps_widget .mailchimp_form .form-control{width: 500px;}
 	.checkout_form .checkout_coupon form button.btn3{position: relative;}
@@ -730,7 +731,7 @@
 	.blog_post_home4.home8{text-align: center;}
 	.blog_post_home4.home8 .bph4_thumb img{margin: 0 auto;}
 	.testimonial_item.home2 .details{padding: 50px;text-align: center;}
-	.home1_bgi1{height: 650px;}
+	.home1_bgi1{height: 650px;     padding-top: 65px;}
 	.home-text.home8{padding: 250px 0;}
 	.our-media .container-fluid{padding-left: 15px !important;padding-right: 15px !important;}
 	.home-one .home-text h2,.home_content.home4 .home-text h2,.banner-style-one .banner-title,.home-text.home6 h2{font-size: 30px;}

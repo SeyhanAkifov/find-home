@@ -4,6 +4,7 @@ import MainItem from "./MainItem";
 import { useNavigate } from 'react-router-dom'
 import { useContext, useEffect } from "react";
 import AuthContext from "../contexts/AuthContext";
+import "../Styles/Main.css"
 
 //http://apifindhome.seyhanakifov.com/api/Home/Get
 function MyProperties() {
@@ -26,26 +27,7 @@ function MyProperties() {
     return (
       <>
         <section id="feature-property" className="feature-property bgc-f7">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-12">
-                <Link to="#feature-property">
-                  <div className="mouse_scroll">
-                    <div className="icon">
-                      <h4>Scroll Down</h4>
-                      <p>to discover more</p>
-                    </div>
-                    <div className="thumb">
-                      <img
-                        src="images/resource/mouse.png"
-                        alt="mouse.png"
-                      ></img>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-            </div>
-          </div>
+          
           <div className="container ovh">
             {items.length > 0 ? 
             <div className="row">

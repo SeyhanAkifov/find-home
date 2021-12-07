@@ -8,7 +8,7 @@ import AuthContext from "../contexts/AuthContext";
 function EditProperty() {
   let navigate = useNavigate();
     let counter = 1;
-  const { token, username, email } = useContext(AuthContext);
+  const { token, email } = useContext(AuthContext);
 
   let id = useParams();
   const [property, setProperty] = useState([]);
@@ -122,8 +122,20 @@ function EditProperty() {
           }
 
         })
+        
 
       })
+      .then(res => res.json())
+    .then( (result) => {
+      
+      if(result.status === "Success"){
+        
+      
+    navigate({ pathname : `/details/${id.id}`})
+      }
+    }
+    )
+      
     };
 
   if (error) {

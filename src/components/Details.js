@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import "../Styles/Details.css"
 
 import AuthContext from "../contexts/AuthContext";
 
@@ -10,11 +11,11 @@ function Details() {
   let navigate = useNavigate();
   
   const userInfo = useContext(AuthContext);
-  
+  const [isLiked, setIsLiked] = useState(false)
   let token = userInfo.token;
   let username = userInfo.email
   let id = useParams();
-  
+  console.log(token);
   const [property, setProperty] = useState([]);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -35,19 +36,23 @@ function Details() {
         (data) => {
           setProperty(data);
           setIsLoaded(true);
+          
         },
         (error) => {
           setIsLoaded(true);
           setError(error);
         }
       );
-  }, [id.id, token]);
+  }, [id.id, token, isLiked]);
 
+  console.log(username);
   const OnDelete = async (e) => {
     e.preventDefault();
+
+    console.log(token);
     
     await fetch(`https://apifindhome.seyhanakifov.com/api/Home/DeleteWithId?id=${id.id}`, {
-      method: 'DELETE',
+     
       headers: {
        
         Authorization: `Bearer ${token}`,
@@ -75,8 +80,8 @@ function Details() {
     })
       .then((res) => res.json())
       
-
-    navigate({ pathname: "/home" });
+      setIsLiked(true)
+    navigate({ pathname: `/details/${id.id}` });
   };
 
   const OnUnlike = async (e) => {
@@ -95,14 +100,15 @@ function Details() {
     })
       .then((res) => res.json())
       
-
-    navigate({ pathname: "/home" });
+    setIsLiked(false)
+      navigate({ pathname: `/details/${id.id}` });
   };
 
  
   feature = property.feature;
   console.log(property);
   console.log(feature);
+  console.log(isLiked);
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -111,8 +117,8 @@ function Details() {
   } else {
     return (
       <section className="our-agent-single pb30-991">
-        <div className="container">
-          <div className="row">
+        <div className="container" >
+          <div className="row" id="myDetails">
             <div className="col-md-12 col-lg-8">
               <div className="row">
                 <div className="col-lg-12">
@@ -136,66 +142,11 @@ function Details() {
                     </div>
                     <h4 className="mb30">Description</h4>
                     <p className="mb25">
-                    Fully furnished. Elegantly appointed condominium unit
-                      situated on premier location. PS6. The wide entry hall
-                      leads to Link large living room with dining area. This
-                      expansive 2 bedroom and 2 renovated marble bathroom
-                      apartment has great windows. Despite the interior views,
+                    
                       {property.description}
                       
                     </p>
-                    <p className="gpara second_para white_goverlay mt10 mb10">
-                      Fully furnished. Elegantly appointed condominium unit
-                      situated on premier location. PS6. The wide entry hall
-                      leads to Link large living room with dining area. This
-                      expansive 2 bedroom and 2 renovated marble bathroom
-                      apartment has great windows. Despite the interior views,
-                      the apartments Southern and Eastern exposures allow
-                      htmlFor lovely natural light to fill every room. The
-                      master suite is surrounded by handcrafted milkwork and
-                      features incredible walk-in closet and storage space.
-                    </p>
-                    <div className="collapse" id="collapseExample">
-                      <div className="card card-body">
-                        <p className="mt10 mb10">
-                          Fully furnished. Elegantly appointed condominium unit
-                          situated on premier location. PS6. The wide entry hall
-                          leads to Link large living room with dining area. This
-                          expansive 2 bedroom and 2 renovated marble bathroom
-                          apartment has great windows. Despite the interior
-                          views, the apartments Southern and Eastern exposures
-                          allow htmlFor lovely natural light to fill every room.
-                          The master suite is surrounded by handcrafted milkwork
-                          and features incredible walk-in closet and storage
-                          space.
-                        </p>
-                        <p className="mt10 mb10">
-                          Fully furnished. Elegantly appointed condominium unit
-                          situated on premier location. PS6. The wide entry hall
-                          leads to Link large living room with dining area. This
-                          expansive 2 bedroom and 2 renovated marble bathroom
-                          apartment has great windows. Despite the interior
-                          views, the apartments Southern and Eastern exposures
-                          allow htmlFor lovely natural light to fill every room.
-                          The master suite is surrounded by handcrafted milkwork
-                          and features incredible walk-in closet and storage
-                          space.
-                        </p>
-                      </div>
-                    </div>
-                    <p className="overlay_close">
-                      <Link
-                        className="text-thm fz14"
-                        data-toggle="collapse"
-                        to="#collapseExample"
-                        role="button"
-                        aria-expanded="false"
-                        aria-controls="collapseExample"
-                      >
-                        Show More{" "}
-                        <span className="flaticon-download-1 fz12"></span>
-                      </Link>
-                    </p>
+                    
                   </div>
                 </div>
                 <div className="col-lg-12">
@@ -332,7 +283,7 @@ function Details() {
                       </div>
                       <div className="col-sm-6 col-md-6 col-lg-4">
                         <ul className="order_list list-inline-item">
-                          {Object.entries(feature).slice(0, 5).map(([key, value]) => (
+                          {Object.entries(feature).slice(1, 6).map(([key, value]) => (
                             <li>
                               <Link to="#">
                                 <span
@@ -350,7 +301,7 @@ function Details() {
                       </div>
                       <div className="col-sm-6 col-md-6 col-lg-4">
                         <ul className="order_list list-inline-item">
-                        {Object.entries(feature).slice(5, 10).map(([key, value]) => (
+                        {Object.entries(feature).slice(6, 11).map(([key, value]) => (
                             <li>
                               <Link to="#">
                                 <span
@@ -368,7 +319,7 @@ function Details() {
                       </div>
                       <div className="col-sm-6 col-md-6 col-lg-4">
                         <ul className="order_list list-inline-item">
-                        {Object.entries(feature).slice(10, 15).map(([key, value]) => (
+                        {Object.entries(feature).slice(11, 16).map(([key, value]) => (
                             <li>
                               <Link to="#">
                                 <span

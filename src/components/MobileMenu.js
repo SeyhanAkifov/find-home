@@ -28,19 +28,24 @@ function MobileMenu({ setUserInfo }) {
         <div id="page" className="stylehome1 h0">
         <div className="mobile-menu">
           <div className="header stylehome1">
-            <div className="main_logo_home2 text-center">
+            <div className="main_logo_home text-center">
               <img
                 className="nav_logo_img img-fluid mt20"
                 src="/images/header-logo2.png"
-                alt="header-logo2.png"
+                alt="header-logo.png"
               />
               <span className="mt20">FindHome</span>
             </div>
+            
+                  <span className="flaticon-user"></span>
+                  <span >{username}</span>
+                
             <ul className="menu_bar_home2">
               <li className="list-inline-item list_s">
-                <a href="page-register.html">
+                <div>
                   <span className="flaticon-user"></span>
-                </a>
+                  <span >{username}</span>
+                </div>
               </li>
               <li className="list-inline-item">
                 <a href="#menu">

@@ -2,17 +2,18 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
-import { useEffect } from "react/cjs/react.development";
+import { useEffect } from "react";
+
 
 function CreateProperty() {
 let navigate = useNavigate();
-  const {token, username, email } = useContext(AuthContext);
+  const {token, email } = useContext(AuthContext);
   
   useEffect( () => {
     if(!token){
       navigate({ pathname : '/login'})
     }
-  }, [token])
+  }, [token, navigate])
   
   const onFormSubmit = async (e) => {
     e.preventDefault();
@@ -132,7 +133,18 @@ let navigate = useNavigate();
       })
 
       
+      
     })
+    .then(res => res.json())
+    .then( (result) => {
+      
+      if(result.status === "Success"){
+        
+      
+    navigate({ pathname : '/home'})
+      }
+    }
+    )
   };
 
   return (

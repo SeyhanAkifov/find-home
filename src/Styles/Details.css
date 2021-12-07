@@ -1,0 +1,243 @@
+.our-dashbord {
+    position: relative;
+  }
+  .our-dashbord.dashbord{
+    padding-top: 145px;
+  }
+  .our-dashbord.dashbord .container-fluid{
+    padding-left: 3%;
+    padding-right: 60px;
+  }
+  #myDetails{
+    width:100%
+  }
+  .breadcrumb_widgets{
+    border-radius: 5px;
+    background-color: rgb(225, 230, 239);
+    height: 70px;
+    margin-bottom: 30px;
+    padding: 20px 30px;
+    position: relative;
+  }
+  .breadcrumb_widgets .title{
+    font-size: 22px;
+    font-family: "Nunito SemiBold";
+    color: rgb(10, 10, 10);
+    line-height: 1.2;
+    margin-bottom: 0;
+  }
+  .breadcrumb_widgets .breadcrumb{
+    background-color: transparent;
+    padding: 0;
+    position: relative;
+  }
+  .breadcrumb_widgets .breadcrumb .breadcrumb-item{
+    font-family: "Open Sans";
+    font-size: 15px;
+    color: #7e7e7e;
+  }
+  .breadcrumb_widgets .breadcrumb .breadcrumb-item.active{
+    color: rgb(126, 126, 126);
+    line-height: 1.6;
+  }
+  .user_board{
+    padding: 0 15px 0 0;
+    position: relative;
+  }
+  .user_profile {
+    margin-bottom: 10px;
+    position: relative;
+  }
+  .user_profile .media .media-body h4{
+    font-size: 18px;
+    font-family: "Nunito";
+    color: #484848;
+    line-height: 1.2;
+    padding-left: 30px;
+  }
+  .user_profile .media .media-body h5,
+  .user_profile .media .media-body p {
+    margin-bottom: 0;
+  }
+  .user_profile .media img {
+    width: 65px;
+  }
+  .dashbord_nav_list h4{
+    position: relative;
+    padding-left: 30px;
+  }
+  .dashbord_nav_list li {
+    height: 50px;
+    line-height: 45px;
+    padding-left: 30px;
+    position: relative;
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+  }
+  .dashbord_nav_list li a{
+    color: #7f7f7f;
+    font-size: 16px;
+  }
+  .dashbord_nav_list li:hover a,
+  .dashbord_nav_list li:hover a span{
+    color: #ff5a5f;
+  }
+  .dashbord_nav_list li.active{
+    background-color: #f9fafc;
+  }
+  .dashbord_nav_list li.active a{
+    color: #ff5a5f;
+  }
+  .dashbord_nav_list li.active:before {
+    background-color: #ff5a5f;
+    bottom: 0;
+    content: "";
+    height: 50px;
+    position: absolute;
+    right: 0px;
+    top: 0;
+    width: 2px;
+  }
+  .dashbord_nav_list li a span {
+    font-size: 23px;
+    margin-right: 15px;
+  }
+  .my_dashboard_review,
+  .my_listing_single{
+    background-color: #ffffff;
+    border: 1px solid rgb(235, 235, 235);
+    border-radius: 8px;
+    padding: 30px;
+  }
+  .my_dashboard_review .review_content .review_title{
+    font-size: 18px;
+    font-family: "Nunito";
+    color: #484848;
+    font-weight: bold;
+    line-height: 1.2;
+    margin-bottom: 0;
+  }
+  .my_dashboard_review .review_content .review_date{
+    font-size: 14px;
+    font-family: "Nunito";
+    color: rgb(118, 118, 118);
+    line-height: 2.143;
+  }
+  .my_dashboard_review .review_content .para{
+    margin-top: 10px;
+  }
+  .my_dashboard_review .review_content .sspd_review ul li{
+    margin-right: 3px;
+  }
+  .my_dashboard_review .review_content .sspd_review ul li a{
+    font-size: 14px;
+    font-family: "FontAwesome";
+    color: rgb(188, 197, 42);
+    line-height: 2.143;
+  }
+  .packages_table .table,
+  .savesearched_table .table,
+  .property_table .table{
+    border: 1px solid #ebebeb;
+    border-radius: 8px;
+    margin-bottom: 30px;
+  }
+  .packages_table .table .thead-light th,
+  .savesearched_table .table .thead-light th,
+  .property_table .table .thead-light th{
+    background-color: rgb(36, 50, 74);
+    border: none;
+    font-size: 16px;
+    font-family: "Nunito";
+    color: #ffffff;
+    font-weight: bold;
+    line-height: 2.2;
+  }
+  .packages_table .table td,
+  .packages_table .table th,
+  .savesearched_table .table td,
+  .savesearched_table .table th,
+  .property_table .table td,
+  .property_table .table th{
+    font-size: 16px;
+    font-family: "Nunito";
+    color: #484848;
+    font-weight: 600;
+    line-height: 3;
+    padding-left: 30px;
+  }
+  .property_table .table td,
+  .property_table .table th{
+    vertical-align: middle;
+  }
+  .savesearched_table td.para,
+  .property_table td.para{
+    font-size: 14px;
+    font-family: "Nunito";
+    color: #484848;
+  }
+  .pck_chng_btn .btn{
+    border-radius: 8px;
+    background-color: rgb(255, 90, 95);
+    -webkit-box-shadow:0px 1px 4px 0px rgba(255, 90, 95, 0.3);
+    -moz-box-shadow:0px 1px 4px 0px rgba(255, 90, 95, 0.3);
+    -o-box-shadow:0px 1px 4px 0px rgba(255, 90, 95, 0.3);
+    box-shadow:0px 1px 4px 0px rgba(255, 90, 95, 0.3);
+    font-size: 16px;
+    font-family: "Nunito";
+    color: #ffffff;
+    font-weight: bold;
+    line-height: 1.2;
+    height: 50px;
+    width: 200px;
+  }
+  .skill_sidebar_widget {
+    margin-top: 40px;
+    margin-left: 15px;
+    padding-right: 50px;
+  }
+  .skill_sidebar_widget h4 {
+    font-size: 17px;
+    margin-bottom: 20px;
+  }
+  .skill_sidebar_widget .sonny_progressbar .bar{
+    border-radius: 5px;
+    height: 10px;
+  }
+  .skill_sidebar_widget .sonny_progressbar .bar-container {
+    border-radius: 5px;
+    height: 10px !important;
+    overflow: hidden;
+  }
+  .password_change_form form input {
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(221, 221, 221);
+    border-radius: 5px;
+    background-color: rgba(196, 14, 117, 0);
+    height: 48px;
+    margin-bottom: 30px;
+    padding-left: 20px;
+    -webkit-box-shadow:0px 1px 4px 0px rgba(0, 0, 0, 0.09);
+    -moz-box-shadow:0px 1px 4px 0px rgba(0, 0, 0, 0.09);
+    -o-box-shadow:0px 1px 4px 0px rgba(0, 0, 0, 0.09);
+    box-shadow:0px 1px 4px 0px rgba(0, 0, 0, 0.09);
+  }
+  .password_change_form form input:focus {
+    -webkit-box-shadow:0px 1px 4px 0px rgba(0, 0, 0, 0.09);
+    -moz-box-shadow:0px 1px 4px 0px rgba(0, 0, 0, 0.09);
+    -o-box-shadow:0px 1px 4px 0px rgba(0, 0, 0, 0.09);
+    box-shadow:0px 1px 4px 0px rgba(0, 0, 0, 0.09);
+    outline: none;
+  }
+  .password_change_form form button {
+    border-radius: 4px;
+    height: 55px;
+    padding: 0 35px;
+  }
+  .password_change_form form button:focus {
+    box-shadow: none;
+    outline: none;  
+  }

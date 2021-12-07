@@ -18,7 +18,7 @@ import { Route, Routes, Link } from "react-router-dom";
 import AuthContext from "./contexts/AuthContext";
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { login, getUser } from "./services/authServices";
+
 
 function App() {
   const [userInfo, setUserInfo] = useState({
@@ -28,7 +28,7 @@ function App() {
   });
 
   useEffect(() => {
-    let userData = getUser();
+    
   }, [userInfo]);
 
   return (
@@ -38,11 +38,11 @@ function App() {
 
         <Header setUserInfo={setUserInfo} />
         <MobileMenu setUserInfo={setUserInfo} />
-        
+        <HomeSearch />
         <Routes>
-          <Route path="/home" element={<> <HomeSearch /> <Main /> </>} />
+          <Route path="/home" element={<>  <Main /> </>} />
           <Route path="/menu" element={ <MobileMenu /> } />
-          <Route path="/" element={<> <HomeSearch /> <Main /> </>} />
+          <Route path="/" element={<>  <Main /> </>} />
           <Route path="/properties/" element={<Main />} />
           <Route path="/search/:query" element={<MainSearch />} />
           <Route path="/create" element={<CreateProperty />} />
