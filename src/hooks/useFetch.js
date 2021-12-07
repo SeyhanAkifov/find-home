@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const useFetch =  (url, token) => {
+const useFetch =  (url, token, currentPage) => {
     const [state, setState] = useState([]);
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -28,7 +28,7 @@ const useFetch =  (url, token) => {
         );
 
         
-    }, [url, token])
+    }, [url, token, currentPage])
 
     return [
         state,

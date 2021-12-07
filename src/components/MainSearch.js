@@ -1,15 +1,27 @@
 import useFetch from "../hooks/useFetch";
 import { Link } from "react-router-dom";
 import MainItem from "./MainItem";
-import { useState, useEffect } from "react";
+
 import { useParams } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import AuthContext from "../contexts/AuthContext";
 import "../Styles/Main.css"
 
 //http://apifindhome.seyhanakifov.com/api/Home/Get
 function Main() {
   const token = useContext(AuthContext);
+
+  const divRef = useRef(null);
+  
+  useEffect(() => {
+    if (divRef.current) {
+      divRef.current.scrollIntoView(
+        {
+          behavior: 'smooth',
+        })
+    }
+  });
+
   let query = useParams();
   const url = `https://apifindhome.seyhanakifov.com/api/Property/Search?${query.query}`;
   const [items, error, isLoaded] = useFetch(url, token);
@@ -20,7 +32,7 @@ function Main() {
   } else {
     return (
       <>
-        <section id="feature-property" className="feature-property bgc-f7">
+        <section id="feature-property" className="feature-property bgc-f7" ref={divRef}>
           <div className="container">
             <div className="row">
               <div className="col-lg-12">

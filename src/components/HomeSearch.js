@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+
 import { useNavigate } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 
@@ -8,7 +8,7 @@ import useFetch from "../hooks/useFetch";
  
     let url = "https://apifindhome.seyhanakifov.com/api/Home/GetTypes";
 
-    const [items, error, isLoaded] = useFetch(url);
+    const [items] = useFetch(url);
     
     function submitHandler(e) {
     e.preventDefault();
@@ -53,7 +53,7 @@ import useFetch from "../hooks/useFetch";
               </div>
             
               <div className="home_adv_srch_opt">
-                <ul className="nav nav-pills" id="pills-tab" role="tablist">
+                {/* <ul className="nav nav-pills" id="pills-tab" role="tablist">
                    <li className="nav-item">
                     <a
                       className="nav-link active"
@@ -80,7 +80,7 @@ import useFetch from "../hooks/useFetch";
                       Rent
                     </a>
                   </li>
-                </ul>
+                </ul> */}
                
                 <div
                   className="tab-content home1_adsrchfrm"

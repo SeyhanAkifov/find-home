@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
+
 import "../Styles/Footer.css"
 
 function Footer () {
     return (
-		<section className="footer_middle_area pt40 pb40">
+		<section className="footer_middle_area pt40 pb40" id="login">
           <div className="container">
             <div className="row">
               

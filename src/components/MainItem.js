@@ -1,21 +1,17 @@
 import { Link } from "react-router-dom";
-import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import AuthContext from "../contexts/AuthContext";
+
 
 function MainItem(params) {
-  const token = useContext(AuthContext);
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  let navigate = useNavigate();
+  
 
+  
   return (
     <div className="item">
       <div className="feat_property">
         <div className="thumb">
           <img
             className="img-whp"
-            src="/images/house.jpg"
+            src={params.data.imageUrl}
             alt="house.jpg"
           ></img>
           <div className="thmb_cntnt">
@@ -39,7 +35,7 @@ function MainItem(params) {
             </ul>
             <Link className="fp_price" to="#">
               ${params.data.price}
-              <small>/</small>
+              
             </Link>
           </div>
         </div>

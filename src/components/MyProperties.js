@@ -1,8 +1,8 @@
 import useFetch from "../hooks/useFetch";
-import { Link } from "react-router-dom";
+
 import MainItem from "./MainItem";
 import { useNavigate } from 'react-router-dom'
-import { useContext, useEffect } from "react";
+import { useContext, useEffect , useRef} from "react";
 import AuthContext from "../contexts/AuthContext";
 import "../Styles/Main.css"
 
@@ -11,11 +11,21 @@ function MyProperties() {
   let navigate = useNavigate();
   const token = useContext(AuthContext);
   
+  const divRef = useRef(null);
+  useEffect(() => {
+    if (divRef.current) {
+      divRef.current.scrollIntoView(
+        {
+          behavior: 'smooth',
+        })
+    }
+  });
+
   useEffect( () => {
     if(!token.token){
       navigate({ pathname : '/login'})
     }
-  }, [token])
+  }, [token, navigate])
 
   const url = `https://apifindhome.seyhanakifov.com/api/Property/GetMy?user=${token.email}`;
   const [items, error, isLoaded] = useFetch(url, token.token);
@@ -26,7 +36,7 @@ function MyProperties() {
   } else {
     return (
       <>
-        <section id="feature-property" className="feature-property bgc-f7">
+        <section id="feature-property" className="feature-property bgc-f7" ref={divRef}>
           
           <div className="container ovh">
             {items.length > 0 ? 

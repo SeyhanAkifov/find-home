@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState , useRef, useEffect} from "react";
 import { Link } from "react-router-dom";
 import { login } from "../services/authServices" 
 import "../Styles/Login.css"
@@ -7,13 +7,22 @@ import "../Styles/Login.css"
 
 
 function Login({setUserInfo}) {
- 
-  
-	const [error, setError] = useState ([]);
+
+  const [error, setError] = useState ([]);
   const [isLoaded, setIsLoaded] = useState(false);
-  
   let navigate = useNavigate();
-	
+ 
+  const divRef = useRef(null);
+  
+  useEffect(() => {
+    if (divRef.current) {
+      divRef.current.scrollIntoView(
+        {
+          behavior: 'smooth',
+        })
+    }
+  });
+
   const onFormSubmit = async (e) => {
     e.preventDefault();
 
@@ -55,8 +64,8 @@ function Login({setUserInfo}) {
     };
     
     return (
-    <section className="our-log bgc-fa">
-      <div className="container">
+    <section className="our-log bgc-fa"  ref={divRef}>
+      <div className="container" >
         <div className="row">
           <div className="col-sm-12 col-lg-6 offset-lg-3">
             <div className="login_form inner_page">

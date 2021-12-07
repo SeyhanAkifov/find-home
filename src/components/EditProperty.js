@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+
+import { useState, useEffect , useRef} from "react";
 import { useParams } from "react-router-dom";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,22 @@ function EditProperty() {
   let navigate = useNavigate();
     let counter = 1;
   const { token, email } = useContext(AuthContext);
+
+  const divRef = useRef(null);
+  useEffect(() => {
+    if (divRef.current) {
+      divRef.current.scrollIntoView(
+        {
+          behavior: 'smooth',
+        })
+    }
+  });
+
+  useEffect( () => {
+    if(!token){
+      navigate({ pathname : '/login'})
+    }
+  }, [token, navigate])
 
   let id = useParams();
   const [property, setProperty] = useState([]);
@@ -41,6 +57,8 @@ function EditProperty() {
       e.preventDefault();
 
       let formData = new FormData(e.currentTarget);
+      console.log(formData.get('title'));
+      
       let title = formData.get("title");
       let description = formData.get("description");
       let type = formData.get("type");
@@ -56,6 +74,7 @@ function EditProperty() {
       let city = formData.get("city");
       let country = formData.get("country");
       let zip = formData.get("zip");
+      let image = formData.get("image");
 
       let airConditioning = formData.get("airConditioning") ? true : false;
       let lawn = formData.get("lawn") ? true : false;
@@ -93,6 +112,7 @@ function EditProperty() {
             "floor": floor,
             "baths": baths,
             "condition": status,
+            "imageUrl" : image,
             "yearOfConstruction": year,
             "area": area,
             "cityName": city,
@@ -145,7 +165,7 @@ function EditProperty() {
   } else {
   return (
     <>
-      <div className="col-lg-12 mb10">
+      <div className="col-lg-12 mb10" ref={divRef}>
         <div className="breadcrumb_content style2">
           <h2 className="breadcrumb_title">Edit Property</h2>
           <p>We are glad to see you again!</p>
@@ -156,6 +176,7 @@ function EditProperty() {
           <form className="row" onSubmit={onFormSubmit}>
             <div className="col-lg-12">
               <h4 className="mb30">Edit Property</h4>
+              <span>All fields is required</span>
               <div className="my_profile_setting_input form-group">
                 <label htmlFor="propertyTitle">Property Title</label>
                 <input
@@ -166,7 +187,18 @@ function EditProperty() {
                   defaultValue={property.title}
                 />
               </div>
+              <div className="my_profile_setting_input form-group">
+                <label htmlFor="propertyImage">Property ImageUrl</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="propertyImage"
+                  name="image"
+                  defaultValue={property.imageUrl}
+                />
+              </div>
             </div>
+            
             <div className="col-lg-12">
               <div className="my_profile_setting_textarea">
                 <label htmlFor="propertyDescription">Description</label>
@@ -387,7 +419,7 @@ function EditProperty() {
                 {Object.entries(feature)
                   .slice(1, 6)
                   .map(([key, value]) => (
-                    <li>
+                    <li  key={key}>
                       <div className="custom-control custom-checkbox">
                         <input
                           type="checkbox"
@@ -414,7 +446,7 @@ function EditProperty() {
               {Object.entries(feature)
                   .slice(6, 11)
                   .map(([key, value]) => (
-                    <li>
+                    <li  key={key}>
                       <div className="custom-control custom-checkbox">
                         <input
                           type="checkbox"
@@ -442,7 +474,7 @@ function EditProperty() {
               {Object.entries(feature)
                   .slice(11, 16)
                   .map(([key, value]) => (
-                    <li>
+                    <li key={key}>
                       <div className="custom-control custom-checkbox">
                         <input
                         
@@ -476,7 +508,7 @@ function EditProperty() {
           </form>
         </div>
 
-        <div className="my_dashboard_review mt30">
+        {/* <div className="my_dashboard_review mt30">
           <div className="row">
             <div className="col-lg-12">
               <h4 className="mb30">Property media</h4>
@@ -573,7 +605,7 @@ function EditProperty() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   )};

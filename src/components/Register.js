@@ -1,11 +1,22 @@
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 function Register() {
   let navigate = useNavigate();
 	const [error, setError] = useState ([]);
   const [isLoaded, setIsLoaded] = useState(false);
+
+  const divRef = useRef(null);
+  
+  useEffect(() => {
+    if (divRef.current) {
+      divRef.current.scrollIntoView(
+        {
+          behavior: 'smooth',
+        })
+    }
+  });
 
   const onFormSubmit = async (e) => {
     e.preventDefault();
@@ -45,7 +56,7 @@ function Register() {
           }else if(result.isSuccessStatusCode === false){
             setError(result.reasonPhrase);
             setIsLoaded(false)
-          }else if(result.status == "Error"){
+          }else if(result.status === "Error"){
             setError([result.message]);
             setIsLoaded(false)
           }else{
@@ -65,11 +76,11 @@ function Register() {
          }
       );
 
-console.log(error);
+
     
   };
   return (
-    <section className="our-log-reg bgc-fa">
+    <section className="our-log-reg bgc-fa" ref={divRef}>
       <div className="container">
         <div className="row">
           <div className="col-sm-12 col-lg-6 offset-lg-3">

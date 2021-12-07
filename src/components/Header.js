@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
-import { logout } from "../services/authServices";
+
 import "../Styles/Header.css"
 
 import { Link } from "react-router-dom";
@@ -100,7 +100,7 @@ function Header({ setUserInfo }) {
               ) : (
                 <>
                   <li className="last">
-                    <Link to="/login">
+                    <Link to="/login" >
                       <span className="title">Login</span>
                     </Link>
                   </li>

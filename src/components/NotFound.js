@@ -1,8 +1,20 @@
 import { Link } from "react-router-dom";
+import {useEffect, useRef} from "react";
 
 function NotFound () {
+
+const divRef = useRef(null);
+  useEffect(() => {
+    if (divRef.current) {
+      divRef.current.scrollIntoView(
+        {
+          behavior: 'smooth',
+        })
+    }
+  });
+
     return (
-        <section className="our-error bgc-f7">
+        <section className="our-error bgc-f7" ref={divRef}>
 		<div className="container">
 			<div className="row">
 				<div className="col-lg-10 offset-lg-1 text-center">

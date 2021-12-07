@@ -1,42 +1,50 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import "../Styles/Details.css"
+import "../Styles/Details.css";
 
 import AuthContext from "../contexts/AuthContext";
 
 function Details() {
   let navigate = useNavigate();
-  
+
   const userInfo = useContext(AuthContext);
-  const [isLiked, setIsLiked] = useState(false)
+  const [isLiked, setIsLiked] = useState(false);
   let token = userInfo.token;
-  let username = userInfo.email
+  let username = userInfo.email;
   let id = useParams();
-  console.log(token);
+
   const [property, setProperty] = useState([]);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   let feature;
-  
-  useEffect(() => {
 
-    
-    fetch(`https://apifindhome.seyhanakifov.com/api/Home/GetWithId?id=${id.id}`, {
-      
-      headers: {
-        
-        Authorization: `Bearer ${token}`,
-      },
-    })
+  const divRef = useRef(null);
+  useEffect(() => {
+    if (divRef.current) {
+      divRef.current.scrollIntoView(
+        {
+          behavior: 'smooth',
+        })
+    }
+  });
+
+  useEffect(() => {
+    fetch(
+      `https://apifindhome.seyhanakifov.com/api/Home/GetWithId?id=${id.id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then(
         (data) => {
           setProperty(data);
           setIsLoaded(true);
-          
         },
         (error) => {
           setIsLoaded(true);
@@ -45,70 +53,60 @@ function Details() {
       );
   }, [id.id, token, isLiked]);
 
-  console.log(username);
   const OnDelete = async (e) => {
     e.preventDefault();
 
-    console.log(token);
-    
-    await fetch(`https://apifindhome.seyhanakifov.com/api/Home/DeleteWithId?id=${id.id}`, {
-     
-      headers: {
-       
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => res.json())
-      
+    await fetch(
+      `https://apifindhome.seyhanakifov.com/api/Home/DeleteWithId?id=${id.id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    ).then((res) => res.json());
 
     navigate({ pathname: "/home" });
   };
 
   const OnLike = async (e) => {
     e.preventDefault();
-    
+
     await fetch(`https://apifindhome.seyhanakifov.com/api/Home/UserLike`, {
-      method: 'POST',
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body : JSON.stringify({
-        username : username,
-        propertyId : id.id
-      })
-    })
-      .then((res) => res.json())
-      
-      setIsLiked(true)
+      body: JSON.stringify({
+        username: username,
+        propertyId: id.id,
+      }),
+    }).then((res) => res.json());
+
+    setIsLiked(true);
     navigate({ pathname: `/details/${id.id}` });
   };
 
   const OnUnlike = async (e) => {
     e.preventDefault();
-    
+
     await fetch(`https://apifindhome.seyhanakifov.com/api/Home/UserUnlike`, {
-      method: 'POST',
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body : JSON.stringify({
-        username : username,
-        propertyId : id.id
-      })
-    })
-      .then((res) => res.json())
-      
-    setIsLiked(false)
-      navigate({ pathname: `/details/${id.id}` });
+      body: JSON.stringify({
+        username: username,
+        propertyId: id.id,
+      }),
+    }).then((res) => res.json());
+
+    setIsLiked(false);
+    navigate({ pathname: `/details/${id.id}` });
   };
 
- 
   feature = property.feature;
-  console.log(property);
-  console.log(feature);
-  console.log(isLiked);
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -116,14 +114,24 @@ function Details() {
     return <div>Loading...</div>;
   } else {
     return (
-      <section className="our-agent-single pb30-991">
-        <div className="container" >
+      <section className="our-agent-single pb30-991" ref={divRef}>
+        <div className="container">
           <div className="row" id="myDetails">
             <div className="col-md-12 col-lg-8">
               <div className="row">
                 <div className="col-lg-12">
                   <div className="listing_single_description">
-                  <h1>{property.title}</h1>
+                  <img
+            className="img-whp"
+            src={property.imageUrl}
+            alt="house.jpg"
+          ></img>
+          
+                  </div>
+                </div>
+                <div className="col-lg-12">
+                  <div className="listing_single_description">
+                    <h1>{property.title}</h1>
                     <div className="lsd_list">
                       <ul className="mb0">
                         <li className="list-inline-item">
@@ -141,12 +149,7 @@ function Details() {
                       </ul>
                     </div>
                     <h4 className="mb30">Description</h4>
-                    <p className="mb25">
-                    
-                      {property.description}
-                      
-                    </p>
-                    
+                    <p className="mb25">{property.description}</p>
                   </div>
                 </div>
                 <div className="col-lg-12">
@@ -169,7 +172,6 @@ function Details() {
                           <li>
                             <p>Year Built : </p>
                           </li>
-                          
                         </ul>
                         <ul className="list-inline-item">
                           <li>
@@ -179,7 +181,12 @@ function Details() {
                           </li>
                           <li>
                             <p>
-                              <span>${property.price}</span>
+                              <span>
+                                $
+                                {property.adFor === "Buy"
+                                  ? property.price
+                                  : property.price + " / month"}
+                              </span>
                             </p>
                           </li>
                           <li>
@@ -192,7 +199,6 @@ function Details() {
                               <span>{property.yearOfConstruction}</span>
                             </p>
                           </li>
-                          
                         </ul>
                       </div>
                       <div className="col-md-6 col-lg-6 col-xl-4">
@@ -283,56 +289,62 @@ function Details() {
                       </div>
                       <div className="col-sm-6 col-md-6 col-lg-4">
                         <ul className="order_list list-inline-item">
-                          {Object.entries(feature).slice(1, 6).map(([key, value]) => (
-                            <li>
-                              <Link to="#">
-                                <span
-                                  className={
-                                    value === true
-                                      ? "flaticon-tick"
-                                      : "flaticon-close"
-                                  }
-                                ></span>
-                                {key} 
-                              </Link>
-                            </li>
-                          ))}
-                          </ul>
-                      </div>
-                      <div className="col-sm-6 col-md-6 col-lg-4">
-                        <ul className="order_list list-inline-item">
-                        {Object.entries(feature).slice(6, 11).map(([key, value]) => (
-                            <li>
-                              <Link to="#">
-                                <span
-                                  className={
-                                    value === true
-                                      ? "flaticon-tick"
-                                      : "flaticon-close"
-                                  }
-                                ></span>
-                                {key} 
-                              </Link>
-                            </li>
-                          ))}
+                          {Object.entries(feature)
+                            .slice(1, 6)
+                            .map(([key, value]) => (
+                              <li key={key}>
+                                <Link to="#">
+                                  <span
+                                    className={
+                                      value === true
+                                        ? "flaticon-tick"
+                                        : "flaticon-close"
+                                    }
+                                  ></span>
+                                  {key}
+                                </Link>
+                              </li>
+                            ))}
                         </ul>
                       </div>
                       <div className="col-sm-6 col-md-6 col-lg-4">
                         <ul className="order_list list-inline-item">
-                        {Object.entries(feature).slice(11, 16).map(([key, value]) => (
-                            <li>
-                              <Link to="#">
-                                <span
-                                  className={
-                                    value === true
-                                      ? "flaticon-tick"
-                                      : "flaticon-close"
-                                  }
-                                ></span>
-                                {key} 
-                              </Link>
-                            </li>
-                          ))}
+                          {Object.entries(feature)
+                            .slice(6, 11)
+                            .map(([key, value]) => (
+                              <li key={key}>
+                                <Link to="#">
+                                  <span
+                                    className={
+                                      value === true
+                                        ? "flaticon-tick"
+                                        : "flaticon-close"
+                                    }
+                                  ></span>
+                                  {key}
+                                </Link>
+                              </li>
+                            ))}
+                        </ul>
+                      </div>
+                      <div className="col-sm-6 col-md-6 col-lg-4">
+                        <ul className="order_list list-inline-item">
+                          {Object.entries(feature)
+                            .slice(11, 16)
+                            .map(([key, value]) => (
+                              <li key={key}>
+                                <Link to="#">
+                                  <span
+                                    className={
+                                      value === true
+                                        ? "flaticon-tick"
+                                        : "flaticon-close"
+                                    }
+                                  ></span>
+                                  {key}
+                                </Link>
+                              </li>
+                            ))}
                         </ul>
                       </div>
                     </div>
@@ -349,22 +361,46 @@ function Details() {
                   </div>
                 </div>
                 <div className="col-xl-12">
-              <div className="my_profile_setting_input">
-                {token ? 
-                username  === property.creator ? 
-                <>
-                  <Link to={`/edit/${id.id}`}>
-                <button className="btn btn1 float-left">Edit</button>
-                </Link>
-                <button  onClick={OnDelete} className="btn btn2 float-right">Delete</button>
-                </> : 
-                <>
-                {property.likes.includes(username) ?
-                <button onClick={OnUnlike} className="btn btn2 float-right">Unlike</button> :
-                <button onClick={OnLike} className="btn btn2 float-right">Like</button> } </>  :
-                 ""}
-              </div>
-            </div>
+                  <div className="my_profile_setting_input">
+                    {token ? (
+                      username === property.creator ? (
+                        <>
+                          <Link to={`/edit/${id.id}`}>
+                            <button className="btn btn1 float-left">
+                              Edit
+                            </button>
+                          </Link>
+                          <button
+                            onClick={OnDelete}
+                            className="btn btn2 float-right"
+                          >
+                            Delete
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          {property.likes.includes(username) ? (
+                            <button
+                              onClick={OnUnlike}
+                              className="btn btn2 float-right"
+                            >
+                              Unlike
+                            </button>
+                          ) : (
+                            <button
+                              onClick={OnLike}
+                              className="btn btn2 float-right"
+                            >
+                              Like
+                            </button>
+                          )}{" "}
+                        </>
+                      )
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           </div>

@@ -1,14 +1,25 @@
-import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 
 function CreateProperty() {
 let navigate = useNavigate();
   const {token, email } = useContext(AuthContext);
+  const [error, setError] = useState ([]);
+  const [isLoaded, setIsLoaded] = useState(false);
   
+  const divRef = useRef(null);
+  useEffect(() => {
+    if (divRef.current) {
+      divRef.current.scrollIntoView(
+        {
+          behavior: 'smooth',
+        })
+    }
+  });
+
   useEffect( () => {
     if(!token){
       navigate({ pathname : '/login'})
@@ -34,6 +45,7 @@ let navigate = useNavigate();
     let city = formData.get("city");
     let country = formData.get("country");
     let zip = formData.get("zip");
+    let image = formData.get("image");
 
     let airConditioning = formData.get("airConditioning") ? true : false;
     let lawn = formData.get("lawn") ? true : false;
@@ -84,7 +96,7 @@ let navigate = useNavigate();
     // console.log(windowCoverings);
     // console.log(email);
 
-    fetch('https://apifindhome.seyhanakifov.com/api/Home/Post', {
+    fetch('https://localhost:44382/api/Home/Post', {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -102,6 +114,7 @@ let navigate = useNavigate();
           "floor": floor,
           "baths": baths,
           "condition": status,
+          "imageUrl" : image,
           "yearOfConstruction": year,
           "area": area,
           "cityName": city,
@@ -136,30 +149,52 @@ let navigate = useNavigate();
       
     })
     .then(res => res.json())
-    .then( (result) => {
-      
-      if(result.status === "Success"){
+    .then(
+      (result) => {
+        setIsLoaded(true);
         
-      
-    navigate({ pathname : '/home'})
-      }
-    }
-    )
+        if (result.errors) {
+          
+          setError([result.title]);
+          setIsLoaded(false)
+          
+        }else if(result.isSuccessStatusCode === false){
+          setError(result.reasonPhrase);
+          setIsLoaded(false)
+        }
+        else{
+          setIsLoaded(true)
+          
+          navigate({ pathname: "/home" });
+        
+        }
+        
+      },
+      // Note: it's important to handle errors here
+      // instead of Link catch() block so that we don't swallow
+      // exceptions from actual bugs in components.
+      (error) => {
+        setIsLoaded(true);
+        setError(error);
+       }
+    );
   };
 
   return (
     <>
-      <div className="col-lg-12 mb10">
+      <div className="col-lg-12 mb10" ref={divRef}>
         <div className="breadcrumb_content style2">
           <h2 className="breadcrumb_title">Add New Property</h2>
           <p>We are glad to see you again!</p>
         </div>
       </div>
       <div className="col-lg-12">
+        <span>{error}</span>
         <div className="my_dashboard_review">
           <form className="row" onSubmit={onFormSubmit}>
             <div className="col-lg-12">
               <h4 className="mb30">Create Listing</h4>
+              <span>All fields is required</span>
               <div className="my_profile_setting_input form-group">
                 <label htmlFor="propertyTitle">Property Title</label>
                 <input
@@ -167,6 +202,15 @@ let navigate = useNavigate();
                   className="form-control"
                   id="propertyTitle"
                   name="title"
+                />
+              </div>
+              <div className="my_profile_setting_input form-group">
+                <label htmlFor="propertyImage">Property ImageUrl</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="propertyImage"
+                  name="image"
                 />
               </div>
             </div>
@@ -367,7 +411,13 @@ let navigate = useNavigate();
                   <option data-tokens="Iraq">Iraq</option>
                   <option data-tokens="Spain">Spain</option>
                   <option data-tokens="Greece">Greece</option>
-                  <option data-tokens="Portugal">Portugal</option>
+                  <option data-tokens="Portugal">Bulgaria</option>
+                  <option data-tokens="Portugal">Germany</option>
+                  <option data-tokens="Portugal">England</option>
+                  <option data-tokens="Portugal">France</option>
+                  <option data-tokens="Portugal">Belgium</option>
+                  <option data-tokens="Portugal">Macedonia</option>
+                  <option data-tokens="Portugal">Romania</option>
                 </select>
               </div>
             </div>
@@ -644,11 +694,12 @@ let navigate = useNavigate();
                 <button className="btn btn1 float-left">Clear</button>
                 <button className="btn btn2 float-right">Create</button>
               </div>
+              <span>{error}</span>
             </div>
           </form>
         </div>
 
-        <div className="my_dashboard_review mt30">
+        {/* <div className="my_dashboard_review mt30">
           <div className="row">
             <div className="col-lg-12">
               <h4 className="mb30">Property media</h4>
@@ -744,8 +795,9 @@ let navigate = useNavigate();
                 <button className="btn btn2 float-right">Next</button>
               </div>
             </div>
+            
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

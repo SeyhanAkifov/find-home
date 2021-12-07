@@ -11,11 +11,7 @@ function MobileMenu({ setUserInfo }) {
     let token = userInfo.token;
     let username = userInfo.email;
 
-    const showMenu = (e) => {
-        let menu = document.getElementById('menu')
-        console.log(menu);
-        menu.ariaHidden = false
-    }
+    
 
     const Logout = (e) => {
         e.preventDefault();
