@@ -1,10 +1,6 @@
 import { Link } from "react-router-dom";
 
-
 function MainItem(params) {
-  
-
-  
   return (
     <div className="item">
       <div className="feat_property">
@@ -16,8 +12,10 @@ function MainItem(params) {
           ></img>
           <div className="thmb_cntnt">
             <ul className="tag mb0">
-              <li className="list-inline-item">
-                <Link to="#">{params.data.propertyType}</Link>
+              <li className="list-inline-item ">
+                <Link className="title" to="#">
+                  {params.data.propertyType}
+                </Link>
                 <p>{params.data.condition}</p>
               </li>
             </ul>
@@ -35,7 +33,6 @@ function MainItem(params) {
             </ul>
             <Link className="fp_price" to="#">
               ${params.data.price}
-              
             </Link>
           </div>
         </div>

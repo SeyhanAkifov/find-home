@@ -1,35 +1,73 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
-import { useEffect, useRef } from "react";
-
 
 function CreateProperty() {
-let navigate = useNavigate();
-  const {token, email } = useContext(AuthContext);
-  const [error, setError] = useState ([]);
+  let navigate = useNavigate();
+  const { token, email } = useContext(AuthContext);
+  const [error, setError] = useState([]);
+  let [userError, setUserError] = useState();
   const [isLoaded, setIsLoaded] = useState(false);
-  
+  let inputs = [
+    "title",
+    "image",
+    "description",
+    "type",
+    "status",
+    "price",
+    "area",
+    "rooms",
+    "baths",
+    "floor",
+    "adFor",
+    "year",
+    "address",
+    "city",
+    "country",
+    "zip",
+  ];
   const divRef = useRef(null);
+
   useEffect(() => {
     if (divRef.current) {
-      divRef.current.scrollIntoView(
-        {
-          behavior: 'smooth',
-        })
+      divRef.current.scrollIntoView({
+        behavior: "smooth",
+      });
     }
   });
 
-  useEffect( () => {
-    if(!token){
-      navigate({ pathname : '/login'})
+  useEffect(() => {
+    if (!token) {
+      navigate({
+        pathname: "/login",
+      });
     }
-  }, [token, navigate])
-  
+  }, [token, navigate]);
+
   const onFormSubmit = async (e) => {
     e.preventDefault();
 
     let formData = new FormData(e.currentTarget);
+    let err = false
+    console.log("form");
+    inputs.forEach((element) => {
+      if (!formData.get(`${element}`)) {
+        
+        document.querySelector(`#${element}`).style.background = "pink";
+        document.querySelector(
+          `.${element}-error`
+        ).style.color="red"
+        document.querySelector(
+          `.${element}-error`
+        ).innerHTML = `${element} is required`;
+        setTimeout(() => {
+          document.querySelector(`#${element}`).style.background = "white";
+        }, 1000);
+        err = true
+      }
+    });
+    if (!err) {
+
     let title = formData.get("title");
     let description = formData.get("description");
     let type = formData.get("type");
@@ -63,121 +101,76 @@ let navigate = useNavigate();
     let sauna = formData.get("sauna") ? true : false;
     let windowCoverings = formData.get("windowCoverings") ? true : false;
     let garden = formData.get("garden") ? true : false;
-    // console.log(title);
-    // console.log(description);
-    // console.log(type);
-    // console.log(status);
-    // console.log(price);
-    // console.log(area);
-    // console.log(rooms);
-    // console.log(baths);
-    // console.log(floor);
-    // console.log(adFor);
-    // console.log(year);
-    // console.log(address);
-    // console.log(city);
-    // console.log(country);
-    // console.log(zip);
-    
-    // console.log(airConditioning);
-    // console.log(lawn);
-    // console.log(swimmingPool);
-    // console.log(barbeque);
-    // console.log(kitchen);
-    // console.log(tvCable);
-    // console.log(dryer);
-    // console.log(outdoorShower);
-    // console.log(washer);
-    // console.log(gym);
-    // console.log(refrigerator);
-    // console.log(wifi);
-    // console.log(laundry);
-    // console.log(sauna);
-    // console.log(windowCoverings);
-    // console.log(email);
 
-    fetch('https://localhost:44382/api/Home/Post', {
+    fetch("https://apifindhome.seyhanakifov.com/api/Home/Post", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
-        // 'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body : JSON.stringify({
-        
-          "creator" : email,
-          "typeName": type,
-          "adFor": adFor,
-          "title": title,
-          "description": description,
-          "beds": rooms,
-          "floor": floor,
-          "baths": baths,
-          "condition": status,
-          "imageUrl" : image,
-          "yearOfConstruction": year,
-          "area": area,
-          "cityName": city,
-          "countryName": country,
-          "address": address,
-          "postCode" : zip,
-          "price": price,
-          "garden": garden,
-          "feature": {
-            "id": 0,
-            "airConditioning": airConditioning,
-            "barbeque": barbeque,
-            "dryer": dryer,
-            "gym": gym,
-            "laundry": laundry,
-            "lawn": lawn,
-            "kitchen": kitchen,
-            "outdoorShower": outdoorShower,
-            "refrigerator": refrigerator,
-            "sauna": sauna,
-            "swimmingPool": swimmingPool,
-            "tvCable": tvCable,
-            "washer": washer,
-            "wifi": wifi,
-            "windowCoverings": windowCoverings
-          
-        }
-        
-      })
-
-      
-      
+      body: JSON.stringify({
+        creator: email,
+        typeName: type,
+        adFor: adFor,
+        title: title,
+        description: description,
+        beds: rooms,
+        floor: floor,
+        baths: baths,
+        condition: status,
+        imageUrl: image,
+        yearOfConstruction: year,
+        area: area,
+        cityName: city,
+        countryName: country,
+        address: address,
+        postCode: zip,
+        price: price,
+        garden: garden,
+        feature: {
+          id: 0,
+          airConditioning: airConditioning,
+          barbeque: barbeque,
+          dryer: dryer,
+          gym: gym,
+          laundry: laundry,
+          lawn: lawn,
+          kitchen: kitchen,
+          outdoorShower: outdoorShower,
+          refrigerator: refrigerator,
+          sauna: sauna,
+          swimmingPool: swimmingPool,
+          tvCable: tvCable,
+          washer: washer,
+          wifi: wifi,
+          windowCoverings: windowCoverings,
+        },
+      }),
     })
-    .then(res => res.json())
-    .then(
-      (result) => {
-        setIsLoaded(true);
-        
-        if (result.errors) {
-          
-          setError([result.title]);
-          setIsLoaded(false)
-          
-        }else if(result.isSuccessStatusCode === false){
-          setError(result.reasonPhrase);
-          setIsLoaded(false)
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          if (result.errors) {
+            setError([result.title]);
+            setIsLoaded(false);
+            console.log(`Error 1: ${error}`);
+          } else if (result.isSuccessStatusCode === false) {
+            setError(result.reasonPhrase);
+            setIsLoaded(false);
+          } else {
+            setIsLoaded(true);
+            console.log(`Success: ${error}`);
+            navigate({ pathname: "/home" });
+          }
+        },
+        (error) => {
+          console.log(`Error: ${error}`);
+          setIsLoaded(true);
+          setError(error);
         }
-        else{
-          setIsLoaded(true)
-          
-          navigate({ pathname: "/home" });
-        
-        }
-        
-      },
-      // Note: it's important to handle errors here
-      // instead of Link catch() block so that we don't swallow
-      // exceptions from actual bugs in components.
-      (error) => {
-        setIsLoaded(true);
-        setError(error);
-       }
-    );
+      );
+    }
   };
 
   return (
@@ -189,37 +182,46 @@ let navigate = useNavigate();
         </div>
       </div>
       <div className="col-lg-12">
-        <span>{error}</span>
+        <span className="error">{error}</span>
         <div className="my_dashboard_review">
           <form className="row" onSubmit={onFormSubmit}>
             <div className="col-lg-12">
               <h4 className="mb30">Create Listing</h4>
-              <span>All fields is required</span>
+             
+              <div>
+                <span className="title-error">{userError}</span>
+              </div>
               <div className="my_profile_setting_input form-group">
                 <label htmlFor="propertyTitle">Property Title</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="propertyTitle"
+                  id="title"
                   name="title"
                 />
               </div>
               <div className="my_profile_setting_input form-group">
+                <div>
+                  <span className="image-error">{userError}</span>
+                </div>
                 <label htmlFor="propertyImage">Property ImageUrl</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="propertyImage"
+                  id="image"
                   name="image"
                 />
               </div>
             </div>
             <div className="col-lg-12">
               <div className="my_profile_setting_textarea">
+              <div>
+                <span className="description-error">{userError}</span>
+                </div>
                 <label htmlFor="propertyDescription">Description</label>
                 <textarea
                   className="form-control"
-                  id="propertyDescription"
+                  id="description"
                   rows="7"
                   name="description"
                 ></textarea>
@@ -227,12 +229,16 @@ let navigate = useNavigate();
             </div>
             <div className="col-lg-6 col-xl-6">
               <div className="my_profile_setting_input ui_kit_select_search form-group">
+              <div>
+                <span className="type-error">{userError}</span>
+                </div>
                 <label>Type</label>
                 <select
                   className="custompicker"
                   data-live-search="true"
                   data-width="100%"
                   name="type"
+                  id="type"
                 >
                   <option data-tokens="type1">House</option>
                   <option data-tokens="Type2">Apartment</option>
@@ -246,51 +252,64 @@ let navigate = useNavigate();
             </div>
             <div className="col-lg-6 col-xl-6">
               <div className="my_profile_setting_input ui_kit_select_search form-group">
+                <div>
+                <span className="status-error">{userError}</span>
+                </div>
                 <label>Status</label>
                 <select
                   className="custompicker"
                   data-live-search="true"
                   data-width="100%"
                   name="status"
+                  id="status"
                 >
                   <option data-tokens="Status1">New Build</option>
                   <option data-tokens="Status2">Renovated House</option>
                   <option data-tokens="Status3">Must be Renovated</option>
                   <option data-tokens="Status4">Old House</option>
-                  
                 </select>
               </div>
             </div>
             <div className="col-lg-4 col-xl-4">
               <div className="my_profile_setting_input form-group">
+              <div>
+                <span className="price-error">{userError}</span>
+                </div>
                 <label htmlFor="formGroupExamplePrice">Price</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="formGroupExamplePrice"
+                  id="price"
                   name="price"
                 />
               </div>
             </div>
             <div className="col-lg-4 col-xl-4">
               <div className="my_profile_setting_input form-group">
+              <div>
+                <span className="area-error">{userError}</span>
+                </div>
                 <label htmlFor="formGroupExampleArea">Area</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="formGroupExampleArea"
+                  id="area"
                   name="area"
                 />
               </div>
             </div>
             <div className="col-lg-4 col-xl-4">
               <div className="my_profile_setting_input ui_kit_select_search form-group">
+              <div>
+                <span className="rooms-error">{userError}</span>
+                </div>
                 <label>Rooms</label>
                 <select
                   className="custompicker"
                   data-live-search="true"
                   data-width="100%"
                   name="rooms"
+                  id="rooms"
                 >
                   <option data-tokens="Status1">1</option>
                   <option data-tokens="Status2">2</option>
@@ -303,12 +322,16 @@ let navigate = useNavigate();
             </div>
             <div className="col-lg-4 col-xl-4">
               <div className="my_profile_setting_input ui_kit_select_search form-group">
+              <div>
+                <span className="baths-error">{userError}</span>
+                </div>
                 <label>Baths</label>
                 <select
                   className="custompicker"
                   data-live-search="true"
                   data-width="100%"
                   name="baths"
+                  id="baths"
                 >
                   <option data-tokens="Status1">1</option>
                   <option data-tokens="Status2">2</option>
@@ -321,12 +344,16 @@ let navigate = useNavigate();
             </div>
             <div className="col-lg-4 col-xl-4">
               <div className="my_profile_setting_input ui_kit_select_search form-group">
+              <div>
+                <span className="floor-error">{userError}</span>
+                </div>
                 <label>Floor</label>
                 <select
                   className="custompicker"
                   data-live-search="true"
                   data-width="100%"
                   name="floor"
+                  id="floor"
                 >
                   <option data-tokens="Status1">1</option>
                   <option data-tokens="Status2">2</option>
@@ -339,24 +366,34 @@ let navigate = useNavigate();
             </div>
             <div className="col-lg-4 col-xl-4">
               <div className="my_profile_setting_input form-group">
-                <label htmlFor="formGroupExampleArea">Ad htmlFor</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="formGroupExampleArea"
+              <div>
+                <span className="adFor-error">{userError}</span>
+                </div>
+                <label>Ad For</label>
+                <select
+                  className="custompicker"
+                  data-live-search="true"
+                  data-width="100%"
                   name="adFor"
-                />
+                  id="adFor"
+                >
+                  <option data-tokens="Buy">Buy</option>
+                  <option data-tokens="Rent">Rent</option>
+                </select>
               </div>
             </div>
             <div className="col-lg-4 col-xl-4">
               <div className="my_profile_setting_input form-group">
+              <div>
+                <span className="year-error">{userError}</span>
+                </div>
                 <label htmlFor="formGroupExampleArea">
                   Year of construction
                 </label>
                 <input
                   type="text"
                   className="form-control"
-                  id="formGroupExampleArea"
+                  id="year"
                   name="year"
                 />
               </div>
@@ -364,11 +401,14 @@ let navigate = useNavigate();
             <div className="col-lg-12">
               <h4 className="mb30">Location</h4>
               <div className="my_profile_setting_input form-group">
+              <div>
+                <span className="address-error">{userError}</span>
+                </div>
                 <label htmlFor="propertyAddress">Address</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="propertyAddress"
+                  id="address"
                   name="address"
                 />
               </div>
@@ -376,11 +416,14 @@ let navigate = useNavigate();
 
             <div className="col-lg-6 col-xl-6">
               <div className="my_profile_setting_input form-group">
+              <div>
+                <span className="city-error">{userError}</span>
+                </div>
                 <label htmlFor="propertyCity">City</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="propertyCity"
+                  id="city"
                   name="city"
                 />
               </div>
@@ -388,36 +431,43 @@ let navigate = useNavigate();
 
             <div className="col-lg-4 col-xl-4">
               <div className="my_profile_setting_input form-group">
+              <div>
+                <span className="zip-error">{userError}</span>
+                </div>
                 <label htmlFor="zipCode">Zip</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="zipCode"
+                  id="zip"
                   name="zip"
                 />
               </div>
             </div>
             <div className="col-lg-4 col-xl-4">
               <div className="my_profile_setting_input ui_kit_select_search form-group">
+              <div>
+                <span className="country-error">{userError}</span>
+                </div>
                 <label>Country</label>
                 <select
                   className="custompicker"
                   data-live-search="true"
                   data-width="100%"
                   name="country"
+                  id="country"
                 >
                   <option data-tokens="Turkey">Turkey</option>
                   <option data-tokens="Iran">Iran</option>
                   <option data-tokens="Iraq">Iraq</option>
                   <option data-tokens="Spain">Spain</option>
                   <option data-tokens="Greece">Greece</option>
-                  <option data-tokens="Portugal">Bulgaria</option>
-                  <option data-tokens="Portugal">Germany</option>
-                  <option data-tokens="Portugal">England</option>
-                  <option data-tokens="Portugal">France</option>
-                  <option data-tokens="Portugal">Belgium</option>
-                  <option data-tokens="Portugal">Macedonia</option>
-                  <option data-tokens="Portugal">Romania</option>
+                  <option data-tokens="Bulgaria">Bulgaria</option>
+                  <option data-tokens="Germany">Germany</option>
+                  <option data-tokens="England">England</option>
+                  <option data-tokens="France">France</option>
+                  <option data-tokens="Belgium">Belgium</option>
+                  <option data-tokens="Macedonia">Macedonia</option>
+                  <option data-tokens="Romania">Romania</option>
                 </select>
               </div>
             </div>
@@ -694,7 +744,7 @@ let navigate = useNavigate();
                 <button className="btn btn1 float-left">Clear</button>
                 <button className="btn btn2 float-right">Create</button>
               </div>
-              <span>{error}</span>
+              <span className="error">{error}</span>
             </div>
           </form>
         </div>

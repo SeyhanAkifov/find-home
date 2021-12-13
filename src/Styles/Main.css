@@ -682,9 +682,29 @@
     max-width: 304px;
     padding: 25px 30px;
     position: absolute;
-    right: 26%;
-    top: 140px; 
+    right: 35%;
+    top: 100px; 
   }
+@media screen and (max-width: 600px) {
+  .dd_content2 {
+    background-color: #ffffff;
+    border-radius: 8px;
+    -webkit-box-shadow:0px 0px 50px 0px rgba(32, 32, 32, 0.15);
+    -moz-box-shadow:0px 0px 50px 0px rgba(32, 32, 32, 0.15);
+    -o-box-shadow:0px 0px 50px 0px rgba(32, 32, 32, 0.15);
+    box-shadow:0px 0px 50px 0px rgba(32, 32, 32, 0.15);
+    display: none;
+    height: 147px;
+    left: auto;
+    margin: 0 auto;
+    max-width: 304px;
+    padding: 25px 30px;
+    position: absolute;
+    right: 20%;
+    top: 361px; 
+  }
+}
+
   .dd_content:before,
   .dd_content2:before{
     background-color: #ffffff;

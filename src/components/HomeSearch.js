@@ -2,7 +2,7 @@
 import { useNavigate } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 
- function HomeSearch(props, params) {
+ function HomeSearch() {
   
   let navigate = useNavigate();
  
@@ -108,7 +108,7 @@ import useFetch from "../hooks/useFetch";
                             <div className="candidate_revew_select">
                               <select className="custompicker w100 show-tick" >
                                 
-                              <option value="asa" disabled>Select one--</option>
+                              
                               
                                     {items.map((item) => (
                                       <option key={item.id} value={item.name} >{item.name}</option>

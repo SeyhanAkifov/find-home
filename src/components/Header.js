@@ -1,10 +1,7 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
-
-import "../Styles/Header.css"
-
-import { Link } from "react-router-dom";
+import "../Styles/Header.css";
 
 function Header({ setUserInfo }) {
   const userInfo = useContext(AuthContext);
@@ -21,7 +18,6 @@ function Header({ setUserInfo }) {
 
   return (
     <>
-    
       <header className="header-nav menu_style_home_one navbar-scrolltofixed stricky main-menu">
         <div className="container-fluid p0">
           <nav>
@@ -31,14 +27,14 @@ function Header({ setUserInfo }) {
                 src="/images/header-logo2.png"
                 alt="header-logo.png"
               ></img>
-              
+
               <button type="button" id="menu-btn">
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
               </button>
             </div>
-            
+
             <Link to="/home" className="navbar_brand float-left dn-smd">
               <img
                 className="logo1 img-fluid"
@@ -51,13 +47,13 @@ function Header({ setUserInfo }) {
                 alt="header-logo2.png"
               ></img>
               <span>FindHome</span>
-             
             </Link>
             <ul
               id="respMenu"
               className="ace-responsive-menu text-right"
               data-menu-style="horizontal"
             >
+              
               <li>
                 <Link to="/home">
                   <span className="title">Home</span>
@@ -73,7 +69,6 @@ function Header({ setUserInfo }) {
                       data-target=".bd-example-modal-lg"
                     >
                       {token ? username : "Login/Register"}
-                      
                     </Link>
                   </li>
                   <li>
@@ -100,7 +95,7 @@ function Header({ setUserInfo }) {
               ) : (
                 <>
                   <li className="last">
-                    <Link to="/login" >
+                    <Link to="/login">
                       <span className="title">Login</span>
                     </Link>
                   </li>
@@ -121,7 +116,6 @@ function Header({ setUserInfo }) {
           </nav>
         </div>
       </header>
-      
     </>
   );
 }

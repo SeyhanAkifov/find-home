@@ -1,3 +1,5 @@
+import { Route, Routes, Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HomeSearch from "./components/HomeSearch";
@@ -14,11 +16,7 @@ import Register from "./components/Register";
 import NotFound from "./components/NotFound";
 import Login from "./components/Login";
 import Details from "./components/Details";
-import { Route, Routes, Link } from "react-router-dom";
 import AuthContext from "./contexts/AuthContext";
-import React, { useState } from "react";
-import { useEffect } from "react";
-
 
 function App() {
   const [userInfo, setUserInfo] = useState({
@@ -27,9 +25,7 @@ function App() {
     token: null,
   });
 
-  useEffect(() => {
-    
-  }, [userInfo]);
+  useEffect(() => {}, [userInfo]);
 
   return (
     <AuthContext.Provider value={userInfo}>
@@ -39,10 +35,11 @@ function App() {
         <Header setUserInfo={setUserInfo} />
         <MobileMenu setUserInfo={setUserInfo} />
         <HomeSearch />
+
         <Routes>
-          <Route path="/home" element={<>  <Main /> </>} />
-          <Route path="/menu" element={ <MobileMenu /> } />
-          <Route path="/" element={<>  <Main /> </>} />
+          <Route path="/home" element={<Main />} />
+          <Route path="/menu" element={<MobileMenu />} />
+          <Route path="/" element={<Main />} />
           <Route path="/properties/" element={<Main />} />
           <Route path="/search/:query" element={<MainSearch />} />
           <Route path="/create" element={<CreateProperty />} />
@@ -56,9 +53,7 @@ function App() {
         </Routes>
 
         <CitySearch />
-
         <WhyChooseUs />
-
         <Footer />
 
         <Link className="scrollToHome" to="#">

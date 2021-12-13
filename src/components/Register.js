@@ -4,17 +4,16 @@ import { useState, useEffect, useRef } from "react";
 
 function Register() {
   let navigate = useNavigate();
-	const [error, setError] = useState ([]);
+  const [error, setError] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
-
+  let [userError, setUserError] = useState()
   const divRef = useRef(null);
-  
+
   useEffect(() => {
     if (divRef.current) {
-      divRef.current.scrollIntoView(
-        {
-          behavior: 'smooth',
-        })
+      divRef.current.scrollIntoView({
+        behavior: "smooth",
+      });
     }
   });
 
@@ -22,13 +21,38 @@ function Register() {
     e.preventDefault();
 
     let formData = new FormData(e.currentTarget);
+    let inputs = ["username", "email", "password", "confirmPassword", "firstName", "lastName"]
 
+    inputs.forEach(input => {
+      document.querySelector(`.${input}-error`).innerHTML = ``
+    })
     let username = formData.get("username");
     let email = formData.get("email");
     let password = formData.get("password");
     let firstName = formData.get("firstName");
     let lastName = formData.get("lastName");
     let confirmPassword = formData.get("confirmPassword");
+    let err = false
+
+    if (password !== confirmPassword) {
+      setError(["Both passwords desn't match"])
+      err = true
+    }
+
+    inputs.forEach(element => {
+      if (!formData.get(`${element}`)) {
+        console.log(formData.get(`${element}`));
+        document.querySelector(`#${element}`).style.background="pink"
+        document.querySelector(`.${element}-error`).innerHTML = `${element} is required`
+        setTimeout(() => {
+          document.querySelector(`#${element}`).style.background = "white"
+        
+        }, 1000);
+        err = true
+      }
+    });
+    if (!err) {
+      
     
     await fetch("https://apifindhome.seyhanakifov.com/api/Account/Register", {
       method: "POST",
@@ -51,33 +75,24 @@ function Register() {
           console.log(result);
           if (result.errors) {
             setError([result.title]);
-            setIsLoaded(false)
-            
-          }else if(result.isSuccessStatusCode === false){
+            setIsLoaded(false);
+          } else if (result.isSuccessStatusCode === false) {
             setError(result.reasonPhrase);
-            setIsLoaded(false)
-          }else if(result.status === "Error"){
+            setIsLoaded(false);
+          } else if (result.status === "Error") {
             setError([result.message]);
-            setIsLoaded(false)
-          }else{
-            setIsLoaded(true)
-            
+            setIsLoaded(false);
+          } else {
+            setIsLoaded(true);
             navigate({ pathname: "/login" });
-          
           }
-          
         },
-        // Note: it's important to handle errors here
-        // instead of Link catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
         (error) => {
           setIsLoaded(true);
           setError(error);
-         }
+        }
       );
-
-
-    
+    }
   };
   return (
     <section className="our-log-reg bgc-fa" ref={divRef}>
@@ -94,45 +109,52 @@ function Register() {
                   </Link>
                 </p>
               </div>
-              <span>{error.map(x => x)}</span>
+              <span className="error">{error.map((x) => x)}</span>
               <div className="details">
                 <form action="#" onSubmit={onFormSubmit}>
+                <span className="username-error">{userError}</span>
                   <div className="form-group">
                     <input
                       type="text"
                       name="username"
                       className="form-control"
-                      id="exampleInputName2"
+                      id="username"
                       placeholder="Username"
                     />
                   </div>
+                  <span className="email-error">{userError}</span>
                   <div className="form-group">
                     <input
                       type="email"
                       name="email"
                       className="form-control"
-                      id="exampleInputEmail3"
+                      id="email"
                       placeholder="Email Address"
                     />
                   </div>
+                  <p >Password must contain: Capital letter, number and Sybmol</p>
+                  <span className="password-error">{userError}</span>
                   <div className="form-group">
                     <input
                       type="password"
                       name="password"
                       className="form-control"
-                      id="exampleInputPassword4"
-                      placeholder="Password"
+                      id="password"
+                      placeholder="Example1@"
                     />
                   </div>
+                  <span className="confirmPassword-error">{userError}</span>
+                  
                   <div className="form-group">
                     <input
                       type="password"
                       name="confirmPassword"
                       className="form-control"
-                      id="exampleInputPassword5"
+                      id="confirmPassword"
                       placeholder="Confirm Password"
                     />
                   </div>
+                  <span className="firstName-error">{userError}</span>
                   <div className="form-group">
                     <input
                       type="text"
@@ -142,6 +164,7 @@ function Register() {
                       placeholder="First Name"
                     />
                   </div>
+                  <span className="lastName-error">{userError}</span>
                   <div className="form-group">
                     <input
                       type="text"
@@ -151,14 +174,13 @@ function Register() {
                       placeholder="Last Name"
                     />
                   </div>
-                  
+
                   <button
                     type="submit"
                     className="btn btn-log btn-block btn-thm2"
                   >
                     Register
                   </button>
-                  
                 </form>
               </div>
             </div>

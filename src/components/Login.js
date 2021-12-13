@@ -1,25 +1,21 @@
-import { useNavigate } from "react-router-dom";
-import { useState , useRef, useEffect} from "react";
-import { Link } from "react-router-dom";
-import { login } from "../services/authServices" 
-import "../Styles/Login.css"
+import { useNavigate, Link } from "react-router-dom";
+import { useState, useRef, useEffect } from "react";
+import { login } from "../services/authServices";
+import "../Styles/Login.css";
 
-
-
-function Login({setUserInfo}) {
-
-  const [error, setError] = useState ([]);
+function Login({ setUserInfo }) {
+  const [error, setError] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   let navigate = useNavigate();
- 
+  let [usernameError, setUsernameError] = useState()
+  let [passwordError, setPasswordError] = useState()
   const divRef = useRef(null);
-  
+
   useEffect(() => {
     if (divRef.current) {
-      divRef.current.scrollIntoView(
-        {
-          behavior: 'smooth',
-        })
+      divRef.current.scrollIntoView({
+        behavior: "smooth",
+      });
     }
   });
 
@@ -29,43 +25,66 @@ function Login({setUserInfo}) {
     let formData = new FormData(e.currentTarget);
     let username = formData.get("username");
     let password = formData.get("password");
-    
+    let usernameInput = document.querySelector("#username");
+    let passwordInput = document.querySelector("#password");
+    setUsernameError("")
+    setPasswordError("")
 
-    
-     await login(username, password)
-      .then(
-        (result) => {
+    if (!username) {
+
+      usernameInput.style.background = "pink"
+      setUsernameError("Username is required")
+      setTimeout(() => {
+        usernameInput.style.background = "white"
+      
+      }, 1000);
+      
+    }
+    if (!password) {
+      
+      passwordInput.style.background = "pink"
+      setPasswordError("Password is required")
+      setTimeout(() => {
+        passwordInput.style.background = "white"
+      
+      }, 1000);
+    }
+    else if (password && username){
+      
+    await login(username, password).then(
+      (result) => {
+        setIsLoaded(true);
+
+        if (result.errors) {
+          setError([
+            result.errors.Password ? result.errors.Password[0] : "",
+            result.errors.Username ? " and " + result.errors.Username[0] : "",
+          ]);
+          setIsLoaded(false);
+        } else if (result.isSuccessStatusCode === false) {
+          setError(result.reasonPhrase);
+          setIsLoaded(false);
+        } else {
           setIsLoaded(true);
-          
-          if (result.errors) {
-            setError([result.errors.Password? result.errors.Password[0]: "", result.errors.Username ? " and " + result.errors.Username[0] : ""]);
-            setIsLoaded(false)
-            
-          }else if(result.isSuccessStatusCode === false){
-            setError(result.reasonPhrase);
-            setIsLoaded(false)
-          }
-          else{
-            setIsLoaded(true)
-            setUserInfo({ isAuthenticated : true , token : result.token, email :  result.email})
-            navigate({ pathname: "/home" });
-          
-          }
-          
-        },
-        // Note: it's important to handle errors here
-        // instead of Link catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-         }
-      );
-    };
-    
-    return (
-    <section className="our-log bgc-fa"  ref={divRef}>
-      <div className="container" >
+          setUserInfo({
+            isAuthenticated: true,
+            token: result.token,
+            email: result.email,
+          });
+          navigate({ pathname: "/home" });
+        }
+      },
+      (error) => {
+        setIsLoaded(true);
+        setError(error);
+      }
+    );
+    }
+  };
+
+  return (
+    <section className="our-log bgc-fa" ref={divRef}>
+      <div className="container">
         <div className="row">
           <div className="col-sm-12 col-lg-6 offset-lg-3">
             <div className="login_form inner_page">
@@ -79,22 +98,24 @@ function Login({setUserInfo}) {
                     </Link>
                   </p>
                 </div>
-                <span>{error}</span>
+                <span className="username-error">{error}</span>
+                <span className="username-error">{usernameError}</span>
                 <div className="form-group">
                   <input
                     type="text"
                     className="form-control"
                     name="username"
-                    id="exampleInputEmail3"
+                    id="username"
                     placeholder="Email Address"
                   />
                 </div>
+                <span className="password-error">{passwordError}</span>
                 <div className="form-group">
                   <input
                     type="password"
                     className="form-control"
                     name="password"
-                    id="exampleInputPassword4"
+                    id="password"
                     placeholder="Password"
                   />
                 </div>
@@ -110,7 +131,6 @@ function Login({setUserInfo}) {
                   >
                     Remember me
                   </label>
-                  
                 </div>
                 <button
                   type="submit"
@@ -118,7 +138,6 @@ function Login({setUserInfo}) {
                 >
                   Login
                 </button>
-                
               </form>
             </div>
           </div>

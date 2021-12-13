@@ -358,7 +358,8 @@
     animation-duration: .5s;
     -webkit-animation-delay: 500ms;
     animation-delay: 500ms;
-    background-color: rgba(286,269,313,0.3);
+    border-bottom-left-radius: 9px;
+    border-bottom-right-radius: 9px;
     padding-bottom: 10px;
   }
   header.header-nav.menu_style_home_one  a.navbar_brand{
@@ -650,8 +651,8 @@
   header.header-nav.menu_style_home_eight .ace-responsive-menu > li > a{
     font-family: 'Nunito', sans-serif;
     padding: 0px 2px 3px 10px;
-    color: black;
-    background: white;
+    color: white;
+   
     border-radius: 9pc;
     text-align: center;
   }
