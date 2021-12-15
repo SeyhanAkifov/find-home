@@ -49,7 +49,7 @@ function CreateProperty() {
 
     let formData = new FormData(e.currentTarget);
     let err = false
-    console.log("form");
+    
     inputs.forEach((element) => {
       if (!formData.get(`${element}`)) {
         
@@ -741,7 +741,7 @@ function CreateProperty() {
             </div>
             <div className="col-xl-12">
               <div className="my_profile_setting_input">
-                <button className="btn btn1 float-left">Clear</button>
+                
                 <button className="btn btn2 float-right">Create</button>
               </div>
               <span className="error">{error}</span>

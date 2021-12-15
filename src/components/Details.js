@@ -122,6 +122,7 @@ function Details() {
 
   feature = property.feature;
 
+
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {

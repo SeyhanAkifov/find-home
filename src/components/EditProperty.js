@@ -8,6 +8,25 @@ function EditProperty() {
   let navigate = useNavigate();
   let counter = 1;
   const { token, email } = useContext(AuthContext);
+  let [userError, setUserError] = useState();
+  let inputs = [
+    "title",
+    "image",
+    "description",
+    "type",
+    "status",
+    "price",
+    "area",
+    "rooms",
+    "baths",
+    "floor",
+    "adFor",
+    "year",
+    "address",
+    "city",
+    "country",
+    "zip",
+  ];
 
   const divRef = useRef(null);
   useEffect(() => {
@@ -61,7 +80,26 @@ function EditProperty() {
     e.preventDefault();
 
     let formData = new FormData(e.currentTarget);
-    console.log(formData.get("title"));
+    
+    let err = false
+    
+    inputs.forEach((element) => {
+      if (!formData.get(`${element}`)) {
+        
+        document.querySelector(`#${element}`).style.background = "pink";
+        document.querySelector(
+          `.${element}-error`
+        ).style.color="red"
+        document.querySelector(
+          `.${element}-error`
+        ).innerHTML = `${element} is required`;
+        setTimeout(() => {
+          document.querySelector(`#${element}`).style.background = "white";
+        }, 1000);
+        err = true
+      }
+    });
+    if (!err) {
 
     let title = formData.get("title");
     let description = formData.get("description");
@@ -150,6 +188,7 @@ function EditProperty() {
           navigate({ pathname: `/details/${id.id}` });
         }
       });
+    }
   };
 
   if (error) {
@@ -171,6 +210,9 @@ function EditProperty() {
               <div className="col-lg-12">
                 <h4 className="mb30">Edit Property</h4>
                 <span className="warning">All fields is required</span>
+                <div>
+                <span className="title-error">{userError}</span>
+              </div>
                 <div className="my_profile_setting_input form-group">
                   <label htmlFor="propertyTitle">Property Title</label>
                   <input
@@ -178,9 +220,13 @@ function EditProperty() {
                     className="form-control"
                     id="propertyTitle"
                     name="title"
+                    id="title"
                     defaultValue={property.title}
                   />
                 </div>
+                <div>
+                <span className="image-error">{userError}</span>
+              </div>
                 <div className="my_profile_setting_input form-group">
                   <label htmlFor="propertyImage">Property ImageUrl</label>
                   <input
@@ -188,11 +234,14 @@ function EditProperty() {
                     className="form-control"
                     id="propertyImage"
                     name="image"
+                    id="image"
                     defaultValue={property.imageUrl}
                   />
                 </div>
               </div>
-
+              <div>
+                <span className="description-error">{userError}</span>
+              </div>
               <div className="col-lg-12">
                 <div className="my_profile_setting_textarea">
                   <label htmlFor="propertyDescription">Description</label>
@@ -201,18 +250,24 @@ function EditProperty() {
                     id="propertyDescription"
                     rows="7"
                     name="description"
+                    id="description"
                     defaultValue={property.description}
                   ></textarea>
                 </div>
               </div>
+             
               <div className="col-lg-6 col-xl-6">
                 <div className="my_profile_setting_input ui_kit_select_search form-group">
+                <div>
+                <span className="type-error">{userError}</span>
+              </div>
                   <label>Type</label>
                   <select
                     className="custompicker"
                     data-live-search="true"
                     data-width="100%"
                     name="type"
+                    id="type"
                     defaultValue={property.type}
                   >
                     <option data-tokens="type1">House</option>
@@ -227,12 +282,16 @@ function EditProperty() {
               </div>
               <div className="col-lg-6 col-xl-6">
                 <div className="my_profile_setting_input ui_kit_select_search form-group">
+                <div>
+                <span className="status-error">{userError}</span>
+                </div>
                   <label>Status</label>
                   <select
                     className="custompicker"
                     data-live-search="true"
                     data-width="100%"
                     name="status"
+                    id="status"
                     defaultValue={property.condition}
                   >
                     <option data-tokens="Status1">New Build</option>
@@ -244,36 +303,48 @@ function EditProperty() {
               </div>
               <div className="col-lg-4 col-xl-4">
                 <div className="my_profile_setting_input form-group">
+                <div>
+                <span className="price-error">{userError}</span>
+                </div>
                   <label htmlFor="formGroupExamplePrice">Price</label>
                   <input
                     type="text"
                     className="form-control"
                     id="formGroupExamplePrice"
                     name="price"
+                    id="price"
                     defaultValue={property.price}
                   />
                 </div>
               </div>
               <div className="col-lg-4 col-xl-4">
                 <div className="my_profile_setting_input form-group">
+                <div>
+                <span className="area-error">{userError}</span>
+                </div>
                   <label htmlFor="formGroupExampleArea">Area</label>
                   <input
                     type="text"
                     className="form-control"
                     id="formGroupExampleArea"
                     name="area"
+                    id="area"
                     defaultValue={property.area}
                   />
                 </div>
               </div>
               <div className="col-lg-4 col-xl-4">
                 <div className="my_profile_setting_input ui_kit_select_search form-group">
+                <div>
+                <span className="rooms-error">{userError}</span>
+                </div>
                   <label>Rooms</label>
                   <select
                     className="custompicker"
                     data-live-search="true"
                     data-width="100%"
                     name="rooms"
+                    id="rooms"
                     defaultValue={property.beds}
                   >
                     <option data-tokens="Status1">1</option>
@@ -287,12 +358,16 @@ function EditProperty() {
               </div>
               <div className="col-lg-4 col-xl-4">
                 <div className="my_profile_setting_input ui_kit_select_search form-group">
+                <div>
+                <span className="baths-error">{userError}</span>
+                </div>
                   <label>Baths</label>
                   <select
                     className="custompicker"
                     data-live-search="true"
                     data-width="100%"
                     name="baths"
+                    id="baths"
                     defaultValue={property.baths}
                   >
                     <option data-tokens="Status1">1</option>
@@ -306,12 +381,16 @@ function EditProperty() {
               </div>
               <div className="col-lg-4 col-xl-4">
                 <div className="my_profile_setting_input ui_kit_select_search form-group">
+                <div>
+                <span className="floor-error">{userError}</span>
+                </div>
                   <label>Floor</label>
                   <select
                     className="custompicker"
                     data-live-search="true"
                     data-width="100%"
                     name="floor"
+                    id="floor"
                     defaultValue={property.floor}
                   >
                     <option data-tokens="Status1">1</option>
@@ -325,12 +404,16 @@ function EditProperty() {
               </div>
               <div className="col-lg-4 col-xl-4">
                 <div className="my_profile_setting_input form-group">
+                <div>
+                <span className="adFor-error">{userError}</span>
+                </div>
                   <label>Ad For</label>
                   <select
                     className="custompicker"
                     data-live-search="true"
                     data-width="100%"
                     name="adFor"
+                    id="adFor"
                   >
                     <option data-tokens="Buy">Buy</option>
                     <option data-tokens="Rent">Rent</option>
@@ -339,6 +422,9 @@ function EditProperty() {
               </div>
               <div className="col-lg-4 col-xl-4">
                 <div className="my_profile_setting_input form-group">
+                <div>
+                <span className="year-error">{userError}</span>
+                </div>
                   <label htmlFor="formGroupExampleArea">
                     Year of construction
                   </label>
@@ -347,6 +433,7 @@ function EditProperty() {
                     className="form-control"
                     id="formGroupExampleArea"
                     name="year"
+                    id="year"
                     defaultValue={property.yearOfConstruction}
                   />
                 </div>
@@ -354,12 +441,16 @@ function EditProperty() {
               <div className="col-lg-12">
                 <h4 className="mb30">Location</h4>
                 <div className="my_profile_setting_input form-group">
+                <div>
+                <span className="address-error">{userError}</span>
+                </div>
                   <label htmlFor="propertyAddress">Address</label>
                   <input
                     type="text"
                     className="form-control"
                     id="propertyAddress"
                     name="address"
+                    id="address"
                     defaultValue={
                       property.streetName + " " + property.streetNumber
                     }
@@ -369,12 +460,16 @@ function EditProperty() {
 
               <div className="col-lg-6 col-xl-6">
                 <div className="my_profile_setting_input form-group">
+                <div>
+                <span className="city-error">{userError}</span>
+                </div>
                   <label htmlFor="propertyCity">City</label>
                   <input
                     type="text"
                     className="form-control"
                     id="propertyCity"
                     name="city"
+                    id="city"
                     defaultValue={property.city}
                   />
                 </div>
@@ -382,18 +477,25 @@ function EditProperty() {
 
               <div className="col-lg-4 col-xl-4">
                 <div className="my_profile_setting_input form-group">
+                <div>
+                <span className="zip-error">{userError}</span>
+                </div>
                   <label htmlFor="zipCode">Zip</label>
                   <input
                     type="text"
                     className="form-control"
                     id="zipCode"
                     name="zip"
+                    id="zip"
                     defaultValue={property.postCode}
                   />
                 </div>
               </div>
               <div className="col-lg-4 col-xl-4">
                 <div className="my_profile_setting_input ui_kit_select_search form-group">
+                <div>
+                <span className="country-error">{userError}</span>
+                </div>
                   <label>Country</label>
                   <select
                     className="custompicker"
@@ -401,6 +503,7 @@ function EditProperty() {
                     data-width="100%"
                     name="country"
                     defaultValue={property.country}
+                    id="country"
                   >
                     <option data-tokens="Turkey">Turkey</option>
                     <option data-tokens="Iran">Iran</option>
@@ -498,7 +601,7 @@ function EditProperty() {
 
               <div className="col-xl-12">
                 <div className="my_profile_setting_input">
-                  <button className="btn btn1 float-left">Clear</button>
+                  
                   <button className="btn btn2 float-right">Update</button>
                 </div>
               </div>
