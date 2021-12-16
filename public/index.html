@@ -16,6 +16,7 @@
   </head>
 
   <body>
+    <div className="se-pre-con"></div>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--
@@ -57,4 +58,8 @@
     <script type="text/javascript" src="/js/timepicker.js"></script>
     <script type="text/javascript" src="/js/script.js"></script>
   </body>
+  <script>$(window).load(function () {
+    // Animate loader off screen
+    $(".se-pre-con").fadeOut("slow");;
+});</script>
 </html>

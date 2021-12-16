@@ -29,6 +29,7 @@ function App() {
 
   return (
     <AuthContext.Provider value={userInfo}>
+       
       <div className="wrapper">
         <div className="preloader"></div>
 
@@ -60,6 +61,7 @@ function App() {
           <i className="flaticon-arrows"></i>
         </Link>
       </div>
+     
     </AuthContext.Provider>
   );
 }
