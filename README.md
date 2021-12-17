@@ -2,6 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Educational project / react-based application as the idea is a real estate listing site.
+For server is used ASP.Net Core Api.
+
 ## Available Scripts
 
 In the project directory, you can run:
