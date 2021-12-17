@@ -221,6 +221,7 @@ function Register() {
                   </div>
 
                   <button
+                  id="reg"
                     type="submit"
                     className="btn btn-log btn-block btn-thm2"
                   >

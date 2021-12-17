@@ -89,7 +89,7 @@ function Main() {
               {currentPage === 0 ? (
                 <>
                   {page * pageOnSite <= items.length ? (
-                    <button className="btn btn2 float-right" onClick={OnNext}>
+                    <button id="next" className="btn btn2 float-right" onClick={OnNext}>
                       Next
                     </button>
                   ) : (
@@ -98,7 +98,7 @@ function Main() {
                 </>
               ) : (
                 <>
-                  <button className="btn btn1 float-left" onClick={OnPrevious}>
+                  <button id="prev" className="btn btn1 float-left" onClick={OnPrevious}>
                     Previous
                   </button>
 

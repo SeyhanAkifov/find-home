@@ -145,6 +145,7 @@ function Login({ setUserInfo }) {
                   </label>
                 </div>
                 <button
+                id="log"
                   type="submit"
                   className="btn btn-log btn-block btn-thm2"
                 >
