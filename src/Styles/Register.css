@@ -1,0 +1,10 @@
+.username-error, .password-error, .error, .firstName-error, .lastName-error, .email-error, .confirmPassword-error{
+    display: none;
+    border : 1px solid red;
+    border-radius: 9px;
+    margin-bottom: 5px;
+    background: white;
+    text-align: center;
+    color : red
+    
+  }

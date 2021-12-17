@@ -43,7 +43,7 @@ function Details() {
           // data.likes.includes(username) ? isLiked = true : false;
           setProperty(data);
           setIsLoaded(true);
-          console.log(data);
+         
           if (data.status === "Not Found") {
             navigate("/notFound", { search: data });
           }
@@ -51,15 +51,14 @@ function Details() {
         (error) => {
           setIsLoaded(true);
           setError(error);
-          console.log(error);
+         
         }
       )
       .catch((error) => {
-        console.log("error");
-        console.log(error);
+       
         navigate("/notFound", { message: "Item not found in database" });
       });
-  }, [id.id, token, isLiked, navigate]);
+  }, [id.id, token, isLiked, navigate, username]);
 
   const OnDelete = async (e) => {
     e.preventDefault();
@@ -85,6 +84,18 @@ function Details() {
   const OnLike = async (e) => {
     e.preventDefault();
 
+    if(username === property.creator){
+      navigate({
+        pathname: '/notFound'
+      })
+    }
+
+    if(property.likes.includes(username)){
+      navigate({
+        pathname: '/notFound'
+      })
+    }
+
     await fetch(`https://apifindhome.seyhanakifov.com/api/Home/UserLike`, {
       method: "POST",
       headers: {
@@ -103,6 +114,18 @@ function Details() {
 
   const OnUnlike = async (e) => {
     e.preventDefault();
+
+    if(username === property.creator){
+      navigate({
+        pathname: '/notFound'
+      })
+    }
+
+    if(!property.likes.includes(username)){
+      navigate({
+        pathname: '/notFound'
+      })
+    }
 
     await fetch(`https://apifindhome.seyhanakifov.com/api/Home/UserUnlike`, {
       method: "POST",

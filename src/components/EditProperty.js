@@ -43,6 +43,12 @@ function EditProperty() {
     }
   }, [token, navigate]);
 
+  if(email !== property.creator){
+    navigate({
+      pathname: '/notFound'
+    })
+  }
+
   let id = useParams();
   const [property, setProperty] = useState([]);
   const [error, setError] = useState(null);
@@ -79,115 +85,112 @@ function EditProperty() {
   const onFormSubmit = async (e) => {
     e.preventDefault();
 
+    
     let formData = new FormData(e.currentTarget);
-    
-    let err = false
-    
+
+    let err = false;
+
     inputs.forEach((element) => {
       if (!formData.get(`${element}`)) {
-        
         document.querySelector(`#${element}`).style.background = "pink";
-        document.querySelector(
-          `.${element}-error`
-        ).style.color="red"
+        document.querySelector(`.${element}-error`).style.color = "red";
         document.querySelector(
           `.${element}-error`
         ).innerHTML = `${element} is required`;
         setTimeout(() => {
           document.querySelector(`#${element}`).style.background = "white";
         }, 1000);
-        err = true
+        err = true;
       }
     });
     if (!err) {
+      let title = formData.get("title");
+      let description = formData.get("description");
+      let type = formData.get("type");
+      let status = formData.get("status");
+      let price = formData.get("price");
+      let area = formData.get("area");
+      let rooms = formData.get("rooms");
+      let baths = formData.get("baths");
+      let floor = formData.get("floor");
+      let adFor = formData.get("adFor");
+      let year = formData.get("year");
+      let address = formData.get("address");
+      let city = formData.get("city");
+      let country = formData.get("country");
+      let zip = formData.get("zip");
+      let image = formData.get("image");
 
-    let title = formData.get("title");
-    let description = formData.get("description");
-    let type = formData.get("type");
-    let status = formData.get("status");
-    let price = formData.get("price");
-    let area = formData.get("area");
-    let rooms = formData.get("rooms");
-    let baths = formData.get("baths");
-    let floor = formData.get("floor");
-    let adFor = formData.get("adFor");
-    let year = formData.get("year");
-    let address = formData.get("address");
-    let city = formData.get("city");
-    let country = formData.get("country");
-    let zip = formData.get("zip");
-    let image = formData.get("image");
+      let airConditioning = formData.get("airConditioning") ? true : false;
+      let lawn = formData.get("lawn") ? true : false;
+      let swimmingPool = formData.get("swimmingPool") ? true : false;
+      let barbeque = formData.get("barbeque") ? true : false;
+      let kitchen = formData.get("kitchen") ? true : false;
+      let tvCable = formData.get("tvCable") ? true : false;
+      let dryer = formData.get("dryer") ? true : false;
+      let outdoorShower = formData.get("outdoorShower") ? true : false;
+      let washer = formData.get("washer") ? true : false;
+      let gym = formData.get("gym") ? true : false;
+      let refrigerator = formData.get("refrigerator") ? true : false;
+      let wifi = formData.get("wifi") ? true : false;
+      let laundry = formData.get("laundry") ? true : false;
+      let sauna = formData.get("sauna") ? true : false;
+      let windowCoverings = formData.get("windowCoverings") ? true : false;
+      let garden = formData.get("garden") ? true : false;
 
-    let airConditioning = formData.get("airConditioning") ? true : false;
-    let lawn = formData.get("lawn") ? true : false;
-    let swimmingPool = formData.get("swimmingPool") ? true : false;
-    let barbeque = formData.get("barbeque") ? true : false;
-    let kitchen = formData.get("kitchen") ? true : false;
-    let tvCable = formData.get("tvCable") ? true : false;
-    let dryer = formData.get("dryer") ? true : false;
-    let outdoorShower = formData.get("outdoorShower") ? true : false;
-    let washer = formData.get("washer") ? true : false;
-    let gym = formData.get("gym") ? true : false;
-    let refrigerator = formData.get("refrigerator") ? true : false;
-    let wifi = formData.get("wifi") ? true : false;
-    let laundry = formData.get("laundry") ? true : false;
-    let sauna = formData.get("sauna") ? true : false;
-    let windowCoverings = formData.get("windowCoverings") ? true : false;
-    let garden = formData.get("garden") ? true : false;
-
-    fetch("https://apifindhome.seyhanakifov.com/api/Home/Edit", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: JSON.stringify({
-        id: id.id,
-        creator: email,
-        typeName: type,
-        adFor: adFor,
-        title: title,
-        description: description,
-        beds: rooms,
-        floor: floor,
-        baths: baths,
-        condition: status,
-        imageUrl: image,
-        yearOfConstruction: year,
-        area: area,
-        cityName: city,
-        countryName: country,
-        address: address,
-        postCode: zip,
-        price: price,
-        garden: garden,
-        feature: {
-          id: 0,
-          airConditioning: airConditioning,
-          barbeque: barbeque,
-          dryer: dryer,
-          gym: gym,
-          laundry: laundry,
-          lawn: lawn,
-          kitchen: kitchen,
-          outdoorShower: outdoorShower,
-          refrigerator: refrigerator,
-          sauna: sauna,
-          swimmingPool: swimmingPool,
-          tvCable: tvCable,
-          washer: washer,
-          wifi: wifi,
-          windowCoverings: windowCoverings,
+      fetch("https://apifindhome.seyhanakifov.com/api/Home/Edit", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
         },
-      }),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        if (result.status === "Success") {
-          navigate({ pathname: `/details/${id.id}` });
-        }
-      });
+        body: JSON.stringify({
+          id: id.id,
+          creator: email,
+          typeName: type,
+          adFor: adFor,
+          title: title,
+          description: description,
+          beds: rooms,
+          floor: floor,
+          baths: baths,
+          condition: status,
+          imageUrl: image,
+          yearOfConstruction: year,
+          area: area,
+          cityName: city,
+          countryName: country,
+          address: address,
+          postCode: zip,
+          price: price,
+          garden: garden,
+          feature: {
+            id: 0,
+            airConditioning: airConditioning,
+            barbeque: barbeque,
+            dryer: dryer,
+            gym: gym,
+            laundry: laundry,
+            lawn: lawn,
+            kitchen: kitchen,
+            outdoorShower: outdoorShower,
+            refrigerator: refrigerator,
+            sauna: sauna,
+            swimmingPool: swimmingPool,
+            tvCable: tvCable,
+            washer: washer,
+            wifi: wifi,
+            windowCoverings: windowCoverings,
+          },
+        }),
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          if (result.status === "Success") {
+            navigate({ pathname: `/details/${id.id}` });
+          }
+        });
     }
   };
 
@@ -211,28 +214,26 @@ function EditProperty() {
                 <h4 className="mb30">Edit Property</h4>
                 <span className="warning">All fields is required</span>
                 <div>
-                <span className="title-error">{userError}</span>
-              </div>
+                  <span className="title-error">{userError}</span>
+                </div>
                 <div className="my_profile_setting_input form-group">
                   <label htmlFor="propertyTitle">Property Title</label>
                   <input
                     type="text"
                     className="form-control"
-                    id="propertyTitle"
                     name="title"
                     id="title"
                     defaultValue={property.title}
                   />
                 </div>
                 <div>
-                <span className="image-error">{userError}</span>
-              </div>
+                  <span className="image-error">{userError}</span>
+                </div>
                 <div className="my_profile_setting_input form-group">
                   <label htmlFor="propertyImage">Property ImageUrl</label>
                   <input
                     type="text"
                     className="form-control"
-                    id="propertyImage"
                     name="image"
                     id="image"
                     defaultValue={property.imageUrl}
@@ -247,7 +248,6 @@ function EditProperty() {
                   <label htmlFor="propertyDescription">Description</label>
                   <textarea
                     className="form-control"
-                    id="propertyDescription"
                     rows="7"
                     name="description"
                     id="description"
@@ -255,12 +255,12 @@ function EditProperty() {
                   ></textarea>
                 </div>
               </div>
-             
+
               <div className="col-lg-6 col-xl-6">
                 <div className="my_profile_setting_input ui_kit_select_search form-group">
-                <div>
-                <span className="type-error">{userError}</span>
-              </div>
+                  <div>
+                    <span className="type-error">{userError}</span>
+                  </div>
                   <label>Type</label>
                   <select
                     className="custompicker"
@@ -282,9 +282,9 @@ function EditProperty() {
               </div>
               <div className="col-lg-6 col-xl-6">
                 <div className="my_profile_setting_input ui_kit_select_search form-group">
-                <div>
-                <span className="status-error">{userError}</span>
-                </div>
+                  <div>
+                    <span className="status-error">{userError}</span>
+                  </div>
                   <label>Status</label>
                   <select
                     className="custompicker"
@@ -303,14 +303,13 @@ function EditProperty() {
               </div>
               <div className="col-lg-4 col-xl-4">
                 <div className="my_profile_setting_input form-group">
-                <div>
-                <span className="price-error">{userError}</span>
-                </div>
+                  <div>
+                    <span className="price-error">{userError}</span>
+                  </div>
                   <label htmlFor="formGroupExamplePrice">Price</label>
                   <input
                     type="text"
                     className="form-control"
-                    id="formGroupExamplePrice"
                     name="price"
                     id="price"
                     defaultValue={property.price}
@@ -319,14 +318,13 @@ function EditProperty() {
               </div>
               <div className="col-lg-4 col-xl-4">
                 <div className="my_profile_setting_input form-group">
-                <div>
-                <span className="area-error">{userError}</span>
-                </div>
+                  <div>
+                    <span className="area-error">{userError}</span>
+                  </div>
                   <label htmlFor="formGroupExampleArea">Area</label>
                   <input
                     type="text"
                     className="form-control"
-                    id="formGroupExampleArea"
                     name="area"
                     id="area"
                     defaultValue={property.area}
@@ -335,9 +333,9 @@ function EditProperty() {
               </div>
               <div className="col-lg-4 col-xl-4">
                 <div className="my_profile_setting_input ui_kit_select_search form-group">
-                <div>
-                <span className="rooms-error">{userError}</span>
-                </div>
+                  <div>
+                    <span className="rooms-error">{userError}</span>
+                  </div>
                   <label>Rooms</label>
                   <select
                     className="custompicker"
@@ -358,9 +356,9 @@ function EditProperty() {
               </div>
               <div className="col-lg-4 col-xl-4">
                 <div className="my_profile_setting_input ui_kit_select_search form-group">
-                <div>
-                <span className="baths-error">{userError}</span>
-                </div>
+                  <div>
+                    <span className="baths-error">{userError}</span>
+                  </div>
                   <label>Baths</label>
                   <select
                     className="custompicker"
@@ -381,9 +379,9 @@ function EditProperty() {
               </div>
               <div className="col-lg-4 col-xl-4">
                 <div className="my_profile_setting_input ui_kit_select_search form-group">
-                <div>
-                <span className="floor-error">{userError}</span>
-                </div>
+                  <div>
+                    <span className="floor-error">{userError}</span>
+                  </div>
                   <label>Floor</label>
                   <select
                     className="custompicker"
@@ -404,9 +402,9 @@ function EditProperty() {
               </div>
               <div className="col-lg-4 col-xl-4">
                 <div className="my_profile_setting_input form-group">
-                <div>
-                <span className="adFor-error">{userError}</span>
-                </div>
+                  <div>
+                    <span className="adFor-error">{userError}</span>
+                  </div>
                   <label>Ad For</label>
                   <select
                     className="custompicker"
@@ -422,16 +420,15 @@ function EditProperty() {
               </div>
               <div className="col-lg-4 col-xl-4">
                 <div className="my_profile_setting_input form-group">
-                <div>
-                <span className="year-error">{userError}</span>
-                </div>
+                  <div>
+                    <span className="year-error">{userError}</span>
+                  </div>
                   <label htmlFor="formGroupExampleArea">
                     Year of construction
                   </label>
                   <input
                     type="text"
                     className="form-control"
-                    id="formGroupExampleArea"
                     name="year"
                     id="year"
                     defaultValue={property.yearOfConstruction}
@@ -441,14 +438,13 @@ function EditProperty() {
               <div className="col-lg-12">
                 <h4 className="mb30">Location</h4>
                 <div className="my_profile_setting_input form-group">
-                <div>
-                <span className="address-error">{userError}</span>
-                </div>
+                  <div>
+                    <span className="address-error">{userError}</span>
+                  </div>
                   <label htmlFor="propertyAddress">Address</label>
                   <input
                     type="text"
                     className="form-control"
-                    id="propertyAddress"
                     name="address"
                     id="address"
                     defaultValue={
@@ -460,14 +456,13 @@ function EditProperty() {
 
               <div className="col-lg-6 col-xl-6">
                 <div className="my_profile_setting_input form-group">
-                <div>
-                <span className="city-error">{userError}</span>
-                </div>
+                  <div>
+                    <span className="city-error">{userError}</span>
+                  </div>
                   <label htmlFor="propertyCity">City</label>
                   <input
                     type="text"
                     className="form-control"
-                    id="propertyCity"
                     name="city"
                     id="city"
                     defaultValue={property.city}
@@ -477,14 +472,13 @@ function EditProperty() {
 
               <div className="col-lg-4 col-xl-4">
                 <div className="my_profile_setting_input form-group">
-                <div>
-                <span className="zip-error">{userError}</span>
-                </div>
+                  <div>
+                    <span className="zip-error">{userError}</span>
+                  </div>
                   <label htmlFor="zipCode">Zip</label>
                   <input
                     type="text"
                     className="form-control"
-                    id="zipCode"
                     name="zip"
                     id="zip"
                     defaultValue={property.postCode}
@@ -493,9 +487,9 @@ function EditProperty() {
               </div>
               <div className="col-lg-4 col-xl-4">
                 <div className="my_profile_setting_input ui_kit_select_search form-group">
-                <div>
-                <span className="country-error">{userError}</span>
-                </div>
+                  <div>
+                    <span className="country-error">{userError}</span>
+                  </div>
                   <label>Country</label>
                   <select
                     className="custompicker"
@@ -601,7 +595,6 @@ function EditProperty() {
 
               <div className="col-xl-12">
                 <div className="my_profile_setting_input">
-                  
                   <button className="btn btn2 float-right">Update</button>
                 </div>
               </div>

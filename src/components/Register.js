@@ -2,11 +2,13 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 
+import "../Styles/Register.css";
+
 function Register() {
   let navigate = useNavigate();
   const [error, setError] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
-  let [userError, setUserError] = useState()
+  let [userError, setUserError] = useState();
   const divRef = useRef(null);
 
   useEffect(() => {
@@ -19,81 +21,120 @@ function Register() {
 
   const onFormSubmit = async (e) => {
     e.preventDefault();
-
+    setError([]);
     let formData = new FormData(e.currentTarget);
-    let inputs = ["username", "email", "password", "confirmPassword", "firstName", "lastName"]
+    let inputs = [
+      "username",
+      "email",
+      "password",
+      "confirmPassword",
+      "firstName",
+      "lastName",
+    ];
+    let errorElement = document.querySelector(`.error`);
+    errorElement.style.display = "none";
 
-    inputs.forEach(input => {
-      document.querySelector(`.${input}-error`).innerHTML = ``
-    })
+    inputs.forEach((input) => {
+      document.querySelector(`.${input}-error`).innerHTML = ``;
+    });
     let username = formData.get("username");
     let email = formData.get("email");
     let password = formData.get("password");
     let firstName = formData.get("firstName");
     let lastName = formData.get("lastName");
     let confirmPassword = formData.get("confirmPassword");
-    let err = false
+    let err = false;
+    let serverError = false;
 
     if (password !== confirmPassword) {
-      setError(["Both passwords desn't match"])
-      err = true
+      setError(["Both passwords doesn't match"]);
+      errorElement.style.display = "block";
+      err = true;
+      serverError = true;
+    } else if (password === confirmPassword) {
+      errorElement.style.display = "none";
+      err = false;
+      serverError = false;
     }
 
-    inputs.forEach(element => {
+    inputs.forEach((element) => {
       if (!formData.get(`${element}`)) {
-        console.log(formData.get(`${element}`));
-        document.querySelector(`#${element}`).style.background="pink"
-        document.querySelector(`.${element}-error`).innerHTML = `${element} is required`
-        setTimeout(() => {
-          document.querySelector(`#${element}`).style.background = "white"
+        document.querySelector(`#${element}`).style.background = "pink";
+        document.querySelector(
+          `.${element}-error`
+        ).innerHTML = `${element} is required`;
         
+        document.querySelector(`.${element}-error`).style.display = "block";
+        setTimeout(() => {
+          document.querySelector(`#${element}`).style.background = "white";
         }, 1000);
+
         err = true
+      } else {
+        document.querySelector(`.${element}-error`).style.display = "none";
       }
     });
     if (!err) {
-      
-    
-    await fetch("https://apifindhome.seyhanakifov.com/api/Account/Register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: JSON.stringify({
-        username,
-        email,
-        password,
-        firstName,
-        lastName,
-      }),
-    })
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          console.log(result);
-          if (result.errors) {
-            setError([result.title]);
-            setIsLoaded(false);
-          } else if (result.isSuccessStatusCode === false) {
-            setError(result.reasonPhrase);
-            setIsLoaded(false);
-          } else if (result.status === "Error") {
-            setError([result.message]);
-            setIsLoaded(false);
-          } else {
-            setIsLoaded(true);
-            navigate({ pathname: "/login" });
-          }
+      document.querySelector(`.error`).style.display = "none";
+      await fetch("https://apifindhome.seyhanakifov.com/api/Account/Register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
         },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      );
+        body: JSON.stringify({
+          username,
+          email,
+          password,
+          firstName,
+          lastName,
+        }),
+      })
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            setIsLoaded(true);
+
+            if (result.errors) {
+              err = true;
+              serverError = true;
+              setError([result.title]);
+              setIsLoaded(false);
+            } else if (result.isSuccessStatusCode === false) {
+              err = true;
+              serverError = true;
+              setError(result.reasonPhrase);
+              setIsLoaded(false);
+            } else if (result.status === "Error") {
+              err = true;
+              serverError = true;
+              setError([result.message]);
+              setIsLoaded(false);
+            } else {
+              errorElement.style.display = "none";
+              setError([]);
+              setIsLoaded(true);
+              navigate({ pathname: "/login" });
+              err = false;
+              serverError = false;
+            }
+          },
+          (error) => {
+            err = true;
+            serverError = true;
+            setIsLoaded(true);
+            setError(error);
+          }
+        );
+    }
+
+    if (serverError) {
+      errorElement.style.display = "block";
+    } else {
+      errorElement.style.display = "none";
     }
   };
+
   return (
     <section className="our-log-reg bgc-fa" ref={divRef}>
       <div className="container">
@@ -109,10 +150,12 @@ function Register() {
                   </Link>
                 </p>
               </div>
-              <span className="error">{error.map((x) => x)}</span>
+
               <div className="details">
                 <form action="#" onSubmit={onFormSubmit}>
-                <span className="username-error">{userError}</span>
+                  <span className="error">{error.map((x) => x)}</span>
+
+                  <span className="username-error">{userError}</span>
                   <div className="form-group">
                     <input
                       type="text"
@@ -132,7 +175,9 @@ function Register() {
                       placeholder="Email Address"
                     />
                   </div>
-                  <p >Password must contain: Capital letter, number and Sybmol</p>
+                  <p>
+                    Password must contain: Capital letter, number and Sybmol
+                  </p>
                   <span className="password-error">{userError}</span>
                   <div className="form-group">
                     <input
@@ -144,7 +189,7 @@ function Register() {
                     />
                   </div>
                   <span className="confirmPassword-error">{userError}</span>
-                  
+
                   <div className="form-group">
                     <input
                       type="password"

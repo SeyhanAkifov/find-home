@@ -1,19 +1,21 @@
 import useFetch from "../hooks/useFetch";
 import { Link } from "react-router-dom";
 import MainItem from "./MainItem";
-import { useContext, useState, useEffect, useRef } from "react";
+import { useContext, useState, useRef } from "react";
 import AuthContext from "../contexts/AuthContext";
 import "../Styles/Main.css";
 
-//http://apifindhome.seyhanakifov.com/api/Home/Get
+
 function Main() {
   const [currentPage, setCurrentPage] = useState(0);
   const [page, setPage] = useState(1);
   const divRef = useRef(null);
+  const pageOnSite = 6;
+  const pageCount = 1;
 
   function OnNext() {
-    setCurrentPage(currentPage + 6);
-    setPage(page + 1);
+    setCurrentPage(currentPage + pageOnSite);
+    setPage(page + pageCount);
 
     if (divRef.current) {
       divRef.current.scrollIntoView({
@@ -23,8 +25,8 @@ function Main() {
   }
 
   function OnPrevious() {
-    setCurrentPage(currentPage - 6);
-    setPage(page - 1);
+    setCurrentPage(currentPage - pageOnSite);
+    setPage(page - pageCount);
     
     if (divRef.current) {
       divRef.current.scrollIntoView({
@@ -86,7 +88,7 @@ function Main() {
             <div className="my_profile_setting_input">
               {currentPage === 0 ? (
                 <>
-                  {page * 6 <= items.length ? (
+                  {page * pageOnSite <= items.length ? (
                     <button className="btn btn2 float-right" onClick={OnNext}>
                       Next
                     </button>
@@ -100,7 +102,7 @@ function Main() {
                     Previous
                   </button>
 
-                  {page * 6 > items.length ? (
+                  {page * pageOnSite > items.length ? (
                     ""
                   ) : (
                     <button className="btn btn2 float-right" onClick={OnNext}>

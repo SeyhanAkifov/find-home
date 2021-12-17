@@ -7,8 +7,8 @@ function Login({ setUserInfo }) {
   const [error, setError] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   let navigate = useNavigate();
-  let [usernameError, setUsernameError] = useState()
-  let [passwordError, setPasswordError] = useState()
+  let [usernameError, setUsernameError] = useState();
+  let [passwordError, setPasswordError] = useState();
   const divRef = useRef(null);
 
   useEffect(() => {
@@ -27,58 +27,65 @@ function Login({ setUserInfo }) {
     let password = formData.get("password");
     let usernameInput = document.querySelector("#username");
     let passwordInput = document.querySelector("#password");
-    setUsernameError("")
-    setPasswordError("")
+    let passwordErrorElement = document.querySelector(".password-error");
+    passwordErrorElement.style.display = "none";
+    let usernameErrorElement = document.querySelector(".username-error");
+    usernameErrorElement.style.display = "none";
+    let userElement = document.querySelector(".error");
+    userElement.style.display = "none";
+    setUsernameError("");
+    setPasswordError("");
 
     if (!username) {
-
-      usernameInput.style.background = "pink"
-      setUsernameError("Username is required")
+      
+      usernameErrorElement.style.display = "block";
+      usernameInput.style.background = "pink";
+      setUsernameError("Username is required");
       setTimeout(() => {
-        usernameInput.style.background = "white"
-      
+        usernameInput.style.background = "white";
       }, 1000);
-      
     }
     if (!password) {
       
-      passwordInput.style.background = "pink"
-      setPasswordError("Password is required")
+      passwordErrorElement.style.display = "block";
+      passwordInput.style.background = "pink";
+      setPasswordError("Password is required");
       setTimeout(() => {
-        passwordInput.style.background = "white"
-      
+        passwordInput.style.background = "white";
       }, 1000);
-    }
-    else if (password && username){
-      
-    await login(username, password).then(
-      (result) => {
-        setIsLoaded(true);
-
-        if (result.errors) {
-          setError([
-            result.errors.Password ? result.errors.Password[0] : "",
-            result.errors.Username ? " and " + result.errors.Username[0] : "",
-          ]);
-          setIsLoaded(false);
-        } else if (result.isSuccessStatusCode === false) {
-          setError(result.reasonPhrase);
-          setIsLoaded(false);
-        } else {
+    } else if (password && username) {
+      await login(username, password).then(
+        (result) => {
           setIsLoaded(true);
-          setUserInfo({
-            isAuthenticated: true,
-            token: result.token,
-            email: result.email,
-          });
-          navigate({ pathname: "/home" });
+
+          if (result.errors) {
+            userElement.style.display = "block";
+            setError([
+              result.errors.Password ? result.errors.Password[0] : "",
+              result.errors.Username ? " and " + result.errors.Username[0] : "",
+            ]);
+            setIsLoaded(false);
+          } else if (result.isSuccessStatusCode === false) {
+            userElement.style.display = "block";
+            setError(result.reasonPhrase);
+            setIsLoaded(false);
+          } else {
+            setIsLoaded(true);
+            
+            setUserInfo({
+              isAuthenticated: true,
+              token: result.token,
+              email: result.email,
+            });
+            navigate({ pathname: "/home" });
+          }
+        },
+        (error) => {
+          userElement.style.display = "block";
+          setIsLoaded(true);
+          setError(error);
         }
-      },
-      (error) => {
-        setIsLoaded(true);
-        setError(error);
-      }
-    );
+      );
     }
   };
 
@@ -98,18 +105,23 @@ function Login({ setUserInfo }) {
                     </Link>
                   </p>
                 </div>
-                <span className="username-error">{error}</span>
+
+                <div className="error">{error}</div>
+
                 <span className="username-error">{usernameError}</span>
+
                 <div className="form-group">
                   <input
                     type="text"
                     className="form-control"
                     name="username"
                     id="username"
-                    placeholder="Email Address"
+                    placeholder="Username"
                   />
                 </div>
+
                 <span className="password-error">{passwordError}</span>
+
                 <div className="form-group">
                   <input
                     type="password"
