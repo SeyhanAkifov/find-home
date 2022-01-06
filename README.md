@@ -1,8 +1,13 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# :house: FindHome React App
 
 Educational project / react-based application as the idea is a real estate listing site.
+
+Guest access : **Home** / **Login** / **Register** / **Details** , but not functionality.
+Registered Users : All what guest users can and **Create** / **MyProperies** / **MyFavorite** 
+and functionality like **Edit** / **Delete** / **Like** / **Unlike**.
+
+Web site : https://findhome-8d486.firebaseapp.com/
+
 For server is used ASP.Net Core Api.
 
 ## Available Scripts
