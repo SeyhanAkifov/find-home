@@ -43,11 +43,7 @@ function EditProperty() {
     }
   }, [token, navigate]);
 
-  if(email !== property.creator){
-    navigate({
-      pathname: '/notFound'
-    })
-  }
+  
 
   let id = useParams();
   const [property, setProperty] = useState([]);
@@ -82,6 +78,13 @@ function EditProperty() {
   }, [id.id, token]);
 
   feature = property.feature;
+
+
+  if(email !== property.creator){
+    navigate({
+      pathname: '/notFound'
+    })
+  }
   const onFormSubmit = async (e) => {
     e.preventDefault();
 

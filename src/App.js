@@ -16,6 +16,8 @@ import Register from "./components/Register";
 import NotFound from "./components/NotFound";
 import Login from "./components/Login";
 import Details from "./components/Details";
+import MyProfile from "./components/MyProfile";
+import MyMessages from "./components/MyMessages";
 import AuthContext from "./contexts/AuthContext";
 
 function App() {
@@ -50,6 +52,8 @@ function App() {
           <Route path="/myProperties" element={<MyProperties />} />
           <Route path="/myLiked" element={<MyLikes />} />
           <Route path="/edit/:id" element={<EditProperty />} />
+          <Route path="/myProfile" element={<MyProfile />} />
+          <Route path="/myMessages" element={<MyMessages />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
 

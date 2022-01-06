@@ -64,7 +64,7 @@ function Header({ setUserInfo }) {
                 <>
                   <li className="list-inline-item list_s">
                     <Link
-                      to="#"
+                      to="myProfile"
                       className="btn flaticon-user"
                       data-toggle="modal"
                       data-target=".bd-example-modal-lg"
