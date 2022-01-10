@@ -1,9 +1,11 @@
+import useFetch from "../hooks/useFetch";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState, useEffect, useRef } from "react";
 import AuthContext from "../contexts/AuthContext";
 
 function MyMessages(){
-
+	const [messages, setMessages] = useState([]);
+	
     let navigate = useNavigate();
     const { token, email } = useContext(AuthContext);
 
@@ -15,7 +17,64 @@ function MyMessages(){
         }
       }, [token, navigate]);
 
+	  const url = `https://localhost:44382/api/Property/GetConversations?recipient=${email}`;
+	  const [items, error, isLoaded] = useFetch(url, token);
+
+	  const SendMessage = async (e) => {
+		e.preventDefault();
+	
+		let formData = new FormData(e.currentTarget);
+		let message = formData.get("message");
+		
+	
+		await fetch(`https://localhost:44382/api/Property/SendMessage`, {
+		  method: "POST",
+		  headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${token}`,
+		  },
+		  body: JSON.stringify({
+			sender: email,
+            recipient: messages[0].sender,
+            propertyId: messages[0].propertyId,
+            description: message
+		  }),
+		}).then((res) => res.json());
+	
+	  }
+
+	  const GetMessages =  (e) => {
+		e.preventDefault()
+		let id = e.currentTarget.value;
+		  
+			fetch (`https://localhost:44382/api/Property/GetRecipientMessages?conversationId=${id}`, {
+			  headers: {
+				Authorization: `Bearer ${token}`,
+			  },
+			})
+			  .then((res) => res.json())
+			  .then(data => {
+				  setMessages(data)
+			  
+			  })
+		  
+		  
+		
+	  }
+
+	  
+
+	  console.log(items);
+	  
+	  if (error) {
+		return <div>Error: {error.message}</div>;
+	  } else if (!isLoaded) {
+		return <div>Loading...</div>;
+	  } else {
+		
+	
     return (
+		
         <>
         <div class="dashboard_sidebar_menu dn-992">
         <ul class="sidebar-menu">
@@ -66,7 +125,7 @@ function MyMessages(){
 						<div class="col-lg-12">
 							<div class="dashboard_navigationbar dn db-992">
 								<div class="dropdown">
-									<button onclick="myFunction()" class="dropbtn"><i class="fa fa-bars pr10"></i> Dashboard Navigation</button>
+									<button  class="dropbtn"><i class="fa fa-bars pr10"></i> Dashboard Navigation</button>
 									<ul id="myDropdown" class="dropdown-content">
 										<li><a href="page-dashboard.html"><span class="flaticon-layers"></span> Dashboard</a></li>
 										<li class="active"><a href="page-message.html"><span class="flaticon-envelope"></span> Message</a></li>
@@ -102,128 +161,23 @@ function MyMessages(){
 										</div>
 									</div>
 									<ul>
-										<li class="contact">
+									{items.map((item) => (
+                      
+                    
+										<li class="contact" value={item.id}  onClick={GetMessages}>
 											<a href="#">
 												<div class="wrap">
 													<span class="contact-status online"></span>
 													<img class="img-fluid" src="images/team/s1.jpg" alt="s1.jpg"/>
 													<div class="meta">
-														<h5 class="name">Vincent Porter</h5>
-														<p class="preview">I'm going to office.</p>
+														<h5 class="name">{item.sender}</h5>
+														<p class="preview">{item.description}</p>
 													</div>
 													<div class="m_notif">2</div>
 												</div>
 											</a>
 										</li>
-										<li class="contact">
-											<a href="#">
-												<div class="wrap">
-													<span class="contact-status online"></span>
-													<img class="img-fluid" src="images/team/s2.jpg" alt="s2.jpg"/>
-													<div class="meta">
-														<h5 class="name">Jacob Brown</h5>
-														<p class="preview">You: Where is Alex?</p>
-													</div>
-													<div class="m_notif">5</div>
-												</div>
-											</a>
-										</li>
-										<li class="contact">
-											<a href="#">
-												<div class="wrap">
-													<span class="contact-status online"></span>
-													<img class="img-fluid" src="images/team/s3.jpg" alt="s3.jpg"/>
-													<div class="meta">
-														<h5 class="name">Harry Taylor</h5>
-														<p class="preview">I'm going to office.</p>
-													</div>
-												</div>
-											</a>
-										</li>
-										<li class="contact">
-											<a href="#">
-												<div class="wrap">
-													<span class="contact-status busy"></span>
-													<img class="img-fluid" src="images/team/s4.jpg" alt="s4.jpg"/>
-													<div class="meta">
-														<h5 class="name">Sarah Miller</h5>
-														<p class="preview">You: okay!</p>
-													</div>
-												</div>
-											</a>
-										</li>
-										<li class="contact">
-											<a href="#">
-												<div class="wrap">
-													<span class="contact-status away"></span>
-													<img class="img-fluid" src="images/team/s5.jpg" alt="s5.jpg"/>
-													<div class="meta">
-														<h5 class="name">Joanne Davies</h5>
-														<p class="preview">Let's go!</p>
-													</div>
-												</div>
-											</a>
-										</li>
-										<li class="contact">
-											<a href="#">
-												<div class="wrap">
-													<span class="contact-status busy"></span>
-													<img class="img-fluid" src="images/team/s6.jpg" alt="s6.jpg"/>
-													<div class="meta">
-														<h5 class="name">Sam Lee</h5>
-														<p class="preview">Awesome!</p>
-													</div>
-												</div>
-											</a>
-										</li>
-										<li class="contact">
-											<a href="#">
-												<div class="wrap">
-													<span class="contact-status online"></span>
-													<img class="img-fluid" src="images/team/s7.jpg" alt="s7.jpg"/>
-													<div class="meta">
-														<h5 class="name">Vincent Porter</h5>
-														<p class="preview">I'm going to office.</p>
-													</div>
-												</div>
-											</a>
-										</li>
-										<li class="contact">
-											<a href="#">
-												<div class="wrap">
-													<span class="contact-status online"></span>
-													<img class="img-fluid" src="images/team/s8.jpg" alt="s8.jpg"/>
-													<div class="meta">
-														<h5 class="name">Jacob Brown</h5>
-														<p class="preview">You: Where is Alex?</p>
-													</div>
-												</div>
-											</a>
-										</li>
-										<li class="contact">
-											<a href="#">
-												<div class="wrap">
-													<span class="contact-status online"></span>
-													<img class="img-fluid" src="images/team/s1.jpg" alt="s1.jpg"/>
-													<div class="meta">
-														<h5 class="name">Vincent Porter</h5>
-														<p class="preview">I'm going to office.</p>
-													</div>
-												</div>
-											</a>
-										</li>
-										<li class="contact">
-											<a href="#">
-												<div class="wrap">
-													<span class="contact-status online"></span>
-													<img class="img-fluid" src="images/team/s2.jpg" alt="s2.jpg"/>
-													<div class="meta">
-														<h5 class="name">Jacob Brown</h5>
-														<p class="preview">You: Where is Alex?</p>
-													</div>
-												</div>
-											</a>
-										</li>
+										))}
 									</ul>
 								</div>
 							</div>
@@ -244,7 +198,19 @@ function MyMessages(){
 								</div>
 								<div class="inbox_chatting_box">
 									<ul class="chatting_content">
-										<li class="media sent">
+									{messages.map((item) => (
+                      
+                    
+					  <li class={item.sender == email ? "media sent" : "media reply"}>
+											<span class="contact-status busy"></span>
+											<img class="img-fluid align-self-start mr-3" src="images/team/s6.jpg" alt="s6.jpg"/>
+											<div class="media-body">
+												<div class="date_time">{item.date}</div>
+										    	<p>{item.description}</p>
+											</div>
+										</li>
+					  ))}
+										{/* <li class="media sent">
 											<span class="contact-status busy"></span>
 											<img class="img-fluid align-self-start mr-3" src="images/team/s6.jpg" alt="s6.jpg"/>
 											<div class="media-body">
@@ -359,13 +325,13 @@ function MyMessages(){
 												<div class="date_time">Today, 10:51</div>
 										    	<p>simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
 											</div>
-										</li>
+										</li> */}
 									</ul>
 								</div>
 								<div class="mi_text">
 									<div class="message_input">
-										<form class="form-inline">
-									    	<input class="form-control" type="search" placeholder="Enter text here..." aria-label="Search"/>
+										<form class="form-inline" onSubmit={SendMessage}>
+									    	<input class="form-control" id="message" name="message" type="search" placeholder="Enter text here..." aria-label="Search"/>
 									    	<button class="btn" type="submit">Send Message</button>
 									    </form>
 									</div>
@@ -386,6 +352,7 @@ function MyMessages(){
 	</section>
     </>
     )
+	}
 }
 
 export default MyMessages

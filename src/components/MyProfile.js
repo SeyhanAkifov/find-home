@@ -16,511 +16,511 @@ function MyProfile() {
 
   return (
     <>
-      <div class="dashboard_sidebar_menu dn-992">
-        <ul class="sidebar-menu">
-          <li class="header">
+      <div className="dashboard_sidebar_menu dn-992">
+        <ul className="sidebar-menu">
+          <li className="header">
             <img src="images/header-logo2.png" alt="header-logo2.png" />{" "}
             FindHouse
           </li>
-          <li class="title">
+          <li className="title">
             <span>Main</span>
           </li>
 
-          <li class="treeview">
+          <li className="treeview">
             <Link to="/myMessages">
-              <i class="flaticon-envelope"></i>
+              <i className="flaticon-envelope"></i>
               <span> Message</span>
             </Link>
           </li>
-          <li class="treeview">
+          <li className="treeview">
             <a href="page-my-properties.html">
-              <i class="flaticon-home"></i> <span>My Properties</span>
-              <i class="fa fa-angle-down pull-right"></i>
+              <i className="flaticon-home"></i> <span>My Properties</span>
+              <i className="fa fa-angle-down pull-right"></i>
             </a>
           </li>
           <li>
             <a href="page-my-favorites.html">
-              <i class="flaticon-heart"></i> <span> My Favorites</span>
+              <i className="flaticon-heart"></i> <span> My Favorites</span>
             </a>
           </li>
           <li>
             <a href="page-my-savesearch.html">
-              <i class="flaticon-magnifying-glass"></i>{" "}
+              <i className="flaticon-magnifying-glass"></i>{" "}
               <span>Saved Search</span>
             </a>
           </li>
           <li>
             <a href="page-login.html">
-              <i class="flaticon-logout"></i> <span>Logout</span>
+              <i className="flaticon-logout"></i> <span>Logout</span>
             </a>
           </li>
         </ul>
       </div>
-      <section class="our-dashbord dashbord bgc-f7 pb50">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-lg-3 col-xl-2 dn-992 pl0"></div>
-            <div class="col-lg-9 col-xl-10 maxw100flex-992">
-              <div class="row">
-                <div class="col-lg-12">
-                  <div class="dashboard_navigationbar dn db-992">
-                    <div class="dropdown">
-                      <button onclick="myFunction()" class="dropbtn">
-                        <i class="fa fa-bars pr10"></i> Dashboard Navigation
+      <section className="our-dashbord dashbord bgc-f7 pb50">
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-lg-3 col-xl-2 dn-992 pl0"></div>
+            <div className="col-lg-9 col-xl-10 maxw100flex-992">
+              <div className="row">
+                <div className="col-lg-12">
+                  <div className="dashboard_navigationbar dn db-992">
+                    <div className="dropdown">
+                      <button  className="dropbtn">
+                        <i className="fa fa-bars pr10"></i> Dashboard Navigation
                       </button>
-                      <ul id="myDropdown" class="dropdown-content">
+                      <ul id="myDropdown" className="dropdown-content">
                         <li>
                           <a href="page-dashboard.html">
-                            <span class="flaticon-layers"></span> Dashboard
+                            <span className="flaticon-layers"></span> Dashboard
                           </a>
                         </li>
                         <li>
                           <a href="page-message.html">
-                            <span class="flaticon-envelope"></span> Message
+                            <span className="flaticon-envelope"></span> Message
                           </a>
                         </li>
                         <li>
                           <a href="page-my-properties.html">
-                            <span class="flaticon-home"></span> My Properties
+                            <span className="flaticon-home"></span> My Properties
                           </a>
                         </li>
                         <li>
                           <a href="page-my-favorites.html">
-                            <span class="flaticon-heart"></span> My Favorites
+                            <span className="flaticon-heart"></span> My Favorites
                           </a>
                         </li>
                         <li>
                           <a href="page-my-savesearch.html">
-                            <span class="flaticon-magnifying-glass"></span>{" "}
+                            <span className="flaticon-magnifying-glass"></span>{" "}
                             Saved Search
                           </a>
                         </li>
                         <li>
                           <a href="page-my-review.html">
-                            <span class="flaticon-chat"></span> My Reviews
+                            <span className="flaticon-chat"></span> My Reviews
                           </a>
                         </li>
                         <li>
                           <a href="page-my-packages.html">
-                            <span class="flaticon-box"></span> My Package
+                            <span className="flaticon-box"></span> My Package
                           </a>
                         </li>
-                        <li class="active">
+                        <li className="active">
                           <a href="page-my-profile.html">
-                            <span class="flaticon-user"></span> My Profile
+                            <span className="flaticon-user"></span> My Profile
                           </a>
                         </li>
                         <li>
                           <a href="page-add-new-property.html">
-                            <span class="flaticon-filter-results-button"></span>{" "}
+                            <span className="flaticon-filter-results-button"></span>{" "}
                             Add New Listing
                           </a>
                         </li>
                         <li>
                           <a href="page-login.html">
-                            <span class="flaticon-logout"></span> Logout
+                            <span className="flaticon-logout"></span> Logout
                           </a>
                         </li>
                       </ul>
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-12 mb10">
-                  <div class="breadcrumb_content style2">
-                    <h2 class="breadcrumb_title">My Profile</h2>
+                <div className="col-lg-12 mb10">
+                  <div className="breadcrumb_content style2">
+                    <h2 className="breadcrumb_title">My Profile</h2>
                     <p>We are glad to see you again!</p>
                   </div>
                 </div>
-                <div class="col-lg-12">
-                  <div class="my_dashboard_review">
-                    <div class="row">
-                      <div class="col-xl-2">
+                <div className="col-lg-12">
+                  <div className="my_dashboard_review">
+                    <div className="row">
+                      <div className="col-xl-2">
                         <h4>Profile Information</h4>
                       </div>
-                      <div class="col-xl-10">
-                        <div class="row">
-                          <div class="col-lg-12">
-                            <div class="wrap-custom-file">
+                      <div className="col-xl-10">
+                        <div className="row">
+                          <div className="col-lg-12">
+                            <div className="wrap-custom-file">
                               <input
                                 type="file"
                                 name="image1"
                                 id="image1"
                                 accept=".gif, .jpg, .png"
                               />
-                              <label for="image1">
+                              <label htmlFor="image1">
                                 <span>
-                                  <i class="flaticon-download"></i> Upload Photo{" "}
+                                  <i className="flaticon-download"></i> Upload Photo{" "}
                                 </span>
                               </label>
                             </div>
                             <p>*minimum 260px x 260px</p>
                           </div>
-                          <div class="col-lg-6 col-xl-6">
-                            <div class="my_profile_setting_input form-group">
-                              <label for="formGroupExampleInput1">
+                          <div className="col-lg-6 col-xl-6">
+                            <div className="my_profile_setting_input form-group">
+                              <label htmlFor="formGroupExampleInput1">
                                 Username
                               </label>
                               <input
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="formGroupExampleInput1"
                                 placeholder="alitfn"
                               />
                             </div>
                           </div>
-                          <div class="col-lg-6 col-xl-6">
-                            <div class="my_profile_setting_input form-group">
-                              <label for="formGroupExampleEmail">Email</label>
+                          <div className="col-lg-6 col-xl-6">
+                            <div className="my_profile_setting_input form-group">
+                              <label htmlFor="formGroupExampleEmail">Email</label>
                               <input
                                 type="email"
-                                class="form-control"
+                                className="form-control"
                                 id="formGroupExampleEmail"
                                 placeholder="creativelayers@gmail.com"
                               />
                             </div>
                           </div>
-                          <div class="col-lg-6 col-xl-6">
-                            <div class="my_profile_setting_input form-group">
-                              <label for="formGroupExampleInput3">
+                          <div className="col-lg-6 col-xl-6">
+                            <div className="my_profile_setting_input form-group">
+                              <label htmlFor="formGroupExampleInput3">
                                 First Name
                               </label>
                               <input
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="formGroupExampleInput3"
                               />
                             </div>
                           </div>
-                          <div class="col-lg-6 col-xl-6">
-                            <div class="my_profile_setting_input form-group">
-                              <label for="formGroupExampleInput4">
+                          <div className="col-lg-6 col-xl-6">
+                            <div className="my_profile_setting_input form-group">
+                              <label htmlFor="formGroupExampleInput4">
                                 Last Name
                               </label>
                               <input
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="formGroupExampleInput4"
                               />
                             </div>
                           </div>
-                          <div class="col-lg-6 col-xl-6">
-                            <div class="my_profile_setting_input form-group">
-                              <label for="formGroupExampleInput5">
+                          <div className="col-lg-6 col-xl-6">
+                            <div className="my_profile_setting_input form-group">
+                              <label htmlFor="formGroupExampleInput5">
                                 Position
                               </label>
                               <input
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="formGroupExampleInput5"
                               />
                             </div>
                           </div>
-                          <div class="col-lg-6 col-xl-6">
-                            <div class="my_profile_setting_input form-group">
-                              <label for="formGroupExampleInput6">
+                          <div className="col-lg-6 col-xl-6">
+                            <div className="my_profile_setting_input form-group">
+                              <label htmlFor="formGroupExampleInput6">
                                 License
                               </label>
                               <input
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="formGroupExampleInput6"
                               />
                             </div>
                           </div>
-                          <div class="col-lg-6 col-xl-6">
-                            <div class="my_profile_setting_input form-group">
-                              <label for="formGroupExampleInput7">
+                          <div className="col-lg-6 col-xl-6">
+                            <div className="my_profile_setting_input form-group">
+                              <label htmlFor="formGroupExampleInput7">
                                 Tax Number
                               </label>
                               <input
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="formGroupExampleInput7"
                               />
                             </div>
                           </div>
-                          <div class="col-lg-6 col-xl-6">
-                            <div class="my_profile_setting_input form-group">
-                              <label for="formGroupExampleInput8">Phone</label>
+                          <div className="col-lg-6 col-xl-6">
+                            <div className="my_profile_setting_input form-group">
+                              <label htmlFor="formGroupExampleInput8">Phone</label>
                               <input
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="formGroupExampleInput8"
                               />
                             </div>
                           </div>
-                          <div class="col-lg-6 col-xl-6">
-                            <div class="my_profile_setting_input form-group">
-                              <label for="formGroupExampleInput9">
+                          <div className="col-lg-6 col-xl-6">
+                            <div className="my_profile_setting_input form-group">
+                              <label htmlFor="formGroupExampleInput9">
                                 Fax Number
                               </label>
                               <input
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="formGroupExampleInput9"
                               />
                             </div>
                           </div>
-                          <div class="col-lg-6 col-xl-6">
-                            <div class="my_profile_setting_input form-group">
-                              <label for="formGroupExampleInput10">
+                          <div className="col-lg-6 col-xl-6">
+                            <div className="my_profile_setting_input form-group">
+                              <label htmlFor="formGroupExampleInput10">
                                 Mobile
                               </label>
                               <input
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="formGroupExampleInput10"
                               />
                             </div>
                           </div>
-                          <div class="col-lg-6 col-xl-6">
-                            <div class="my_profile_setting_input form-group">
-                              <label for="formGroupExampleInput11">
+                          <div className="col-lg-6 col-xl-6">
+                            <div className="my_profile_setting_input form-group">
+                              <label htmlFor="formGroupExampleInput11">
                                 Language
                               </label>
                               <input
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="formGroupExampleInput11"
                               />
                             </div>
                           </div>
-                          <div class="col-lg-6 col-xl-6">
-                            <div class="my_profile_setting_input form-group">
-                              <label for="formGroupExampleInput12">
+                          <div className="col-lg-6 col-xl-6">
+                            <div className="my_profile_setting_input form-group">
+                              <label htmlFor="formGroupExampleInput12">
                                 Company Name
                               </label>
                               <input
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="formGroupExampleInput12"
                               />
                             </div>
                           </div>
-                          <div class="col-xl-12">
-                            <div class="my_profile_setting_input form-group">
-                              <label for="formGroupExampleInput13">
+                          <div className="col-xl-12">
+                            <div className="my_profile_setting_input form-group">
+                              <label htmlFor="formGroupExampleInput13">
                                 Address
                               </label>
                               <input
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="formGroupExampleInput13"
                               />
                             </div>
                           </div>
-                          <div class="col-xl-12">
-                            <div class="my_profile_setting_textarea">
-                              <label for="exampleFormControlTextarea1">
+                          <div className="col-xl-12">
+                            <div className="my_profile_setting_textarea">
+                              <label htmlFor="exampleFormControlTextarea1">
                                 About me
                               </label>
                               <textarea
-                                class="form-control"
+                                className="form-control"
                                 id="exampleFormControlTextarea1"
                                 rows="7"
                               ></textarea>
                             </div>
                           </div>
-                          <div class="col-xl-12 text-right">
-                            <div class="my_profile_setting_input">
-                              <button class="btn btn1">
+                          <div className="col-xl-12 text-right">
+                            <div className="my_profile_setting_input">
+                              <button className="btn btn1">
                                 View Public Profile
                               </button>
-                              <button class="btn btn2">Update Profile</button>
+                              <button className="btn btn2">Update Profile</button>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="my_dashboard_review mt30">
-                    <div class="row">
-                      <div class="col-xl-2">
+                  <div className="my_dashboard_review mt30">
+                    <div className="row">
+                      <div className="col-xl-2">
                         <h4>Social Media</h4>
                       </div>
-                      <div class="col-xl-10">
-                        <div class="row">
-                          <div class="col-lg-6 col-xl-6">
-                            <div class="my_profile_setting_input form-group">
-                              <label for="formGroupExampleSkype">Skype</label>
+                      <div className="col-xl-10">
+                        <div className="row">
+                          <div className="col-lg-6 col-xl-6">
+                            <div className="my_profile_setting_input form-group">
+                              <label htmlFor="formGroupExampleSkype">Skype</label>
                               <input
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="formGroupExampleSkype"
                                 placeholder="alitfn"
                               />
                             </div>
                           </div>
-                          <div class="col-lg-6 col-xl-6">
-                            <div class="my_profile_setting_input form-group">
-                              <label for="formGroupExampleWebsite">
+                          <div className="col-lg-6 col-xl-6">
+                            <div className="my_profile_setting_input form-group">
+                              <label htmlFor="formGroupExampleWebsite">
                                 Website
                               </label>
                               <input
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="formGroupExampleWebsite"
                                 placeholder="creativelayers@gmail.com"
                               />
                             </div>
                           </div>
-                          <div class="col-lg-6 col-xl-6">
-                            <div class="my_profile_setting_input form-group">
-                              <label for="formGroupExampleFaceBook">
+                          <div className="col-lg-6 col-xl-6">
+                            <div className="my_profile_setting_input form-group">
+                              <label htmlFor="formGroupExampleFaceBook">
                                 Facebook
                               </label>
                               <input
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="formGroupExampleFaceBook"
                               />
                             </div>
                           </div>
-                          <div class="col-lg-6 col-xl-6">
-                            <div class="my_profile_setting_input form-group">
-                              <label for="formGroupExampleTwitter">
+                          <div className="col-lg-6 col-xl-6">
+                            <div className="my_profile_setting_input form-group">
+                              <label htmlFor="formGroupExampleTwitter">
                                 Twitter
                               </label>
                               <input
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="formGroupExampleTwitter"
                               />
                             </div>
                           </div>
-                          <div class="col-lg-6 col-xl-6">
-                            <div class="my_profile_setting_input form-group">
-                              <label for="formGroupExampleLinkedin">
+                          <div className="col-lg-6 col-xl-6">
+                            <div className="my_profile_setting_input form-group">
+                              <label htmlFor="formGroupExampleLinkedin">
                                 Linkedin
                               </label>
                               <input
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="formGroupExampleLinkedin"
                               />
                             </div>
                           </div>
-                          <div class="col-lg-6 col-xl-6">
-                            <div class="my_profile_setting_input form-group">
-                              <label for="formGroupExampleInstagram">
+                          <div className="col-lg-6 col-xl-6">
+                            <div className="my_profile_setting_input form-group">
+                              <label htmlFor="formGroupExampleInstagram">
                                 Instagram
                               </label>
                               <input
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="formGroupExampleInstagram"
                               />
                             </div>
                           </div>
-                          <div class="col-lg-6 col-xl-6">
-                            <div class="my_profile_setting_input form-group">
-                              <label for="formGroupExampleGooglePlus">
+                          <div className="col-lg-6 col-xl-6">
+                            <div className="my_profile_setting_input form-group">
+                              <label htmlFor="formGroupExampleGooglePlus">
                                 Google Plus
                               </label>
                               <input
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="formGroupExampleGooglePlus"
                               />
                             </div>
                           </div>
-                          <div class="col-lg-6 col-xl-6">
-                            <div class="my_profile_setting_input form-group">
-                              <label for="formGroupExampleYoutube">
+                          <div className="col-lg-6 col-xl-6">
+                            <div className="my_profile_setting_input form-group">
+                              <label htmlFor="formGroupExampleYoutube">
                                 Youtube
                               </label>
                               <input
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="formGroupExampleYoutube"
                               />
                             </div>
                           </div>
-                          <div class="col-lg-6 col-xl-6">
-                            <div class="my_profile_setting_input form-group">
-                              <label for="formGroupExamplePinterest">
+                          <div className="col-lg-6 col-xl-6">
+                            <div className="my_profile_setting_input form-group">
+                              <label htmlFor="formGroupExamplePinterest">
                                 Pinterest
                               </label>
                               <input
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="formGroupExamplePinterest"
                               />
                             </div>
                           </div>
-                          <div class="col-lg-6 col-xl-6">
-                            <div class="my_profile_setting_input form-group">
-                              <label for="formGroupExampleVimeo">Vimeo</label>
+                          <div className="col-lg-6 col-xl-6">
+                            <div className="my_profile_setting_input form-group">
+                              <label htmlFor="formGroupExampleVimeo">Vimeo</label>
                               <input
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="formGroupExampleVimeo"
                               />
                             </div>
                           </div>
-                          <div class="col-xl-12 text-right">
-                            <div class="my_profile_setting_input">
-                              <button class="btn btn2">Update Profile</button>
+                          <div className="col-xl-12 text-right">
+                            <div className="my_profile_setting_input">
+                              <button className="btn btn2">Update Profile</button>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="my_dashboard_review mt30">
-                    <div class="row">
-                      <div class="col-xl-2">
+                  <div className="my_dashboard_review mt30">
+                    <div className="row">
+                      <div className="col-xl-2">
                         <h4>Change password</h4>
                       </div>
-                      <div class="col-xl-10">
-                        <div class="row">
-                          <div class="col-xl-6">
-                            <div class="my_profile_setting_input form-group">
-                              <label for="formGroupExampleOldPass">
+                      <div className="col-xl-10">
+                        <div className="row">
+                          <div className="col-xl-6">
+                            <div className="my_profile_setting_input form-group">
+                              <label htmlFor="formGroupExampleOldPass">
                                 Old Password
                               </label>
                               <input
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="formGroupExampleOldPass"
                                 placeholder="alitfn"
                               />
                             </div>
                           </div>
                         </div>
-                        <div class="row">
-                          <div class="col-lg-6 col-xl-6">
-                            <div class="my_profile_setting_input form-group">
-                              <label for="formGroupExampleNewPass">
+                        <div className="row">
+                          <div className="col-lg-6 col-xl-6">
+                            <div className="my_profile_setting_input form-group">
+                              <label htmlFor="formGroupExampleNewPass">
                                 New Password
                               </label>
                               <input
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="formGroupExampleNewPass"
                               />
                             </div>
                           </div>
-                          <div class="col-lg-6 col-xl-6">
-                            <div class="my_profile_setting_input form-group">
-                              <label for="formGroupExampleConfPass">
+                          <div className="col-lg-6 col-xl-6">
+                            <div className="my_profile_setting_input form-group">
+                              <label htmlFor="formGroupExampleConfPass">
                                 Confirm New Password
                               </label>
                               <input
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="formGroupExampleConfPass"
                               />
                             </div>
                           </div>
-                          <div class="col-xl-12">
-                            <div class="my_profile_setting_input float-left fn-520">
-                              <button class="btn btn3 btn-dark">
+                          <div className="col-xl-12">
+                            <div className="my_profile_setting_input float-left fn-520">
+                              <button className="btn btn3 btn-dark">
                                 Update Profile
                               </button>
                             </div>
-                            <div class="my_profile_setting_input float-right fn-520">
-                              <button class="btn btn2">Update Profile</button>
+                            <div className="my_profile_setting_input float-right fn-520">
+                              <button className="btn btn2">Update Profile</button>
                             </div>
                           </div>
                         </div>
@@ -529,9 +529,9 @@ function MyProfile() {
                   </div>
                 </div>
               </div>
-              <div class="row mt10">
-                <div class="col-lg-12">
-                  <div class="copyright-widget text-center">
+              <div className="row mt10">
+                <div className="col-lg-12">
+                  <div className="copyright-widget text-center">
                     <p>© 2020 Find House. Made with love.</p>
                   </div>
                 </div>
