@@ -68,7 +68,7 @@ function Details() {
     let email = formData.get("email");
     let name = formData.get("name");
 
-    await fetch(`https://localhost:44382/api/Property/SendMessage`, {
+    await fetch(`https://apifindhome.seyhanakifov.com/api/Property/SendMessage`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
