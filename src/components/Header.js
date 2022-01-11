@@ -62,6 +62,12 @@ function Header({ setUserInfo }) {
               </li>
               {token ? (
                 <>
+                 <li className="last">
+                
+                <Link to="/myMessages">
+                <i class="far fa-envelope"></i>
+            </Link>
+              </li>
                   <li className="list-inline-item list_s">
                     <Link
                       to="myProfile"
@@ -113,6 +119,8 @@ function Header({ setUserInfo }) {
                   <span className="title">Contact</span>
                 </Link>
               </li>
+             
+              
             </ul>
           </nav>
         </div>

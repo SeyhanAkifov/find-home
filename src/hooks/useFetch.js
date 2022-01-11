@@ -4,6 +4,7 @@ const useFetch = (url, token, currentPage) => {
   const [state, setState] = useState([]);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  
 
   useEffect(() => {
     fetch(url, {

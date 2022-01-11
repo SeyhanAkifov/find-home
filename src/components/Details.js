@@ -66,6 +66,7 @@ function Details() {
     let formData = new FormData(e.currentTarget);
     let message = formData.get("message");
     let email = formData.get("email");
+    let name = formData.get("name");
 
     await fetch(`https://localhost:44382/api/Property/SendMessage`, {
       method: "POST",
@@ -74,8 +75,9 @@ function Details() {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        sender: email,
-        recipient: property.creator,
+        senderName:name,
+        senderEmail: email,
+        recipientEmail: property.creator,
         propertyId: id.id,
         description: message
       }),
@@ -497,13 +499,13 @@ function Details() {
 								<ul class="sasw_list mb0">
 									<li class="search_area">
 									    <div class="form-group">
-									    	<input type="text" class="form-control" id="exampleInputName1" placeholder="Your Name"/>
+									    	<input type="text" class="form-control" id="name" name="name" placeholder="Your Name"/>
 									    </div>
 									</li>
 								
 									<li class="search_area">
 									    <div class="form-group">
-									    	<input type="email" class="form-control" id="email" name="email" placeholder="Email"/>
+									    	<input type="email" class="form-control" id="email" name="email" defaultValue={username}/>
 									    </div>
 									</li>
 									<li class="search_area">

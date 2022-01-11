@@ -9,6 +9,7 @@ Tag: advanced custom search, agency, agent, business, clean, corporate, director
 
 ********/
 /* CSS Document */
+@import url(https://use.fontawesome.com/releases/v5.15.4/css/all.css);
 @import url(../css/jquery-ui.min.css);
 @import url(../css/font-awesome.min.css);
 @import url(../css/font-awesome-animation.min.css);
@@ -8873,7 +8874,7 @@ a.btn.btn_error{
   width: 100%;
 }
 .inbox_user_list ul{
-  height: 625px;
+  
   overflow-y: scroll;
 }
 .inbox_user_list ul::-webkit-scrollbar {

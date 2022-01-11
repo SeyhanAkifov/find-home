@@ -16,115 +16,14 @@ function MyProfile() {
 
   return (
     <>
-      <div className="dashboard_sidebar_menu dn-992">
-        <ul className="sidebar-menu">
-          <li className="header">
-            <img src="images/header-logo2.png" alt="header-logo2.png" />{" "}
-            FindHouse
-          </li>
-          <li className="title">
-            <span>Main</span>
-          </li>
-
-          <li className="treeview">
-            <Link to="/myMessages">
-              <i className="flaticon-envelope"></i>
-              <span> Message</span>
-            </Link>
-          </li>
-          <li className="treeview">
-            <a href="page-my-properties.html">
-              <i className="flaticon-home"></i> <span>My Properties</span>
-              <i className="fa fa-angle-down pull-right"></i>
-            </a>
-          </li>
-          <li>
-            <a href="page-my-favorites.html">
-              <i className="flaticon-heart"></i> <span> My Favorites</span>
-            </a>
-          </li>
-          <li>
-            <a href="page-my-savesearch.html">
-              <i className="flaticon-magnifying-glass"></i>{" "}
-              <span>Saved Search</span>
-            </a>
-          </li>
-          <li>
-            <a href="page-login.html">
-              <i className="flaticon-logout"></i> <span>Logout</span>
-            </a>
-          </li>
-        </ul>
-      </div>
+     
       <section className="our-dashbord dashbord bgc-f7 pb50">
         <div className="container-fluid">
           <div className="row">
             <div className="col-lg-3 col-xl-2 dn-992 pl0"></div>
             <div className="col-lg-9 col-xl-10 maxw100flex-992">
               <div className="row">
-                <div className="col-lg-12">
-                  <div className="dashboard_navigationbar dn db-992">
-                    <div className="dropdown">
-                      <button  className="dropbtn">
-                        <i className="fa fa-bars pr10"></i> Dashboard Navigation
-                      </button>
-                      <ul id="myDropdown" className="dropdown-content">
-                        <li>
-                          <a href="page-dashboard.html">
-                            <span className="flaticon-layers"></span> Dashboard
-                          </a>
-                        </li>
-                        <li>
-                          <a href="page-message.html">
-                            <span className="flaticon-envelope"></span> Message
-                          </a>
-                        </li>
-                        <li>
-                          <a href="page-my-properties.html">
-                            <span className="flaticon-home"></span> My Properties
-                          </a>
-                        </li>
-                        <li>
-                          <a href="page-my-favorites.html">
-                            <span className="flaticon-heart"></span> My Favorites
-                          </a>
-                        </li>
-                        <li>
-                          <a href="page-my-savesearch.html">
-                            <span className="flaticon-magnifying-glass"></span>{" "}
-                            Saved Search
-                          </a>
-                        </li>
-                        <li>
-                          <a href="page-my-review.html">
-                            <span className="flaticon-chat"></span> My Reviews
-                          </a>
-                        </li>
-                        <li>
-                          <a href="page-my-packages.html">
-                            <span className="flaticon-box"></span> My Package
-                          </a>
-                        </li>
-                        <li className="active">
-                          <a href="page-my-profile.html">
-                            <span className="flaticon-user"></span> My Profile
-                          </a>
-                        </li>
-                        <li>
-                          <a href="page-add-new-property.html">
-                            <span className="flaticon-filter-results-button"></span>{" "}
-                            Add New Listing
-                          </a>
-                        </li>
-                        <li>
-                          <a href="page-login.html">
-                            <span className="flaticon-logout"></span> Logout
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+                
                 <div className="col-lg-12 mb10">
                   <div className="breadcrumb_content style2">
                     <h2 className="breadcrumb_title">My Profile</h2>
