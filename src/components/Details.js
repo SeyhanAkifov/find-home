@@ -39,11 +39,11 @@ function Details() {
       .then(
         (data) => {
           console.log(data.likes);
-          data.likes.includes(username) ? setIsLiked(true) : setIsLiked(false)
+          data.likes.includes(username) ? setIsLiked(true) : setIsLiked(false);
           // data.likes.includes(username) ? isLiked = true : false;
           setProperty(data);
           setIsLoaded(true);
-         
+
           if (data.status === "Not Found") {
             navigate("/notFound", { search: data });
           }
@@ -51,11 +51,9 @@ function Details() {
         (error) => {
           setIsLoaded(true);
           setError(error);
-         
         }
       )
       .catch((error) => {
-       
         navigate("/notFound", { message: "Item not found in database" });
       });
   }, [id.id, token, isLiked, navigate, username]);
@@ -68,22 +66,24 @@ function Details() {
     let email = formData.get("email");
     let name = formData.get("name");
 
-    await fetch(`https://apifindhome.seyhanakifov.com/api/Property/SendMessage`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        senderName:name,
-        senderEmail: email,
-        recipientEmail: property.creator,
-        propertyId: id.id,
-        description: message
-      }),
-    }).then((res) => res.json());
-
-  }
+    await fetch(
+      `https://apifindhome.seyhanakifov.com/api/Property/SendMessage`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          senderName: name,
+          senderEmail: email,
+          recipientEmail: property.creator,
+          propertyId: id.id,
+          description: message,
+        }),
+      }
+    ).then((res) => res.json());
+  };
 
   const OnDelete = async (e) => {
     e.preventDefault();
@@ -109,16 +109,16 @@ function Details() {
   const OnLike = async (e) => {
     e.preventDefault();
 
-    if(username === property.creator){
+    if (username === property.creator) {
       navigate({
-        pathname: '/notFound'
-      })
+        pathname: "/notFound",
+      });
     }
 
-    if(property.likes.includes(username)){
+    if (property.likes.includes(username)) {
       navigate({
-        pathname: '/notFound'
-      })
+        pathname: "/notFound",
+      });
     }
 
     await fetch(`https://apifindhome.seyhanakifov.com/api/Home/UserLike`, {
@@ -140,16 +140,16 @@ function Details() {
   const OnUnlike = async (e) => {
     e.preventDefault();
 
-    if(username === property.creator){
+    if (username === property.creator) {
       navigate({
-        pathname: '/notFound'
-      })
+        pathname: "/notFound",
+      });
     }
 
-    if(!property.likes.includes(username)){
+    if (!property.likes.includes(username)) {
       navigate({
-        pathname: '/notFound'
-      })
+        pathname: "/notFound",
+      });
     }
 
     await fetch(`https://apifindhome.seyhanakifov.com/api/Home/UserUnlike`, {
@@ -169,7 +169,6 @@ function Details() {
   };
 
   feature = property.feature;
-
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -420,10 +419,7 @@ function Details() {
                     </div>
                   </div>
 
-            
-               
-
-               <div className="col-lg-12">
+                  <div className="col-lg-12">
                     <div className="application_statics mt30">
                       <div className="row">
                         <div className="col-lg-12">
@@ -489,43 +485,66 @@ function Details() {
                     </div>
                   </div>
                 </div>
-             
               </div>
+              {property.creator != username ? 
               <div class="col-lg-4 col-xl-4">
-					<div class="sidebar_listing_grid1">
-						<div class="sidebar_listing_list">
-							<form class="sidebar_advanced_search_widget" onSubmit={SendMessage}>
-								<h4 class="mb25">Contact {property.creator}</h4>
-								<ul class="sasw_list mb0">
-									<li class="search_area">
-									    <div class="form-group">
-									    	<input type="text" class="form-control" id="name" name="name" placeholder="Your Name"/>
-									    </div>
-									</li>
-								
-									<li class="search_area">
-									    <div class="form-group">
-									    	<input type="email" class="form-control" id="email" name="email" defaultValue={username}/>
-									    </div>
-									</li>
-									<li class="search_area">
-			                            <div class="form-group">
-			                                <textarea id="message" name="message" class="form-control required" rows="5" required="required" placeholder="Your Message"></textarea>
-			                            </div>
-									</li>
-									<li>
-										<div class="search_option_button">
-										    <button type="submit" class="btn btn-block btn-thm">Send</button>
-										</div>
-									</li>
-								</ul>
-							</form>
-						</div>
-						
-						
-					
-					</div>
-				</div>
+              <div class="sidebar_listing_grid1">
+                <div class="sidebar_listing_list">
+                  <form
+                    class="sidebar_advanced_search_widget"
+                    onSubmit={SendMessage}
+                  >
+                    <h4 class="mb25">Contact {property.creator}</h4>
+                    <ul class="sasw_list mb0">
+                      <li class="search_area">
+                        <div class="form-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="name"
+                            name="name"
+                            placeholder="Your Name"
+                          />
+                        </div>
+                      </li>
+
+                      <li class="search_area">
+                        <div class="form-group">
+                          <input
+                            type="email"
+                            class="form-control"
+                            id="email"
+                            name="email"
+                            defaultValue={username}
+                          />
+                        </div>
+                      </li>
+                      <li class="search_area">
+                        <div class="form-group">
+                          <textarea
+                            id="message"
+                            name="message"
+                            class="form-control required"
+                            rows="5"
+                            required="required"
+                            placeholder="Your Message"
+                          ></textarea>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="search_option_button">
+                          <button type="submit" class="btn btn-block btn-thm">
+                            Send
+                          </button>
+                        </div>
+                      </li>
+                    </ul>
+                  </form>
+                </div>
+              </div>
+            </div> : ""
+              }
+              
             </div>
           </div>
         </section>

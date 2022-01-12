@@ -36,12 +36,12 @@ function App() {
         <div className="preloader"></div>
 
         <Header setUserInfo={setUserInfo} />
-        <MobileMenu setUserInfo={setUserInfo} />
+        
         <HomeSearch />
 
         <Routes>
           <Route path="/home" element={<Main />} />
-          <Route path="/menu" element={<MobileMenu />} />
+          
           <Route path="/" element={<Main />} />
           <Route path="/properties/" element={<Main />} />
           <Route path="/search/:query" element={<MainSearch />} />

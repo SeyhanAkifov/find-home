@@ -89,10 +89,10 @@ function MyMessages() {
   } else {
     return (
       <>
-        <section className="our-dashbord dashbord bgc-f7 pb50">
+        <section className="our-messages dashbord bgc-f7 pb50">
           <div className="container-fluid">
             <div className="row">
-              <div className="col-lg-3 col-xl-2 dn-992 pl0"></div>
+              
               <div className="col-lg-9 col-xl-10 maxw100flex-992">
                 <div className="row">
                   <div className="col-lg-12 mb10">

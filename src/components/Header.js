@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
+import { logout } from "../services/authServices";
 import "../Styles/Header.css";
 
 function Header({ setUserInfo }) {
@@ -11,7 +12,8 @@ function Header({ setUserInfo }) {
 
   const Logout = (e) => {
     e.preventDefault();
-
+    logout();
+    console.log(localStorage);
     setUserInfo({ isAuthenticated: false, email: null, token: null });
     navigate({ pathname: "/home" });
   };

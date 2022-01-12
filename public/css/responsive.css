@@ -354,7 +354,7 @@
 	.stylehome1:before {position: absolute;content: "";background-color: #0a0a0a;bottom: 0;height: 65px;right: 0;top: 0;width: 100%;}
 	.stylehome1.home3:before {background-color: transparent !important;}
 	.stylehome1.home4:before{background-color: transparent !important;}
-	.stylehome1.home5:before,.stylehome1.home6:before{background-color: #ffffff !important;}
+	.stylehome1.home5:before,.stylehome1.home6:before{background-color: white !important;}
 	.stylehome1.home3 .mm-navbar,
 	.stylehome1.home3 .mm-panel{background-color: #1c327e !important;}
 	.mobile-menu .header_user_notif{z-index: 99;}
@@ -364,7 +364,7 @@
 	.main-banner-wrapper .carousel-btn-block{top: 5%;}
 	.main-banner-wrapper .carousel-btn-block .carousel-btn.left-btn{left: auto;right: 80px;}
 	.home-four{margin-top: 1px !important;}
-	.home-one{margin-top: -70px;}
+	.home-one{margin-top: -74px;}
 	.home_content.home5{padding: 230px 0 240px;}
 	.home_content.home5.style2{padding-top: 200px;}
 	.our-dashbord.dashbord{padding-top: 45px;}
@@ -545,7 +545,7 @@
 	header.header-nav.menu_style_home_one{display: none;}
 	header.header-nav.menu_style_home_one .ace-responsive-menu,
 	header.header-nav.menu_style_home_one .ace-responsive-menu > li {background-color: transparent;     display: flex;
-		flex-direction: column; border-radius: 10px; padding-bottom: 3px;}
+		flex-direction: column; border-radius: 10px; padding-bottom: 3px; width: 217px}
 	header.header-nav.menu_style_home_one .ace-responsive-menu li a{ background: indianred; padding: 20px 15px 27px 15px;}
 
 
@@ -731,7 +731,7 @@
 	.blog_post_home4.home8{text-align: center;}
 	.blog_post_home4.home8 .bph4_thumb img{margin: 0 auto;}
 	.testimonial_item.home2 .details{padding: 50px;text-align: center;}
-	.home1_bgi1{height: 650px;     padding-top: 65px;}
+	.home1_bgi1{height: 736px;     padding-top: 65px; margin-top: -17px;}
 	.home-text.home8{padding: 250px 0;}
 	.our-media .container-fluid{padding-left: 15px !important;padding-right: 15px !important;}
 	.home-one .home-text h2,.home_content.home4 .home-text h2,.banner-style-one .banner-title,.home-text.home6 h2{font-size: 30px;}

@@ -1,6 +1,7 @@
 import { useNavigate, Link } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import { login } from "../services/authServices";
+import { authenticate } from "../services/authServices";
 import "../Styles/Login.css";
 
 function Login({ setUserInfo }) {
@@ -57,7 +58,7 @@ function Login({ setUserInfo }) {
       await login(username, password).then(
         (result) => {
           setIsLoaded(true);
-
+console.log(result);
           if (result.errors) {
             userElement.style.display = "block";
             setError([
@@ -71,7 +72,9 @@ function Login({ setUserInfo }) {
             setIsLoaded(false);
           } else {
             setIsLoaded(true);
-            
+            console.log(result);
+            authenticate(result)
+            console.log(localStorage);
             setUserInfo({
               isAuthenticated: true,
               token: result.token,

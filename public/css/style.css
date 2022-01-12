@@ -8975,6 +8975,8 @@ a.btn.btn_error{
   max-height: calc(100% - 93px);
   overflow-y: scroll;
   overflow-x: hidden;
+  margin-bottom: 85px;
+  top: 0;
 }
 .message_container .inbox_chatting_box::-webkit-scrollbar {
   background: transparent;
