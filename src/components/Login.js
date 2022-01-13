@@ -1,12 +1,12 @@
 import { useNavigate, Link } from "react-router-dom";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import { login } from "../services/authServices";
-import { authenticate } from "../services/authServices";
+import { AuthContext } from "../contexts/AuthContext";
 import "../Styles/Login.css";
 
-function Login({ setUserInfo }) {
+function Login() {
+  const { authenticate } = useContext(AuthContext)
   const [error, setError] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false);
   let navigate = useNavigate();
   let [usernameError, setUsernameError] = useState();
   let [passwordError, setPasswordError] = useState();
@@ -57,35 +57,26 @@ function Login({ setUserInfo }) {
     } else if (password && username) {
       await login(username, password).then(
         (result) => {
-          setIsLoaded(true);
-console.log(result);
           if (result.errors) {
             userElement.style.display = "block";
             setError([
               result.errors.Password ? result.errors.Password[0] : "",
               result.errors.Username ? " and " + result.errors.Username[0] : "",
             ]);
-            setIsLoaded(false);
+            
           } else if (result.isSuccessStatusCode === false) {
             userElement.style.display = "block";
             setError(result.reasonPhrase);
-            setIsLoaded(false);
+            
           } else {
-            setIsLoaded(true);
-            console.log(result);
-            authenticate(result)
-            console.log(localStorage);
-            setUserInfo({
-              isAuthenticated: true,
-              token: result.token,
-              email: result.email,
-            });
+            
+            authenticate(result.email, result.token, result.expiration, result.username)
             navigate({ pathname: "/home" });
           }
         },
         (error) => {
           userElement.style.display = "block";
-          setIsLoaded(true);
+          
           setError(error);
         }
       );

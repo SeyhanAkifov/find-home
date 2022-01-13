@@ -1,13 +1,13 @@
-import { useContext, useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import AuthContext from "../contexts/AuthContext";
+import { useAuth } from "../contexts/AuthContext";
 
 function CreateProperty() {
   let navigate = useNavigate();
-  const { token, email } = useContext(AuthContext);
+  const { user } = useAuth();
+  const {token, email} = user
   const [error, setError] = useState([]);
-  let [userError, setUserError] = useState();
-  const [isLoaded, setIsLoaded] = useState(false);
+  
   let inputs = [
     "title",
     "image",
@@ -150,23 +150,15 @@ function CreateProperty() {
       .then((res) => res.json())
       .then(
         (result) => {
-          setIsLoaded(true);
           if (result.errors) {
             setError([result.title]);
-            setIsLoaded(false);
-            console.log(`Error 1: ${error}`);
           } else if (result.isSuccessStatusCode === false) {
             setError(result.reasonPhrase);
-            setIsLoaded(false);
           } else {
-            setIsLoaded(true);
-            console.log(`Success: ${error}`);
             navigate({ pathname: "/home" });
           }
         },
         (error) => {
-          console.log(`Error: ${error}`);
-          setIsLoaded(true);
           setError(error);
         }
       );
@@ -189,7 +181,7 @@ function CreateProperty() {
               <h4 className="mb30">Create Listing</h4>
              
               <div>
-                <span className="title-error">{userError}</span>
+                <span className="title-error"></span>
               </div>
               <div className="my_profile_setting_input form-group">
                 <label htmlFor="propertyTitle">Property Title</label>
@@ -202,7 +194,7 @@ function CreateProperty() {
               </div>
               <div className="my_profile_setting_input form-group">
                 <div>
-                  <span className="image-error">{userError}</span>
+                  <span className="image-error"></span>
                 </div>
                 <label htmlFor="propertyImage">Property ImageUrl</label>
                 <input
@@ -216,7 +208,7 @@ function CreateProperty() {
             <div className="col-lg-12">
               <div className="my_profile_setting_textarea">
               <div>
-                <span className="description-error">{userError}</span>
+                <span className="description-error"></span>
                 </div>
                 <label htmlFor="propertyDescription">Description</label>
                 <textarea
@@ -230,7 +222,7 @@ function CreateProperty() {
             <div className="col-lg-6 col-xl-6">
               <div className="my_profile_setting_input ui_kit_select_search form-group">
               <div>
-                <span className="type-error">{userError}</span>
+                <span className="type-error"></span>
                 </div>
                 <label>Type</label>
                 <select
@@ -253,7 +245,7 @@ function CreateProperty() {
             <div className="col-lg-6 col-xl-6">
               <div className="my_profile_setting_input ui_kit_select_search form-group">
                 <div>
-                <span className="status-error">{userError}</span>
+                <span className="status-error"></span>
                 </div>
                 <label>Status</label>
                 <select
@@ -273,7 +265,7 @@ function CreateProperty() {
             <div className="col-lg-4 col-xl-4">
               <div className="my_profile_setting_input form-group">
               <div>
-                <span className="price-error">{userError}</span>
+                <span className="price-error"></span>
                 </div>
                 <label htmlFor="formGroupExamplePrice">Price</label>
                 <input
@@ -287,7 +279,7 @@ function CreateProperty() {
             <div className="col-lg-4 col-xl-4">
               <div className="my_profile_setting_input form-group">
               <div>
-                <span className="area-error">{userError}</span>
+                <span className="area-error"></span>
                 </div>
                 <label htmlFor="formGroupExampleArea">Area</label>
                 <input
@@ -301,7 +293,7 @@ function CreateProperty() {
             <div className="col-lg-4 col-xl-4">
               <div className="my_profile_setting_input ui_kit_select_search form-group">
               <div>
-                <span className="rooms-error">{userError}</span>
+                <span className="rooms-error"></span>
                 </div>
                 <label>Rooms</label>
                 <select
@@ -323,7 +315,7 @@ function CreateProperty() {
             <div className="col-lg-4 col-xl-4">
               <div className="my_profile_setting_input ui_kit_select_search form-group">
               <div>
-                <span className="baths-error">{userError}</span>
+                <span className="baths-error"></span>
                 </div>
                 <label>Baths</label>
                 <select
@@ -345,7 +337,7 @@ function CreateProperty() {
             <div className="col-lg-4 col-xl-4">
               <div className="my_profile_setting_input ui_kit_select_search form-group">
               <div>
-                <span className="floor-error">{userError}</span>
+                <span className="floor-error"></span>
                 </div>
                 <label>Floor</label>
                 <select
@@ -367,7 +359,7 @@ function CreateProperty() {
             <div className="col-lg-4 col-xl-4">
               <div className="my_profile_setting_input form-group">
               <div>
-                <span className="adFor-error">{userError}</span>
+                <span className="adFor-error"></span>
                 </div>
                 <label>Ad For</label>
                 <select
@@ -385,7 +377,7 @@ function CreateProperty() {
             <div className="col-lg-4 col-xl-4">
               <div className="my_profile_setting_input form-group">
               <div>
-                <span className="year-error">{userError}</span>
+                <span className="year-error"></span>
                 </div>
                 <label htmlFor="formGroupExampleArea">
                   Year of construction
@@ -402,7 +394,7 @@ function CreateProperty() {
               <h4 className="mb30">Location</h4>
               <div className="my_profile_setting_input form-group">
               <div>
-                <span className="address-error">{userError}</span>
+                <span className="address-error"></span>
                 </div>
                 <label htmlFor="propertyAddress">Address</label>
                 <input
@@ -417,7 +409,7 @@ function CreateProperty() {
             <div className="col-lg-6 col-xl-6">
               <div className="my_profile_setting_input form-group">
               <div>
-                <span className="city-error">{userError}</span>
+                <span className="city-error"></span>
                 </div>
                 <label htmlFor="propertyCity">City</label>
                 <input
@@ -432,7 +424,7 @@ function CreateProperty() {
             <div className="col-lg-4 col-xl-4">
               <div className="my_profile_setting_input form-group">
               <div>
-                <span className="zip-error">{userError}</span>
+                <span className="zip-error"></span>
                 </div>
                 <label htmlFor="zipCode">Zip</label>
                 <input
@@ -446,7 +438,7 @@ function CreateProperty() {
             <div className="col-lg-4 col-xl-4">
               <div className="my_profile_setting_input ui_kit_select_search form-group">
               <div>
-                <span className="country-error">{userError}</span>
+                <span className="country-error"></span>
                 </div>
                 <label>Country</label>
                 <select

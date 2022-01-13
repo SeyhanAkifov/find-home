@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useContext } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import AuthContext from "../contexts/AuthContext";
+import {AuthContext} from "../contexts/AuthContext";
 import "../Styles/Details.css";
 
 function Details() {
@@ -486,21 +486,21 @@ function Details() {
                   </div>
                 </div>
               </div>
-              {property.creator != username ? 
-              <div class="col-lg-4 col-xl-4">
-              <div class="sidebar_listing_grid1">
-                <div class="sidebar_listing_list">
+              {property.creator !== username ? 
+              <div className="col-lg-4 col-xl-4">
+              <div className="sidebar_listing_grid1">
+                <div className="sidebar_listing_list">
                   <form
-                    class="sidebar_advanced_search_widget"
+                    className="sidebar_advanced_search_widget"
                     onSubmit={SendMessage}
                   >
-                    <h4 class="mb25">Contact {property.creator}</h4>
-                    <ul class="sasw_list mb0">
-                      <li class="search_area">
-                        <div class="form-group">
+                    <h4 className="mb25">Contact {property.creator}</h4>
+                    <ul className="sasw_list mb0">
+                      <li className="search_area">
+                        <div className="form-group">
                           <input
                             type="text"
-                            class="form-control"
+                            className="form-control"
                             id="name"
                             name="name"
                             placeholder="Your Name"
@@ -508,23 +508,23 @@ function Details() {
                         </div>
                       </li>
 
-                      <li class="search_area">
-                        <div class="form-group">
+                      <li className="search_area">
+                        <div className="form-group">
                           <input
                             type="email"
-                            class="form-control"
+                            className="form-control"
                             id="email"
                             name="email"
                             defaultValue={username}
                           />
                         </div>
                       </li>
-                      <li class="search_area">
-                        <div class="form-group">
+                      <li className="search_area">
+                        <div className="form-group">
                           <textarea
                             id="message"
                             name="message"
-                            class="form-control required"
+                            className="form-control required"
                             rows="5"
                             required="required"
                             placeholder="Your Message"
@@ -532,8 +532,8 @@ function Details() {
                         </div>
                       </li>
                       <li>
-                        <div class="search_option_button">
-                          <button type="submit" class="btn btn-block btn-thm">
+                        <div className="search_option_button">
+                          <button type="submit" className="btn btn-block btn-thm">
                             Send
                           </button>
                         </div>

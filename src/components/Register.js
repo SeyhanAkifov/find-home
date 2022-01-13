@@ -7,8 +7,7 @@ import "../Styles/Register.css";
 function Register() {
   let navigate = useNavigate();
   const [error, setError] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false);
-  let [userError, setUserError] = useState();
+  
   const divRef = useRef(null);
 
   useEffect(() => {
@@ -93,27 +92,27 @@ function Register() {
         .then((res) => res.json())
         .then(
           (result) => {
-            setIsLoaded(true);
+            
 
             if (result.errors) {
               err = true;
               serverError = true;
               setError([result.title]);
-              setIsLoaded(false);
+              
             } else if (result.isSuccessStatusCode === false) {
               err = true;
               serverError = true;
               setError(result.reasonPhrase);
-              setIsLoaded(false);
+              
             } else if (result.status === "Error") {
               err = true;
               serverError = true;
               setError([result.message]);
-              setIsLoaded(false);
+              
             } else {
               errorElement.style.display = "none";
               setError([]);
-              setIsLoaded(true);
+              
               navigate({ pathname: "/login" });
               err = false;
               serverError = false;
@@ -122,7 +121,7 @@ function Register() {
           (error) => {
             err = true;
             serverError = true;
-            setIsLoaded(true);
+           
             setError(error);
           }
         );
@@ -155,7 +154,7 @@ function Register() {
                 <form action="#" onSubmit={onFormSubmit}>
                   <span className="error">{error.map((x) => x)}</span>
 
-                  <span className="username-error">{userError}</span>
+                  <span className="username-error"></span>
                   <div className="form-group">
                     <input
                       type="text"
@@ -165,7 +164,7 @@ function Register() {
                       placeholder="Username"
                     />
                   </div>
-                  <span className="email-error">{userError}</span>
+                  <span className="email-error"></span>
                   <div className="form-group">
                     <input
                       type="email"
@@ -178,7 +177,7 @@ function Register() {
                   <p>
                     Password must contain: Capital letter, number and Sybmol
                   </p>
-                  <span className="password-error">{userError}</span>
+                  <span className="password-error"></span>
                   <div className="form-group">
                     <input
                       type="password"
@@ -188,7 +187,7 @@ function Register() {
                       placeholder="Example1@"
                     />
                   </div>
-                  <span className="confirmPassword-error">{userError}</span>
+                  <span className="confirmPassword-error"></span>
 
                   <div className="form-group">
                     <input
@@ -199,7 +198,7 @@ function Register() {
                       placeholder="Confirm Password"
                     />
                   </div>
-                  <span className="firstName-error">{userError}</span>
+                  <span className="firstName-error"></span>
                   <div className="form-group">
                     <input
                       type="text"
@@ -209,7 +208,7 @@ function Register() {
                       placeholder="First Name"
                     />
                   </div>
-                  <span className="lastName-error">{userError}</span>
+                  <span className="lastName-error"></span>
                   <div className="form-group">
                     <input
                       type="text"

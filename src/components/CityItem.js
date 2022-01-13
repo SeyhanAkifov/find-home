@@ -5,7 +5,6 @@ function CityItem(params) {
 
   function OnClick(e) {
     e.preventDefault()
-
     let city = e.currentTarget.querySelector(".details h4").innerText;
     navigate({ pathname : `/search/location=${city}`})
   }

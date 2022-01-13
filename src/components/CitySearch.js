@@ -1,15 +1,11 @@
-import { useContext } from "react";
-import AuthContext from "../contexts/AuthContext";
 import useFetch from "../hooks/useFetch";
 import CityItem from "./CityItem";
 
 function CitySearch() {
-  const token = useContext(AuthContext);
-
   const url =
     "https://apifindhome.seyhanakifov.com/api/Home/GetCitiesWitProperties";
 
-  const [items, error, isLoaded] = useFetch(url, token);
+  const [items, error, isLoaded] = useFetch(url);
 
   if (!isLoaded) {
     return <div>Loading...</div>;

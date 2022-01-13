@@ -4,7 +4,7 @@ import MainItem from "./MainItem";
 
 import { useParams } from "react-router-dom";
 import { useContext, useEffect, useRef } from "react";
-import AuthContext from "../contexts/AuthContext";
+import {AuthContext} from "../contexts/AuthContext";
 import "../Styles/Main.css"
 
 //http://apifindhome.seyhanakifov.com/api/Home/Get

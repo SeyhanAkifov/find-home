@@ -9,7 +9,6 @@ import MyProperties from "./components/MyProperties";
 import MyLikes from "./components/MyLikes";
 import CitySearch from "./components/CitySearch";
 import WhyChooseUs from "./components/WhyChooseUs";
-import MobileMenu from "./components/MobileMenu";
 import CreateProperty from "./components/CreateProperty";
 import EditProperty from "./components/EditProperty";
 import Register from "./components/Register";
@@ -18,7 +17,7 @@ import Login from "./components/Login";
 import Details from "./components/Details";
 import MyProfile from "./components/MyProfile";
 import MyMessages from "./components/MyMessages";
-import AuthContext from "./contexts/AuthContext";
+import { AuthProvider } from "./contexts/AuthContext";
 
 function App() {
   const [userInfo, setUserInfo] = useState({
@@ -30,7 +29,7 @@ function App() {
   useEffect(() => {}, [userInfo]);
 
   return (
-    <AuthContext.Provider value={userInfo}>
+    <AuthProvider>
        
       <div className="wrapper">
         <div className="preloader"></div>
@@ -41,13 +40,12 @@ function App() {
 
         <Routes>
           <Route path="/home" element={<Main />} />
-          
           <Route path="/" element={<Main />} />
           <Route path="/properties/" element={<Main />} />
           <Route path="/search/:query" element={<MainSearch />} />
           <Route path="/create" element={<CreateProperty />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login setUserInfo={setUserInfo} />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/details/:id" element={<Details />} />
           <Route path="/myProperties" element={<MyProperties />} />
           <Route path="/myLiked" element={<MyLikes />} />
@@ -66,7 +64,7 @@ function App() {
         </Link>
       </div>
      
-    </AuthContext.Provider>
+    </AuthProvider>
   );
 }
 

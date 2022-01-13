@@ -2,13 +2,13 @@ import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import AuthContext from "../contexts/AuthContext";
+import {AuthContext} from "../contexts/AuthContext";
 
 function EditProperty() {
   let navigate = useNavigate();
   let counter = 1;
   const { token, email } = useContext(AuthContext);
-  let [userError, setUserError] = useState();
+ 
   let inputs = [
     "title",
     "image",
@@ -217,7 +217,7 @@ function EditProperty() {
                 <h4 className="mb30">Edit Property</h4>
                 <span className="warning">All fields is required</span>
                 <div>
-                  <span className="title-error">{userError}</span>
+                  <span className="title-error"></span>
                 </div>
                 <div className="my_profile_setting_input form-group">
                   <label htmlFor="propertyTitle">Property Title</label>
@@ -230,7 +230,7 @@ function EditProperty() {
                   />
                 </div>
                 <div>
-                  <span className="image-error">{userError}</span>
+                  <span className="image-error"></span>
                 </div>
                 <div className="my_profile_setting_input form-group">
                   <label htmlFor="propertyImage">Property ImageUrl</label>
@@ -244,7 +244,7 @@ function EditProperty() {
                 </div>
               </div>
               <div>
-                <span className="description-error">{userError}</span>
+                <span className="description-error"></span>
               </div>
               <div className="col-lg-12">
                 <div className="my_profile_setting_textarea">
@@ -262,7 +262,7 @@ function EditProperty() {
               <div className="col-lg-6 col-xl-6">
                 <div className="my_profile_setting_input ui_kit_select_search form-group">
                   <div>
-                    <span className="type-error">{userError}</span>
+                    <span className="type-error"></span>
                   </div>
                   <label>Type</label>
                   <select
@@ -286,7 +286,7 @@ function EditProperty() {
               <div className="col-lg-6 col-xl-6">
                 <div className="my_profile_setting_input ui_kit_select_search form-group">
                   <div>
-                    <span className="status-error">{userError}</span>
+                    <span className="status-error"></span>
                   </div>
                   <label>Status</label>
                   <select
@@ -307,7 +307,7 @@ function EditProperty() {
               <div className="col-lg-4 col-xl-4">
                 <div className="my_profile_setting_input form-group">
                   <div>
-                    <span className="price-error">{userError}</span>
+                    <span className="price-error"></span>
                   </div>
                   <label htmlFor="formGroupExamplePrice">Price</label>
                   <input
@@ -322,7 +322,7 @@ function EditProperty() {
               <div className="col-lg-4 col-xl-4">
                 <div className="my_profile_setting_input form-group">
                   <div>
-                    <span className="area-error">{userError}</span>
+                    <span className="area-error"></span>
                   </div>
                   <label htmlFor="formGroupExampleArea">Area</label>
                   <input
@@ -337,7 +337,7 @@ function EditProperty() {
               <div className="col-lg-4 col-xl-4">
                 <div className="my_profile_setting_input ui_kit_select_search form-group">
                   <div>
-                    <span className="rooms-error">{userError}</span>
+                    <span className="rooms-error"></span>
                   </div>
                   <label>Rooms</label>
                   <select
@@ -360,7 +360,7 @@ function EditProperty() {
               <div className="col-lg-4 col-xl-4">
                 <div className="my_profile_setting_input ui_kit_select_search form-group">
                   <div>
-                    <span className="baths-error">{userError}</span>
+                    <span className="baths-error"></span>
                   </div>
                   <label>Baths</label>
                   <select
@@ -383,7 +383,7 @@ function EditProperty() {
               <div className="col-lg-4 col-xl-4">
                 <div className="my_profile_setting_input ui_kit_select_search form-group">
                   <div>
-                    <span className="floor-error">{userError}</span>
+                    <span className="floor-error"></span>
                   </div>
                   <label>Floor</label>
                   <select
@@ -406,7 +406,7 @@ function EditProperty() {
               <div className="col-lg-4 col-xl-4">
                 <div className="my_profile_setting_input form-group">
                   <div>
-                    <span className="adFor-error">{userError}</span>
+                    <span className="adFor-error"></span>
                   </div>
                   <label>Ad For</label>
                   <select
@@ -424,7 +424,7 @@ function EditProperty() {
               <div className="col-lg-4 col-xl-4">
                 <div className="my_profile_setting_input form-group">
                   <div>
-                    <span className="year-error">{userError}</span>
+                    <span className="year-error"></span>
                   </div>
                   <label htmlFor="formGroupExampleArea">
                     Year of construction
@@ -442,7 +442,7 @@ function EditProperty() {
                 <h4 className="mb30">Location</h4>
                 <div className="my_profile_setting_input form-group">
                   <div>
-                    <span className="address-error">{userError}</span>
+                    <span className="address-error"></span>
                   </div>
                   <label htmlFor="propertyAddress">Address</label>
                   <input
@@ -460,7 +460,7 @@ function EditProperty() {
               <div className="col-lg-6 col-xl-6">
                 <div className="my_profile_setting_input form-group">
                   <div>
-                    <span className="city-error">{userError}</span>
+                    <span className="city-error"></span>
                   </div>
                   <label htmlFor="propertyCity">City</label>
                   <input
@@ -476,7 +476,7 @@ function EditProperty() {
               <div className="col-lg-4 col-xl-4">
                 <div className="my_profile_setting_input form-group">
                   <div>
-                    <span className="zip-error">{userError}</span>
+                    <span className="zip-error"></span>
                   </div>
                   <label htmlFor="zipCode">Zip</label>
                   <input
@@ -491,7 +491,7 @@ function EditProperty() {
               <div className="col-lg-4 col-xl-4">
                 <div className="my_profile_setting_input ui_kit_select_search form-group">
                   <div>
-                    <span className="country-error">{userError}</span>
+                    <span className="country-error"></span>
                   </div>
                   <label>Country</label>
                   <select

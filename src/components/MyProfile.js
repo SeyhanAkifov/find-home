@@ -1,10 +1,20 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useContext, useState, useEffect, useRef } from "react";
-import AuthContext from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useRef } from "react";
+import { useAuth } from "../contexts/AuthContext"
 
 function MyProfile() {
   let navigate = useNavigate();
-  const { token, email } = useContext(AuthContext);
+  const { user } = useAuth();
+  const {token} = user;
+  const divRef = useRef(null)
+
+  useEffect(() => {
+    if (divRef.current) {
+      divRef.current.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  });
 
   useEffect(() => {
     if (!token) {
@@ -17,7 +27,7 @@ function MyProfile() {
   return (
     <>
      
-      <section className="our-dashbord dashbord bgc-f7 pb50">
+      <section className="our-dashbord dashbord bgc-f7 pb50" ref={divRef}>
         <div className="container-fluid">
           <div className="row">
             <div className="col-lg-3 col-xl-2 dn-992 pl0"></div>

@@ -1,16 +1,14 @@
-
 import { useNavigate } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 
- function HomeSearch() {
-  
+function HomeSearch() {
   let navigate = useNavigate();
- 
-    let url = "https://apifindhome.seyhanakifov.com/api/Home/GetTypes";
 
-    const [items] = useFetch(url);
-    
-    function submitHandler(e) {
+  let url = "https://apifindhome.seyhanakifov.com/api/Home/GetTypes";
+
+  const [items] = useFetch(url);
+
+  function submitHandler(e) {
     e.preventDefault();
     let query = {
       type: e.target[1].value,
@@ -24,24 +22,22 @@ import useFetch from "../hooks/useFetch";
     }${query.min ? `&min=` + query.min : ""}${
       query.max ? `&max=` + query.max : ""
     }`;
-    
+
     navigate({
       pathname: `/search/${url}`,
     });
   }
 
-  function OnClear(e){
-    e.preventDefault()
-    let form  = document.getElementById('pills-home');
-    form.reset()
+  function OnClear(e) {
+    e.preventDefault();
+    let form = document.getElementById("pills-home");
+    form.reset();
     console.log(form);
   }
 
-
-
   return (
     <section className="home-one home1-overlay home1_bgi1">
-      <div className="container" >
+      <div className="container">
         <div className="row posr">
           <div className="col-lg-12">
             <div className="home_content">
@@ -51,7 +47,7 @@ import useFetch from "../hooks/useFetch";
                   From as low as $10 per day with limited time offer discounts.
                 </p>
               </div>
-            
+
               <div className="home_adv_srch_opt">
                 {/* <ul className="nav nav-pills" id="pills-tab" role="tablist">
                    <li className="nav-item">
@@ -81,7 +77,7 @@ import useFetch from "../hooks/useFetch";
                     </a>
                   </li>
                 </ul> */}
-               
+
                 <div
                   className="tab-content home1_adsrchfrm"
                   id="pills-tabContent"
@@ -97,24 +93,24 @@ import useFetch from "../hooks/useFetch";
                     <div className="home1-advnc-search">
                       <ul className="h1ads_1st_list mb0">
                         <li className="list-inline-item">
-                          
-                            <div className="search_option_button">
-                              <button onClick={OnClear} className="custompicker w100 show-tick btn btn-thm">Clear Inputs</button>
-                            </div>
-                          
+                          <div className="search_option_button">
+                            <button
+                              onClick={OnClear}
+                              className="custompicker w100 show-tick btn btn-thm"
+                            >
+                              Clear Inputs
+                            </button>
+                          </div>
                         </li>
                         <li className="list-inline-item">
                           <div className="search_option_two">
                             <div className="candidate_revew_select">
-                              <select className="custompicker w100 show-tick" >
-                                
-                              
-                              
-                                    {items.map((item) => (
-                                      <option key={item.id} value={item.name} >{item.name}</option>
-                                    ))}
-                                  
-                                
+                              <select className="custompicker w100 show-tick">
+                                {items.map((item) => (
+                                  <option key={item.id} value={item.name}>
+                                    {item.name}
+                                  </option>
+                                ))}
                               </select>
                             </div>
                           </div>
@@ -156,7 +152,7 @@ import useFetch from "../hooks/useFetch";
                                   placeholder="$130000"
                                 ></input>
                                 <div className="slider-range"></div>
-                               
+
                                 <div id="slider"></div>
                               </div>
                             </div>

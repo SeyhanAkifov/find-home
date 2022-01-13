@@ -2,17 +2,15 @@ import useFetch from "../hooks/useFetch";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useRef } from "react";
 import MainItem from "./MainItem";
-import AuthContext from "../contexts/AuthContext";
+import { AuthContext } from "../contexts/AuthContext";
 import { isAuthenticated } from "../services/authServices";
-import { getUser } from "../services/authServices";
 import "../Styles/Main.css";
 
-//http://apifindhome.seyhanakifov.com/api/Home/Get
 function MyLikes() {
   let navigate = useNavigate();
   const token = useContext(AuthContext);
-console.log(isAuthenticated);
-console.log(localStorage.getItem("expiration"));
+  console.log(isAuthenticated);
+  console.log(localStorage.getItem("expiration"));
   const divRef = useRef(null);
   useEffect(() => {
     if (divRef.current) {
@@ -26,7 +24,7 @@ console.log(localStorage.getItem("expiration"));
     if (!isAuthenticated) {
       navigate({ pathname: "/login" });
     }
-  }, [isAuthenticated, navigate]);
+  }, [ navigate]);
 
   const url = `https://apifindhome.seyhanakifov.com/api/Home/GetMyLikes?username=${token.email}`;
   const [items, error, isLoaded] = useFetch(url, token.token);

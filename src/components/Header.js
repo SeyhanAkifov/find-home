@@ -1,26 +1,21 @@
-import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import AuthContext from "../contexts/AuthContext";
-import { logout } from "../services/authServices";
+import { useAuth } from "../contexts/AuthContext";
 import "../Styles/Header.css";
 
-function Header({ setUserInfo }) {
-  const userInfo = useContext(AuthContext);
-  let token = userInfo.token;
-  let username = userInfo.email;
+function Header() {
   let navigate = useNavigate();
+  const { user } = useAuth();
+  const { logout } = useAuth();
+  const { token, username } = user;
 
   const Logout = (e) => {
     e.preventDefault();
     logout();
-    console.log(localStorage);
-    setUserInfo({ isAuthenticated: false, email: null, token: null });
     navigate({ pathname: "/home" });
   };
 
   return (
     <>
-  
       <header className="header-nav menu_style_home_one navbar-scrolltofixed stricky main-menu">
         <div className="container-fluid p0">
           <nav>
@@ -56,7 +51,6 @@ function Header({ setUserInfo }) {
               className="ace-responsive-menu text-right"
               data-menu-style="horizontal"
             >
-              
               <li>
                 <Link to="/home">
                   <span className="title">Home</span>
@@ -64,12 +58,11 @@ function Header({ setUserInfo }) {
               </li>
               {token ? (
                 <>
-                 <li className="last">
-                
-                <Link to="/myMessages">
-                <i class="far fa-envelope"></i>
-            </Link>
-              </li>
+                  <li className="last">
+                    <Link to="/myMessages">
+                      <i className="far fa-envelope"></i>
+                    </Link>
+                  </li>
                   <li className="list-inline-item list_s">
                     <Link
                       to="myProfile"
@@ -121,8 +114,6 @@ function Header({ setUserInfo }) {
                   <span className="title">Contact</span>
                 </Link>
               </li>
-             
-              
             </ul>
           </nav>
         </div>

@@ -2,7 +2,7 @@ import useFetch from "../hooks/useFetch";
 import { Link } from "react-router-dom";
 import MainItem from "./MainItem";
 import { useContext, useState, useRef } from "react";
-import AuthContext from "../contexts/AuthContext";
+import {AuthContext} from "../contexts/AuthContext";
 import "../Styles/Main.css";
 
 
