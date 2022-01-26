@@ -1,14 +1,24 @@
 import useFetch from "../hooks/useFetch";
 import { Link, useNavigate } from "react-router-dom";
-import { useContext, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import MainItem from "./MainItem";
-import { AuthContext } from "../contexts/AuthContext";
+import { useAuth } from "../contexts/AuthContext";
 import { isAuthenticated } from "../services/authServices";
 import "../Styles/Main.css";
 
 function MyLikes() {
   let navigate = useNavigate();
-  const token = useContext(AuthContext);
+  const { user } = useAuth();
+  const { token, email } = user;
+
+  useEffect(() => {
+    if (!token) {
+      navigate({
+        pathname: "/login",
+      });
+    }
+  }, [token, navigate]);
+
   console.log(isAuthenticated);
   console.log(localStorage.getItem("expiration"));
   const divRef = useRef(null);
@@ -20,14 +30,10 @@ function MyLikes() {
     }
   });
 
-  useEffect(() => {
-    if (!isAuthenticated) {
-      navigate({ pathname: "/login" });
-    }
-  }, [ navigate]);
+ 
 
-  const url = `https://apifindhome.seyhanakifov.com/api/Home/GetMyLikes?username=${token.email}`;
-  const [items, error, isLoaded] = useFetch(url, token.token);
+  const url = `https://apifindhome.seyhanakifov.com/api/Home/GetMyLikes?username=${email}`;
+  const [items, error, isLoaded] = useFetch(url, token);
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {

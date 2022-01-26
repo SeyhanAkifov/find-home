@@ -11,6 +11,13 @@
   #myDetails{
     width:100%
   }
+
+  #sendMessage{
+    display: none;
+  }
+  .my_profile_setting_input{
+    margin-top: 15px;
+  }
   .breadcrumb_widgets{
     border-radius: 5px;
     background-color: rgb(225, 230, 239);

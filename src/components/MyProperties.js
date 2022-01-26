@@ -1,14 +1,24 @@
 import useFetch from "../hooks/useFetch";
 import MainItem from "./MainItem";
 import { useNavigate } from "react-router-dom";
-import { useContext, useEffect, useRef } from "react";
-import {AuthContext} from "../contexts/AuthContext";
+import { useEffect, useRef } from "react";
+import {useAuth} from "../contexts/AuthContext";
 import "../Styles/Main.css";
 
 //http://apifindhome.seyhanakifov.com/api/Home/Get
 function MyProperties() {
   let navigate = useNavigate();
-  const token = useContext(AuthContext);
+
+  const { user } = useAuth();
+  const { token, email } = user;
+
+  useEffect(() => {
+    if (!token) {
+      navigate({
+        pathname: "/login",
+      });
+    }
+  }, [token, navigate]);
 
   const divRef = useRef(null);
   useEffect(() => {
@@ -19,14 +29,10 @@ function MyProperties() {
     }
   });
 
-  useEffect(() => {
-    if (!token.token) {
-      navigate({ pathname: "/login" });
-    }
-  }, [token, navigate]);
+ 
 
-  const url = `https://apifindhome.seyhanakifov.com/api/Property/GetMy?user=${token.email}`;
-  const [items, error, isLoaded] = useFetch(url, token.token);
+  const url = `https://apifindhome.seyhanakifov.com/api/Property/GetMy?user=${email}`;
+  const [items, error, isLoaded] = useFetch(url, token);
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {

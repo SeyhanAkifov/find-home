@@ -125,7 +125,7 @@ function MyMessages() {
                             <li
                               className="contact"
                               value={item.id}
-                              key={item.recipientEmail}
+                              key={item.senderEmail}
                               onClick={GetMessages}
                             >
                               

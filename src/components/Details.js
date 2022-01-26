@@ -1,15 +1,18 @@
 import { useState, useEffect, useRef, useContext } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import {AuthContext} from "../contexts/AuthContext";
+import { useAuth } from "../contexts/AuthContext";
 import "../Styles/Details.css";
 
 function Details() {
   let navigate = useNavigate();
 
-  const userInfo = useContext(AuthContext);
+  const { user } = useAuth();
+  const { token, email } = user;
+
+  
+  
   const [isLiked, setIsLiked] = useState(false);
-  let token = userInfo.token;
-  let username = userInfo.email;
+ 
   let id = useParams();
 
   const [property, setProperty] = useState([]);
@@ -39,8 +42,8 @@ function Details() {
       .then(
         (data) => {
           console.log(data.likes);
-          data.likes.includes(username) ? setIsLiked(true) : setIsLiked(false);
-          // data.likes.includes(username) ? isLiked = true : false;
+          data.likes.includes(email) ? setIsLiked(true) : setIsLiked(false);
+          // data.likes.includes(email) ? isLiked = true : false;
           setProperty(data);
           setIsLoaded(true);
 
@@ -56,7 +59,7 @@ function Details() {
       .catch((error) => {
         navigate("/notFound", { message: "Item not found in database" });
       });
-  }, [id.id, token, isLiked, navigate, username]);
+  }, [id.id, token, isLiked, navigate, email]);
 
   const SendMessage = async (e) => {
     e.preventDefault();
@@ -83,6 +86,10 @@ function Details() {
         }),
       }
     ).then((res) => res.json());
+
+    let sendInfo = document.getElementById("sendMessage");
+    sendInfo.style.color="green";
+    sendInfo.style.display = "block"
   };
 
   const OnDelete = async (e) => {
@@ -109,18 +116,18 @@ function Details() {
   const OnLike = async (e) => {
     e.preventDefault();
 
-    if (username === property.creator) {
+    if (email === property.creator) {
       navigate({
         pathname: "/notFound",
       });
     }
 
-    if (property.likes.includes(username)) {
+    if (property.likes.includes(email)) {
       navigate({
         pathname: "/notFound",
       });
     }
-
+    console.log(email);
     await fetch(`https://apifindhome.seyhanakifov.com/api/Home/UserLike`, {
       method: "POST",
       headers: {
@@ -128,7 +135,7 @@ function Details() {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        username: username,
+        username: email,
         propertyId: id.id,
       }),
     }).then((res) => res.json());
@@ -140,18 +147,19 @@ function Details() {
   const OnUnlike = async (e) => {
     e.preventDefault();
 
-    if (username === property.creator) {
+    if (email === property.creator) {
       navigate({
         pathname: "/notFound",
       });
     }
 
-    if (!property.likes.includes(username)) {
+    if (!property.likes.includes(email)) {
       navigate({
         pathname: "/notFound",
       });
     }
 
+    console.log(email);
     await fetch(`https://apifindhome.seyhanakifov.com/api/Home/UserUnlike`, {
       method: "POST",
       headers: {
@@ -159,7 +167,7 @@ function Details() {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        username: username,
+        username: email,
         propertyId: id.id,
       }),
     }).then((res) => res.json());
@@ -446,7 +454,7 @@ function Details() {
                   <div className="col-xl-12">
                     <div className="my_profile_setting_input">
                       {token ? (
-                        username === property.creator ? (
+                        email === property.creator ? (
                           <>
                             <Link to={`/edit/${id.id}`}>
                               <button className="btn btn1 float-left">
@@ -462,7 +470,7 @@ function Details() {
                           </>
                         ) : (
                           <>
-                            {property.likes.includes(username) ? (
+                            {property.likes.includes(email) ? (
                               <button
                                 onClick={OnUnlike}
                                 className="btn btn2 float-right"
@@ -486,7 +494,7 @@ function Details() {
                   </div>
                 </div>
               </div>
-              {property.creator !== username ? 
+              {property.creator !== email ? 
               <div className="col-lg-4 col-xl-4">
               <div className="sidebar_listing_grid1">
                 <div className="sidebar_listing_list">
@@ -515,7 +523,7 @@ function Details() {
                             className="form-control"
                             id="email"
                             name="email"
-                            defaultValue={username}
+                            defaultValue={email}
                           />
                         </div>
                       </li>
@@ -537,6 +545,7 @@ function Details() {
                             Send
                           </button>
                         </div>
+                        <span id="sendMessage" >Message sent!</span>
                       </li>
                     </ul>
                   </form>

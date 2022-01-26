@@ -1,13 +1,22 @@
 import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
-import { useContext } from "react";
+
 import { useNavigate } from "react-router-dom";
-import {AuthContext} from "../contexts/AuthContext";
+import {useAuth} from "../contexts/AuthContext";
 
 function EditProperty() {
   let navigate = useNavigate();
   let counter = 1;
-  const { token, email } = useContext(AuthContext);
+  const { user } = useAuth();
+  const { token, email } = user;
+
+  useEffect(() => {
+    if (!token) {
+      navigate({
+        pathname: "/login",
+      });
+    }
+  }, [token, navigate]);
  
   let inputs = [
     "title",
