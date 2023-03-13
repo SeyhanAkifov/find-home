@@ -11,7 +11,7 @@ function HomeSearchItem () {
               <div className="home_adv_srch_opt">
                 <ul className="nav nav-pills" id="pills-tab" role="tablist">
                    <li className="nav-item">
-                    <a
+                    <href
                       className="nav-link active"
                       id="pills-home-tab"
                       data-toggle="pill"
@@ -21,10 +21,10 @@ function HomeSearchItem () {
                       aria-selected="true"
                     >
                       Buy
-                    </a>
+                    </href>
                   </li>
                   <li className="nav-item">
-                    <a
+                    <href
                       className="nav-link"
                       id="pills-profile-tab"
                       data-toggle="pill"
@@ -34,7 +34,7 @@ function HomeSearchItem () {
                       aria-selected="false"
                     >
                       Rent
-                    </a>
+                    </href>
                   </li>
                 </ul>
                
