@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { useAuth } from "../contexts/AuthContext";
 
+import "../Styles/Main.css"
+
 function MyMessages() {
   const [messages, setMessages] = useState([]);
   const [isChanged, setIsChanged] = useState(false);

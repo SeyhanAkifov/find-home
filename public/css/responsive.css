@@ -548,7 +548,7 @@
 		flex-direction: column; border-radius: 10px; padding-bottom: 3px; width: 217px}
 	header.header-nav.menu_style_home_one .ace-responsive-menu li a{ background: indianred; padding: 20px 15px 27px 15px;}
 
-
+	header.header-nav.menu_style_home_one .ace-responsive-menu li a span{color:#ffffff}
 
 	header.header-nav.menu_style_home_three.stricky-fixed{background-color: #4568dc;}
 	header.header-nav.menu_style_home_three .ace-responsive-menu li ul.sub-menu{background-color: #4568dc;}
@@ -598,6 +598,15 @@
 /* Small devices (min-width: 576px) (max-width: 767.98px) // (landscape phones, less than 768px) */
 @media only screen and (max-width: 767.98px){
 	/* ExTra Class Start*/
+	header.header-nav.menu_style_home_one .ace-responsive-menu li a span{color:#ffffff}
+	header.header-nav.menu_style_home_one .ace-responsive-menu li a i{color:#ffffff}
+	header.header-nav.menu_style_home_one .ace-responsive-menu li a{color:#ffffff}
+	#respMenu{    display: flex; flex-wrap: wrap; align-items: center; flex-direction: row; width:100%;}
+	#respMenu li{padding: 5px;}
+	#respMenu li a{padding: 5px;}
+	.list-inline-item:not(:last-child){margin-right:0;}
+	.header-nav {background-color: #ffffff;}
+	
 	.tal-xsd,.tal-767 {text-align: left !important;}
 	.tac-xsd {text-align: center !important;}
 	.dn-xsd {display: none;}
@@ -759,6 +768,8 @@
 	.ff_one{padding: 15px 10px;}
 	.inbox_chatting_box .chatting_content{padding: 30px 30px 100px;}
 
+	
+
 }
 @media only screen and (max-width:630px){
 
@@ -767,6 +778,7 @@
 	.banner-style-one .banner-btn{display: block;}
 	.menu_bar_home2 li.list-inline-item:first-child:after{right: 0;}
 	ul.view_edit_delete_list{display: block !important;float: none !important;margin-top: 15px;}
+	
 }
 @media only screen and (max-width: 580px){
 	.h1ads_1st_list.half_style li.custome_fields_half:nth-child(2){width: 71%;}

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useContext } from "react";
+import { useState, useEffect, useRef, } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import "../Styles/Details.css";
@@ -444,10 +444,13 @@ function Details() {
                           <h4 className="mb10">Added before</h4>
                         </div>
                         <h5>
-                          {new Date(Date.now()).getDay() -
-                            new Date(property.addedOn).getDay()}{" "}
-                          days
-                        </h5>
+                          {(parseInt((new Date(Date.now()) -
+                            new Date(property.addedOn))/(1000* 60 *60 *24),10)) < 27 ? '' + (parseInt((new Date(Date.now()) -
+                            new Date(property.addedOn))/(1000* 60 *60 *24),10)) + ' days' : (parseInt((new Date(Date.now()) -
+                            new Date(property.addedOn))/(1000* 60 *60 *24),10)) > 360 ? "" + Math.round((parseInt((new Date(Date.now()) -
+                            new Date(property.addedOn))/(1000* 60 *60 *24),10)) / 360) + ' years' : '' + Math.round((parseInt((new Date(Date.now()) -
+                            new Date(property.addedOn))/(1000* 60 *60 *24),10)) / 30) + ' months'}{" "}
+                             </h5>
                       </div>
                     </div>
                   </div>
