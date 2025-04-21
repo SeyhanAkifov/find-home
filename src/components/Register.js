@@ -1,11 +1,12 @@
-import { useNavigate } from "react-router-dom";
+"use client";
+import { redirect } from 'next/navigation'
 import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 
 import "../Styles/Register.css";
 
 function Register() {
-  let navigate = useNavigate();
+  let navigate = redirect();
   const [error, setError] = useState([]);
   
   const divRef = useRef(null);
@@ -113,7 +114,7 @@ function Register() {
               errorElement.style.display = "none";
               setError([]);
               
-              navigate({ pathname: "/login" });
+              navigate("/login");
               err = false;
               serverError = false;
             }

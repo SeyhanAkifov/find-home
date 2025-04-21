@@ -1,9 +1,9 @@
-import { useNavigate } from "react-router-dom";
+import { redirect } from 'next/navigation'
 import { useEffect, useRef } from "react";
 import { useAuth } from "../contexts/AuthContext"
 
 function MyProfile() {
-  let navigate = useNavigate();
+  let navigate = redirect();
   const { user } = useAuth();
   const {token} = user;
   const divRef = useRef(null)

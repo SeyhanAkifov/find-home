@@ -1,9 +1,10 @@
+"use client";
 import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { redirect } from 'next/navigation'
 import { useAuth } from "../contexts/AuthContext";
 
 function CreateProperty() {
-  let navigate = useNavigate();
+  let navigate = redirect();
   const { user } = useAuth();
   const {token, email} = user
   const [error, setError] = useState([]);
@@ -155,7 +156,7 @@ function CreateProperty() {
           } else if (result.isSuccessStatusCode === false) {
             setError(result.reasonPhrase);
           } else {
-            navigate({ pathname: "/home" });
+            navigate("/home" );
           }
         },
         (error) => {

@@ -1,9 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
+import {Link, redirect } from 'next/navigation'
+ 
 import { useAuth } from "../contexts/AuthContext";
 import "../Styles/Header.css";
 
 function Header() {
-  let navigate = useNavigate();
+  let navigate = redirect();
   const { user } = useAuth();
   const { logout } = useAuth();
   const { token, username } = user;
@@ -11,7 +12,7 @@ function Header() {
   const Logout = (e) => {
     e.preventDefault();
     logout();
-    navigate({ pathname: "/home" });
+    navigate("/home" );
   };
 
   return (

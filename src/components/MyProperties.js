@@ -1,13 +1,13 @@
 import useFetch from "../hooks/useFetch";
 import MainItem from "./MainItem";
-import { useNavigate } from "react-router-dom";
+import { redirect } from 'next/navigation'
 import { useEffect, useRef } from "react";
 import {useAuth} from "../contexts/AuthContext";
 import "../Styles/Main.css";
 
 //http://apifindhome.seyhanakifov.com/api/Home/Get
 function MyProperties() {
-  let navigate = useNavigate();
+  let navigate = redirect();
 
   const { user } = useAuth();
   const { token, email } = user;

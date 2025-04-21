@@ -1,4 +1,5 @@
-import { useNavigate, Link } from "react-router-dom";
+"use client";
+import { Link, redirect } from 'next/navigation'
 import { useState, useRef, useEffect, useContext } from "react";
 import { login } from "../services/authServices";
 import { AuthContext } from "../contexts/AuthContext";
@@ -7,7 +8,7 @@ import "../Styles/Login.css";
 function Login() {
   const { authenticate } = useContext(AuthContext)
   const [error, setError] = useState([]);
-  let navigate = useNavigate();
+  let navigate = redirect();
   let [usernameError, setUsernameError] = useState();
   let [passwordError, setPasswordError] = useState();
   const divRef = useRef(null);
@@ -71,7 +72,7 @@ function Login() {
           } else {
             
             authenticate(result.email, result.token, result.expiration, result.username)
-            navigate({ pathname: "/home" });
+            navigate("/home" );
           }
         },
         (error) => {

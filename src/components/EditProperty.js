@@ -1,11 +1,12 @@
+"use client";
 import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 
-import { useNavigate } from "react-router-dom";
+import { redirect } from 'next/navigation'
 import {useAuth} from "../contexts/AuthContext";
 
 function EditProperty() {
-  let navigate = useNavigate();
+  let navigate = redirect();
   let counter = 1;
   const { user } = useAuth();
   const { token, email } = user;
@@ -48,7 +49,7 @@ function EditProperty() {
 
   useEffect(() => {
     if (!token) {
-      navigate({ pathname: "/login" });
+      navigate("/login" );
     }
   }, [token, navigate]);
 
@@ -200,7 +201,7 @@ function EditProperty() {
         .then((res) => res.json())
         .then((result) => {
           if (result.status === "Success") {
-            navigate({ pathname: `/details/${id.id}` });
+            navigate(`/details/${id.id}` );
           }
         });
     }

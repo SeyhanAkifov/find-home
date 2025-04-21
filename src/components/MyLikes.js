@@ -1,5 +1,5 @@
 import useFetch from "../hooks/useFetch";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, redirect } from 'next/navigation'
 import { useEffect, useRef } from "react";
 import MainItem from "./MainItem";
 import { useAuth } from "../contexts/AuthContext";
@@ -7,7 +7,7 @@ import { isAuthenticated } from "../services/authServices";
 import "../Styles/Main.css";
 
 function MyLikes() {
-  let navigate = useNavigate();
+  let navigate = redirect();
   const { user } = useAuth();
   const { token, email } = user;
 

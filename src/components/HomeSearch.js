@@ -1,8 +1,8 @@
-import { useNavigate } from "react-router-dom";
+import { redirect } from 'next/navigation'
 import useFetch from "../hooks/useFetch";
 
 function HomeSearch() {
-  let navigate = useNavigate();
+  let navigate = redirect();
 
   let url = "https://localhost:44382/api/Home/GetTypes";
 

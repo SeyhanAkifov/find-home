@@ -1,10 +1,12 @@
+"use client";
 import { useState, useEffect, useRef, } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+
+import { redirect, useParams, Link  } from 'next/navigation'
 import { useAuth } from "../contexts/AuthContext";
 import "../Styles/Details.css";
 
 function Details() {
-  let navigate = useNavigate();
+  let navigate = redirect();
 
   const { user } = useAuth();
   const { token, email } = user;
@@ -110,22 +112,21 @@ function Details() {
         }
       });
 
-    navigate({ pathname: "/home" });
+    navigate("/home" );
   };
 
   const OnLike = async (e) => {
     e.preventDefault();
 
     if (email === property.creator) {
-      navigate({
-        pathname: "/notFound",
-      });
+      navigate("/notFound",
+      );
     }
 
     if (property.likes.includes(email)) {
-      navigate({
-        pathname: "/notFound",
-      });
+      navigate(
+        "/notFound",
+      );
     }
     console.log(email);
     await fetch(`https://localhost:44382/api/Home/UserLike`, {
@@ -141,22 +142,22 @@ function Details() {
     }).then((res) => res.json());
 
     setIsLiked(true);
-    navigate({ pathname: `/details/${id.id}` });
+    navigate( `/details/${id.id}` );
   };
 
   const OnUnlike = async (e) => {
     e.preventDefault();
 
     if (email === property.creator) {
-      navigate({
-        pathname: "/notFound",
-      });
+      navigate(
+      "/notFound",
+      );
     }
 
     if (!property.likes.includes(email)) {
-      navigate({
-        pathname: "/notFound",
-      });
+      navigate(
+         "/notFound",
+      );
     }
 
     console.log(email);
@@ -173,7 +174,7 @@ function Details() {
     }).then((res) => res.json());
 
     setIsLiked(false);
-    navigate({ pathname: `/details/${id.id}` });
+    navigate(`/details/${id.id}` );
   };
 
   feature = property.feature;

@@ -1,12 +1,12 @@
-import { useNavigate } from "react-router-dom";
+import { redirect } from 'next/navigation'
 
 function CityItem(params) {
-  let navigate = useNavigate();
+  let navigate = redirect();
 
   function OnClick(e) {
     e.preventDefault()
     let city = e.currentTarget.querySelector(".details h4").innerText;
-    navigate({ pathname : `/search/location=${city}`})
+    navigate(`/search/location=${city}`)
   }
 
   return (
