@@ -31,7 +31,7 @@ function Details() {
 
   useEffect(() => {
     fetch(
-      `https://apifindhome.seyhanakifov.com/api/Home/GetWithId?id=${id.id}`,
+      `https://localhost:44382/api/Home/GetWithId?id=${id.id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -70,7 +70,7 @@ function Details() {
     let name = formData.get("name");
 
     await fetch(
-      `https://apifindhome.seyhanakifov.com/api/Property/SendMessage`,
+      `https://localhost:44382/api/Property/SendMessage`,
       {
         method: "POST",
         headers: {
@@ -96,7 +96,7 @@ function Details() {
     e.preventDefault();
 
     await fetch(
-      `https://apifindhome.seyhanakifov.com/api/Home/DeleteWithId?id=${id.id}`,
+      `https://localhost:44382/api/Home/DeleteWithId?id=${id.id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -128,7 +128,7 @@ function Details() {
       });
     }
     console.log(email);
-    await fetch(`https://apifindhome.seyhanakifov.com/api/Home/UserLike`, {
+    await fetch(`https://localhost:44382/api/Home/UserLike`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -160,7 +160,7 @@ function Details() {
     }
 
     console.log(email);
-    await fetch(`https://apifindhome.seyhanakifov.com/api/Home/UserUnlike`, {
+    await fetch(`https://localhost:44382/api/Home/UserUnlike`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

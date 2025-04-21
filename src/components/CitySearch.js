@@ -3,7 +3,7 @@ import CityItem from "./CityItem";
 
 function CitySearch() {
   const url =
-    "https://apifindhome.seyhanakifov.com/api/Home/GetCitiesWitProperties";
+  "https://localhost:44382/api/Home/GetCitiesWitProperties";
 
   const [items, error, isLoaded] = useFetch(url);
 

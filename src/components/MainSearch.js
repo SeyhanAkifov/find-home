@@ -23,7 +23,7 @@ function Main() {
   });
 
   let query = useParams();
-  const url = `https://apifindhome.seyhanakifov.com/api/Property/Search?${query.query}`;
+  const url = `https://localhost:44382/api/Property/Search?${query.query}`;
   const [items, error, isLoaded] = useFetch(url, token);
   if (error) {
     return <div>Error: {error.message}</div>;

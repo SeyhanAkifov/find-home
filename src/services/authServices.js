@@ -2,7 +2,7 @@
 
 
 export const login = async (username, password) => {
-  return await fetch("https://apifindhome.seyhanakifov.com/api/Account/Login", {
+  return await fetch("https://localhost:44382/api/Account/Login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

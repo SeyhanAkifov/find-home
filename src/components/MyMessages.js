@@ -31,7 +31,7 @@ function MyMessages() {
     }
   });
 
-  const url = `https://apifindhome.seyhanakifov.com/api/Property/GetConversations?recipientEmail=${email}`;
+  const url = `https://localhost:44382/api/Property/GetConversations?recipientEmail=${email}`;
   const [items, error, isLoaded] = useFetch(url, token);
 
   const SendMessage = async (e) => {
@@ -44,7 +44,7 @@ function MyMessages() {
         ? messages[0].recipientEmail
         : messages[0].senderEmail;
     await fetch(
-      `https://apifindhome.seyhanakifov.com/api/Property/SendMessage`,
+      `https://localhost:44382/api/Property/SendMessage`,
       {
         method: "POST",
         headers: {
@@ -74,7 +74,7 @@ function MyMessages() {
     }
 
     fetch(
-      `https://apifindhome.seyhanakifov.com/api/Property/GetRecipientMessages?conversationId=${id}`,
+      `https://localhost:44382/api/Property/GetRecipientMessages?conversationId=${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

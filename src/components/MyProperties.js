@@ -31,7 +31,7 @@ function MyProperties() {
 
  
 
-  const url = `https://apifindhome.seyhanakifov.com/api/Property/GetMy?user=${email}`;
+  const url = `https://localhost:44382/api/Property/GetMy?user=${email}`;
   const [items, error, isLoaded] = useFetch(url, token);
   if (error) {
     return <div>Error: {error.message}</div>;

@@ -32,7 +32,7 @@ function MyLikes() {
 
  
 
-  const url = `https://apifindhome.seyhanakifov.com/api/Home/GetMyLikes?username=${email}`;
+  const url = `https://localhost:44382/api/Home/GetMyLikes?username=${email}`;
   const [items, error, isLoaded] = useFetch(url, token);
   if (error) {
     return <div>Error: {error.message}</div>;

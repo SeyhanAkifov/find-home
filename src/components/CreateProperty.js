@@ -102,7 +102,7 @@ function CreateProperty() {
     let windowCoverings = formData.get("windowCoverings") ? true : false;
     let garden = formData.get("garden") ? true : false;
 
-    fetch("https://apifindhome.seyhanakifov.com/api/Home/Post", {
+    fetch("https://localhost:44382/api/Home/Post", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,

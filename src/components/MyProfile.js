@@ -124,30 +124,8 @@ function MyProfile() {
                               />
                             </div>
                           </div>
-                          <div className="col-lg-6 col-xl-6">
-                            <div className="my_profile_setting_input form-group">
-                              <label htmlFor="formGroupExampleInput6">
-                                License
-                              </label>
-                              <input
-                                type="text"
-                                className="form-control"
-                                id="formGroupExampleInput6"
-                              />
-                            </div>
-                          </div>
-                          <div className="col-lg-6 col-xl-6">
-                            <div className="my_profile_setting_input form-group">
-                              <label htmlFor="formGroupExampleInput7">
-                                Tax Number
-                              </label>
-                              <input
-                                type="text"
-                                className="form-control"
-                                id="formGroupExampleInput7"
-                              />
-                            </div>
-                          </div>
+                          
+                          
                           <div className="col-lg-6 col-xl-6">
                             <div className="my_profile_setting_input form-group">
                               <label htmlFor="formGroupExampleInput8">Phone</label>
@@ -158,18 +136,7 @@ function MyProfile() {
                               />
                             </div>
                           </div>
-                          <div className="col-lg-6 col-xl-6">
-                            <div className="my_profile_setting_input form-group">
-                              <label htmlFor="formGroupExampleInput9">
-                                Fax Number
-                              </label>
-                              <input
-                                type="text"
-                                className="form-control"
-                                id="formGroupExampleInput9"
-                              />
-                            </div>
-                          </div>
+                         
                           <div className="col-lg-6 col-xl-6">
                             <div className="my_profile_setting_input form-group">
                               <label htmlFor="formGroupExampleInput10">
@@ -321,18 +288,7 @@ function MyProfile() {
                               />
                             </div>
                           </div>
-                          <div className="col-lg-6 col-xl-6">
-                            <div className="my_profile_setting_input form-group">
-                              <label htmlFor="formGroupExampleGooglePlus">
-                                Google Plus
-                              </label>
-                              <input
-                                type="text"
-                                className="form-control"
-                                id="formGroupExampleGooglePlus"
-                              />
-                            </div>
-                          </div>
+                          
                           <div className="col-lg-6 col-xl-6">
                             <div className="my_profile_setting_input form-group">
                               <label htmlFor="formGroupExampleYoutube">
@@ -357,16 +313,7 @@ function MyProfile() {
                               />
                             </div>
                           </div>
-                          <div className="col-lg-6 col-xl-6">
-                            <div className="my_profile_setting_input form-group">
-                              <label htmlFor="formGroupExampleVimeo">Vimeo</label>
-                              <input
-                                type="text"
-                                className="form-control"
-                                id="formGroupExampleVimeo"
-                              />
-                            </div>
-                          </div>
+                          
                           <div className="col-xl-12 text-right">
                             <div className="my_profile_setting_input">
                               <button className="btn btn2">Update Profile</button>

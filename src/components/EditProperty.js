@@ -62,7 +62,7 @@ function EditProperty() {
 
   useEffect(() => {
     fetch(
-      `https://apifindhome.seyhanakifov.com/api/Home/GetWithId?id=${id.id}`,
+      `https://localhost:44382/api/Home/GetWithId?id=${id.id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -150,7 +150,7 @@ function EditProperty() {
       let windowCoverings = formData.get("windowCoverings") ? true : false;
       let garden = formData.get("garden") ? true : false;
 
-      fetch("https://apifindhome.seyhanakifov.com/api/Home/Edit", {
+      fetch("https://localhost:44382/api/Home/Edit", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

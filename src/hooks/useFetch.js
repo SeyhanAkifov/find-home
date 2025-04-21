@@ -5,6 +5,7 @@ const useFetch = (url, token, currentPage) => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   
+  
 
   useEffect(() => {
     fetch(url, {
@@ -29,3 +30,4 @@ const useFetch = (url, token, currentPage) => {
 };
 
 export default useFetch;
+

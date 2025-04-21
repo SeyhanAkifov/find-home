@@ -4,7 +4,7 @@ import useFetch from "../hooks/useFetch";
 function HomeSearch() {
   let navigate = useNavigate();
 
-  let url = "https://apifindhome.seyhanakifov.com/api/Home/GetTypes";
+  let url = "https://localhost:44382/api/Home/GetTypes";
 
   const [items] = useFetch(url);
 
