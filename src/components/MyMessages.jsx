@@ -1,6 +1,6 @@
 "use client";
 import useFetch from "../hooks/useFetch";
-import { Link, redirect } from 'next/navigation'
+import { Link, useRouter } from 'next/navigation'
 import { useState, useEffect, useRef } from "react";
 import { useAuth } from "../contexts/AuthContext";
 
@@ -12,15 +12,14 @@ function MyMessages() {
   const [conversationId, setConversationId] = useState(0);
   const divRef = useRef(null);
 
-  let navigate = redirect();
+  let navigate = useRouter();
   const { user } = useAuth();
   const { token, email } = user;
 
   useEffect(() => {
     if (!token) {
-      navigate({
-        pathname: "/login",
-      });
+      navigate.push( "/login"
+      );
     }
   }, [token, navigate]);
 

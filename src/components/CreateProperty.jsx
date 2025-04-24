@@ -1,10 +1,10 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import { redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { useAuth } from "../contexts/AuthContext";
 
 function CreateProperty() {
-  let navigate = redirect();
+  let navigate = useRouter();
   const { user } = useAuth();
   const {token, email} = user
   const [error, setError] = useState([]);
@@ -39,9 +39,8 @@ function CreateProperty() {
 
   useEffect(() => {
     if (!token) {
-      navigate({
-        pathname: "/login",
-      });
+      navigate.push("/login"
+      );
     }
   }, [token, navigate]);
 

@@ -1,8 +1,9 @@
-import { redirect } from 'next/navigation'
+"use client"
+import { useRouter } from 'next/navigation'
 import useFetch from "../hooks/useFetch";
 
 function HomeSearch() {
-  let navigate = redirect();
+  let navigate = useRouter();
 
   let url = "https://localhost:44382/api/Home/GetTypes";
 
@@ -23,9 +24,8 @@ function HomeSearch() {
       query.max ? `&max=` + query.max : ""
     }`;
 
-    navigate({
-      pathname: `/search/${url}`,
-    });
+    navigate.push(`/search/${url}`
+    );
   }
 
   function OnClear(e) {

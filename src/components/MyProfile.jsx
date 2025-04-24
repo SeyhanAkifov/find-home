@@ -1,4 +1,4 @@
-import { redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { useEffect, useRef } from "react";
 import { useAuth } from "../contexts/AuthContext"
 

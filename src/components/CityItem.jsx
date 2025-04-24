@@ -1,12 +1,13 @@
-import { redirect } from 'next/navigation'
+"use client"
+import { useRouter } from 'next/navigation'
 
 function CityItem(params) {
-  let navigate = redirect();
+  let navigate = useRouter();
 
   function OnClick(e) {
     e.preventDefault()
     let city = e.currentTarget.querySelector(".details h4").innerText;
-    navigate(`/search/location=${city}`)
+    navigate.push(`/search/location=${city}`)
   }
 
   return (

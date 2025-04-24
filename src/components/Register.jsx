@@ -1,12 +1,12 @@
 "use client";
-import { redirect } from 'next/navigation'
-import { Link } from "react-router-dom";
+import { useRouter } from 'next/navigation'
+import { Link } from "next/link";
 import { useState, useEffect, useRef } from "react";
 
 import "../Styles/Register.css";
 
 function Register() {
-  let navigate = redirect();
+  let navigate = useRouter();
   const [error, setError] = useState([]);
   
   const divRef = useRef(null);
@@ -76,7 +76,7 @@ function Register() {
     });
     if (!err) {
       document.querySelector(`.error`).style.display = "none";
-      await fetch("https://apifindhome.seyhanakifov.com/api/Account/Register", {
+      await fetch("https://localhost:44382/api/Account/Register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -114,7 +114,7 @@ function Register() {
               errorElement.style.display = "none";
               setError([]);
               
-              navigate("/login");
+              navigate.push("/login");
               err = false;
               serverError = false;
             }
@@ -145,9 +145,9 @@ function Register() {
                 <h3 className="text-center">Register to start learning</h3>
                 <p className="text-center">
                   Have an account?{" "}
-                  <Link className="text-thm" to="/login">
+                  <a className="text-thm" href="/login">
                     Login
-                  </Link>
+                  </a>
                 </p>
               </div>
 

@@ -1,16 +1,17 @@
 "use client";
-import { Link, redirect } from 'next/navigation'
-import { useState, useRef, useEffect, useContext } from "react";
+import { Link, useRouter } from "next/navigation";
+import { useState, useRef, useEffect, useContext, createContext } from "react";
 import { login } from "../services/authServices";
 import { AuthContext } from "../contexts/AuthContext";
 import "../Styles/Login.css";
 
 function Login() {
+
   const { authenticate } = useContext(AuthContext)
   const [error, setError] = useState([]);
-  let navigate = redirect();
-  let [usernameError, setUsernameError] = useState();
-  let [passwordError, setPasswordError] = useState();
+  const navigate = useRouter();
+  const [usernameError, setUsernameError] = useState();
+  const [passwordError, setPasswordError] = useState();
   const divRef = useRef(null);
 
   useEffect(() => {
@@ -19,27 +20,28 @@ function Login() {
         behavior: "smooth",
       });
     }
-  });
+  }, []);
 
   const onFormSubmit = async (e) => {
     e.preventDefault();
 
-    let formData = new FormData(e.currentTarget);
-    let username = formData.get("username");
-    let password = formData.get("password");
-    let usernameInput = document.querySelector("#username");
-    let passwordInput = document.querySelector("#password");
-    let passwordErrorElement = document.querySelector(".password-error");
+ 
+    const formData = new FormData(e.currentTarget);
+    const username = formData.get("username");
+    const password = formData.get("password");
+    const usernameInput = document.querySelector("#username");
+    const passwordInput = document.querySelector("#password");
+    const passwordErrorElement = document.querySelector(".password-error");
+    const usernameErrorElement = document.querySelector(".username-error");
+    const userElement = document.querySelector(".error");
+   
     passwordErrorElement.style.display = "none";
-    let usernameErrorElement = document.querySelector(".username-error");
     usernameErrorElement.style.display = "none";
-    let userElement = document.querySelector(".error");
     userElement.style.display = "none";
     setUsernameError("");
     setPasswordError("");
 
     if (!username) {
-      
       usernameErrorElement.style.display = "block";
       usernameInput.style.background = "pink";
       setUsernameError("Username is required");
@@ -48,7 +50,6 @@ function Login() {
       }, 1000);
     }
     if (!password) {
-      
       passwordErrorElement.style.display = "block";
       passwordInput.style.background = "pink";
       setPasswordError("Password is required");
@@ -64,28 +65,27 @@ function Login() {
               result.errors.Password ? result.errors.Password[0] : "",
               result.errors.Username ? " and " + result.errors.Username[0] : "",
             ]);
-            
           } else if (result.isSuccessStatusCode === false) {
             userElement.style.display = "block";
             setError(result.reasonPhrase);
-            
           } else {
-            
-            authenticate(result.email, result.token, result.expiration, result.username)
-            navigate("/home" );
+            authenticate(result.email, result.token, result.expiration, result.username);
+            navigate.push("/home");
           }
         },
         (error) => {
           userElement.style.display = "block";
-          
           setError(error);
         }
       );
     }
+
+  
   };
 
   return (
     <section className="our-log bgc-fa" ref={divRef}>
+    
       <div className="container">
         <div className="row">
           <div className="col-sm-12 col-lg-6 offset-lg-3">
@@ -95,9 +95,9 @@ function Login() {
                   <h3 className="text-center">Login to your account</h3>
                   <p className="text-center">
                     Don't have an account?{" "}
-                    <Link className="text-thm" to="/register">
+                    <a className="text-thm" href="/register">
                       Sign Up!
-                    </Link>
+                    </a>
                   </p>
                 </div>
 
@@ -140,7 +140,7 @@ function Login() {
                   </label>
                 </div>
                 <button
-                id="log"
+                  id="log"
                   type="submit"
                   className="btn btn-log btn-block btn-thm2"
                 >

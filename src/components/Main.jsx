@@ -1,11 +1,11 @@
 "use client";
+
 import useFetch from "../hooks/useFetch";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import MainItem from "./MainItem";
 import { useContext, useState, useRef } from "react";
-import {AuthContext} from "../contexts/AuthContext";
+import { AuthContext } from "../contexts/AuthContext";
 import "../Styles/Main.css";
-
 
 function Main() {
   const [currentPage, setCurrentPage] = useState(0);
@@ -13,6 +13,10 @@ function Main() {
   const divRef = useRef(null);
   const pageOnSite = 6;
   const pageCount = 1;
+
+  const { token } = useContext(AuthContext); // Use AuthContext to get the token
+  const url = `https://localhost:44382/api/Home/Get?page=${currentPage}`;
+  const [items, error, isLoaded] = useFetch(url, token, currentPage);
 
   function OnNext() {
     setCurrentPage(currentPage + pageOnSite);
@@ -28,7 +32,7 @@ function Main() {
   function OnPrevious() {
     setCurrentPage(currentPage - pageOnSite);
     setPage(page - pageCount);
-    
+
     if (divRef.current) {
       divRef.current.scrollIntoView({
         behavior: "smooth",
@@ -36,9 +40,6 @@ function Main() {
     }
   }
 
-  const token = useContext(AuthContext);
-  const url = `https://localhost:44382/api/Home/Get?page=${currentPage}`;
-  const [items, error, isLoaded] = useFetch(url, token, currentPage);
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
@@ -53,7 +54,7 @@ function Main() {
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
-              <Link to="#feature-property">
+              <Link href="#feature-property">
                 <div className="mouse_scroll">
                   <div className="icon">
                     <h4>Scroll Down</h4>
@@ -90,7 +91,11 @@ function Main() {
               {currentPage === 0 ? (
                 <>
                   {page * pageOnSite <= items.length ? (
-                    <button id="next" className="btn btn2 float-right" onClick={OnNext}>
+                    <button
+                      id="next"
+                      className="btn btn2 float-right"
+                      onClick={OnNext}
+                    >
                       Next
                     </button>
                   ) : (
@@ -99,14 +104,21 @@ function Main() {
                 </>
               ) : (
                 <>
-                  <button id="prev" className="btn btn1 float-left" onClick={OnPrevious}>
+                  <button
+                    id="prev"
+                    className="btn btn1 float-left"
+                    onClick={OnPrevious}
+                  >
                     Previous
                   </button>
 
                   {page * pageOnSite > items.length ? (
                     ""
                   ) : (
-                    <button className="btn btn2 float-right" onClick={OnNext}>
+                    <button
+                      className="btn btn2 float-right"
+                      onClick={OnNext}
+                    >
                       Next
                     </button>
                   )}

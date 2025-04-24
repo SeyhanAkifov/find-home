@@ -2,11 +2,11 @@
 import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 
-import { redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import {useAuth} from "../contexts/AuthContext";
 
 function EditProperty() {
-  let navigate = redirect();
+  let navigate = useRouter();
   let counter = 1;
   const { user } = useAuth();
   const { token, email } = user;

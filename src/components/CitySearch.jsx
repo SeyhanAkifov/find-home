@@ -1,9 +1,10 @@
+"use client";
+
 import useFetch from "../hooks/useFetch";
 import CityItem from "./CityItem";
 
 function CitySearch() {
-  const url =
-  "https://localhost:44382/api/Home/GetCitiesWitProperties";
+  const url = "https://localhost:44382/api/Home/GetCitiesWitProperties";
 
   const [items, error, isLoaded] = useFetch(url);
 

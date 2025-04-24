@@ -1,10 +1,10 @@
-import { Link, redirect } from 'next/navigation'
+import { Link, useRouter } from 'next/navigation'
 import { useContext } from "react";
 import {AuthContext} from "../contexts/AuthContext";
 
 function MobileMenu({ setUserInfo }) {
   const userInfo = useContext(AuthContext);
-  let navigate = redirect();
+  let navigate = useRouter();
   let token = userInfo.token;
   let username = userInfo.email;
 
@@ -12,7 +12,7 @@ function MobileMenu({ setUserInfo }) {
     e.preventDefault();
 
     setUserInfo({ isAuthenticated: false, email: null, token: null });
-    navigate("/home" );
+    navigate.push("/home" );
   };
 
   return (
